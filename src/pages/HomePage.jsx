@@ -3,7 +3,7 @@ import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import CoinCardComponent from "../components/CoinCardComponent";
 
 const HomePage = () => {
-  const cardsArr = [
+  const coinsArr = [
     {
       _id: "0123",
       name: "BITCOIN",
@@ -51,7 +51,7 @@ const HomePage = () => {
       </Typography>
 
       <Grid container spacing={2} justifyContent="center">
-        {cardsArr.map((item) => (
+        {coinsArr.map((item) => (
           <Grid item xs={4} sm={6} md={4} lg={3} key={item._id + Date.now()}>
             <CoinCardComponent
               {...item}

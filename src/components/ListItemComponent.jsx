@@ -12,12 +12,21 @@ import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 
 const ListItemComponent = ({
   img,
+  _id,
   name,
   codeName,
   price,
   onEdit,
   onDelete,
 }) => {
+  const handleDeleteBtnClick = () => {
+    onDelete(_id);
+    console.log(
+      "🚀 ~ file: ListItemComponent.jsx:24 ~ handleDeleteBtnClick ~ id:",
+      _id
+    );
+  };
+
   return (
     <>
       <ListItem>
@@ -35,7 +44,11 @@ const ListItemComponent = ({
         <Button onClick={onEdit} variant="outlined" color="primary">
           Edit
         </Button>
-        <Button onClick={onDelete} variant="outlined" color="secondary">
+        <Button
+          onClick={handleDeleteBtnClick}
+          variant="outlined"
+          color="secondary"
+        >
           Delete
         </Button>
       </ListItem>
@@ -44,7 +57,7 @@ const ListItemComponent = ({
   );
 };
 
-ListItemComponent.propTypes = {
+/* ListItemComponent.propTypes = {
   img: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   codeName: PropTypes.string.isRequired,
@@ -52,5 +65,5 @@ ListItemComponent.propTypes = {
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
-
+ */
 export default ListItemComponent;

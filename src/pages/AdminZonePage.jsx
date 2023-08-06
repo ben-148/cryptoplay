@@ -1,9 +1,9 @@
-import React from "react";
-import { Box, Typography, List, ListItem } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Typography, Grid } from "@mui/material";
 import ListItemComponent from "../components/ListItemComponent";
 
 const AdminZonePage = () => {
-  const cardsArr = [
+  const [coinsArr, setCoinsArr] = useState([
     {
       _id: "0123",
       name: "BITCOIN",
@@ -25,24 +25,41 @@ const AdminZonePage = () => {
       img: "https://download.logo.wine/logo/Ethereum/Ethereum-Logo.wine.png",
       price: "2000",
     },
-  ];
+  ]);
+
+  /*   const handleDeleteFromInitialData = (id) => {
+    let updatedCoinsArr = JSON.parse(JSON.stringify(coinsArr));
+    updatedCoinsArr = updatedCoinsArr.filter((coin) => coin._id !== id);
+    setCoinsArr(updatedCoinsArr =>{updatedCoinsArr.filter((coin) => coin._id !== id);
+    });
+  };
+ */
+
+  const handleDeleteFromInitialData = (id) => {
+    setCoinsArr((prevCoinsArr) =>
+      prevCoinsArr.filter((coin) => coin._id !== id)
+    );
+  };
 
   return (
     <Box textAlign="center">
-      <Typography variant="h1">ADMIN ZONE Page</Typography>
+      <Typography
+        variant="h1"
+        style={{ fontFamily: "'Leckerli One', cursive" }}
+      >
+        ADMIN ZONE Page
+      </Typography>
 
-      <List>
-        {cardsArr.map((item) => (
-          <ListItem key={item._id}>
+      <Grid container spacing={2} justifyContent="center">
+        {coinsArr.map((item) => (
+          <Grid item xs={4} sm={6} md={4} lg={7} key={item._id}>
             <ListItemComponent
-              img={item.img}
-              name={item.name}
-              codeName={item.codeName}
-              price={item.price}
+              {...item}
+              onDelete={() => handleDeleteFromInitialData(item._id)}
             />
-          </ListItem>
+          </Grid>
         ))}
-      </List>
+      </Grid>
     </Box>
   );
 };
