@@ -28,7 +28,8 @@ const pages = [
     url: ROUTES.HOME,
   },
   { label: "About", url: ROUTES.ABOUT },
-  { label: "admin", url: ROUTES.ADMINZONE },
+  { label: "ADMIN", url: ROUTES.ADMINZONE },
+  { label: "register", url: ROUTES.REGISTER },
 ];
 
 // not logged in users
@@ -104,8 +105,10 @@ const MuiNavbar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  /*   const changeTheme = () => {
+  /*   React.useEffect(() => {
+    setTimeout(() => setAnchorElNav(anchorElNav?.current), 1);
+  }, [anchorElNav]);
+ */ /*   const changeTheme = () => {
     dispatch(darkThemeActions.changeTheme());
   };
  */

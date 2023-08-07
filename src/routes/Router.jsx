@@ -8,7 +8,7 @@ const Router = () => {
   return (
     <Routes>
       <Route path={ROUTES.HOME} element={<HomePage />} />
-      {/* <Route path={ROUTES.REGISTER} element={<RegisterPage />} /> */}
+      <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       <Route path={ROUTES.ADMINZONE} element={<AdminZonePage />} />
     </Routes>
   );

@@ -1,4 +1,4 @@
-/* import { useState } from "react";
+import { useState } from "react";
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,13 +11,12 @@ import { Alert, Switch } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import ROUTES from "../routes/ROUTES";
 import axios from "axios";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import validateRegisterSchema from "../validation/registerValidation";
 import RegisterFieldComponent from "../components/RegisterComponent";
 import FormButtonsComponent from "../components/FormButtonsComponent";
 const RegisterPage = () => {
   const [enableRegister, setenableRegister] = useState(true);
-  const [isBiz, setIsBiz] = useState(false);
   const [inputState, setInputState] = useState({
     firstName: "",
     middleName: "",
@@ -31,7 +30,6 @@ const RegisterPage = () => {
     houseNumber: "",
     zipCode: "",
     phone: "",
-    biz: isBiz,
   });
   const [inputsErrorsState, setInputsErrorsState] = useState({});
   const navigate = useNavigate();
@@ -72,11 +70,14 @@ const RegisterPage = () => {
         houseNumber: inputState.houseNumber,
         zipCode: inputState.zipCode,
         phone: inputState.phone,
-        biz: isBiz,
       });
       navigate(ROUTES.LOGIN);
     } catch (err) {
-      toast.error(err.response.data);
+      // toast.error(err.response.data);
+      console.log(
+        "🚀 ~ file: RegisterPage.jsx:77 ~ handleBtnClick ~ response:",
+        err.response.data
+      );
     }
   };
   const handleInputChange = (ev) => {
@@ -106,15 +107,12 @@ const RegisterPage = () => {
       if (typeof cloneInputState[key] === "string") {
         cloneInputState[key] = "";
       } else {
-        setIsBiz(false);
       }
     }
     setInputsErrorsState(null);
     setInputState(cloneInputState);
   };
-  const handleBizChange = (ev) => {
-    setIsBiz(ev.target.checked);
-  };
+
   const handleCancelBtnClick = (ev) => {
     navigate(ROUTES.HOME);
   };
@@ -155,21 +153,12 @@ const RegisterPage = () => {
                 )}
               </Grid>
             ))}
-            <Grid item xs={12}>
-              <Switch
-                checked={isBiz}
-                color="primary"
-                onChange={handleBizChange}
-                label="Business ?"
-              />
-              Business ?
-            </Grid>
           </Grid>
           <FormButtonsComponent
             onCancel={handleCancelBtnClick}
             onReset={handleClearClick}
             onRegister={handleBtnClick}
-            clickBtnText="Sign In"
+            clickBtnText="Make an account"
             disableProp={enableRegister}
           />
           <Grid container justifyContent="flex-start">
@@ -187,4 +176,3 @@ const RegisterPage = () => {
   );
 };
 export default RegisterPage;
- */
