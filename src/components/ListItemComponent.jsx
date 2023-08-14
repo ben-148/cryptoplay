@@ -26,6 +26,13 @@ const ListItemComponent = ({
       _id
     );
   };
+  const handleEditBtnClick = () => {
+    onEdit(_id);
+    console.log(
+      "🚀 ~ file: ListItemComponent.jsx:24 ~ handleEditBtnClick ~ id:",
+      _id
+    );
+  };
 
   return (
     <>
@@ -41,7 +48,7 @@ const ListItemComponent = ({
           primary={name}
           secondary={`Code Name: ${codeName} | Price: $${price}`}
         />
-        <Button onClick={onEdit} variant="outlined" color="primary">
+        <Button onClick={handleEditBtnClick} variant="outlined" color="primary">
           Edit
         </Button>
         <Button

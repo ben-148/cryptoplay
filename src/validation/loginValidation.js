@@ -12,9 +12,9 @@ const loginSchema = Joi.object({
     .messages({
       "string.empty": "the password should not be empty",
       "string.pattern.base":
-        "the password should be supper protected, this mean that its should contain only upper and lower case latter's",
+        "The password must be at least 6 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character.",
     })
-    .min(2)
+    .min(6)
     .max(10)
     .required(),
 });

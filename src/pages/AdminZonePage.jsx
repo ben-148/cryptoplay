@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import ListItemComponent from "../components/ListItemComponent";
+import { useNavigate, useParams } from "react-router-dom";
 
 const AdminZonePage = () => {
+  const navigate = useNavigate();
+
   const [coinsArr, setCoinsArr] = useState([
     {
       _id: "0123",
@@ -40,6 +43,9 @@ const AdminZonePage = () => {
       prevCoinsArr.filter((coin) => coin._id !== id)
     );
   };
+  const handleEditFromInitialData = (id) => {
+    navigate(`/editcoin/${id}`);
+  };
 
   return (
     <Box textAlign="center">
@@ -55,7 +61,8 @@ const AdminZonePage = () => {
           <Grid item xs={4} sm={6} md={4} lg={7} key={item._id}>
             <ListItemComponent
               {...item}
-              onDelete={() => handleDeleteFromInitialData(item._id)}
+              onDelete={handleDeleteFromInitialData}
+              onEdit={handleEditFromInitialData}
             />
           </Grid>
         ))}

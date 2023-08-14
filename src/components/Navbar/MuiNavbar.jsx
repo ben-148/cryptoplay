@@ -30,6 +30,7 @@ const pages = [
   { label: "About", url: ROUTES.ABOUT },
   { label: "ADMIN", url: ROUTES.ADMINZONE },
   { label: "register", url: ROUTES.REGISTER },
+  { label: "login", url: ROUTES.LOGIN },
 ];
 
 // not logged in users
