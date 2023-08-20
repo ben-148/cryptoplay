@@ -10,6 +10,9 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
+/* axios */ import axios from "axios";
+/* axios */ axios.defaults.baseURL = "/api";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>

@@ -28,7 +28,7 @@ const RegisterPage = () => {
     city: "",
     street: "",
     houseNumber: "",
-    zipCode: "",
+    zip: "",
     phone: "",
   });
   const [inputsErrorsState, setInputsErrorsState] = useState({});
@@ -44,7 +44,7 @@ const RegisterPage = () => {
     { inputName: "City", idAndKey: "city", isReq: true },
     { inputName: "Street", idAndKey: "street", isReq: true },
     { inputName: "House Number", idAndKey: "houseNumber", isReq: true },
-    { inputName: "Zip Code", idAndKey: "zipCode", isReq: false },
+    { inputName: "Zip Code", idAndKey: "zip", isReq: false },
     { inputName: "Phone", idAndKey: "phone", isReq: true },
   ];
   const handleBtnClick = async (ev) => {
@@ -54,21 +54,25 @@ const RegisterPage = () => {
       if (JoiResponse) {
         return;
       }
-      if (!inputState.zipCode) {
-        inputState.zipCode = 1;
+      if (!inputState.zip) {
+        inputState.zip = 1;
       }
-      await axios.post("/users/register", {
-        firstName: inputState.firstName,
-        middleName: inputState.middleName,
-        lastName: inputState.lastName,
+      await axios.post("/users", {
+        name: {
+          firstName: inputState.firstName,
+          middleName: inputState.middleName,
+          lastName: inputState.lastName,
+        },
+        address: {
+          state: inputState.state,
+          country: inputState.country,
+          city: inputState.city,
+          street: inputState.street,
+          houseNumber: inputState.houseNumber,
+          zip: inputState.zip,
+        },
         email: inputState.email,
         password: inputState.password,
-        state: inputState.state,
-        country: inputState.country,
-        city: inputState.city,
-        street: inputState.street,
-        houseNumber: inputState.houseNumber,
-        zipCode: inputState.zipCode,
         phone: inputState.phone,
       });
       navigate(ROUTES.LOGIN);
