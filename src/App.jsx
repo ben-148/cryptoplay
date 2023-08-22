@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
-import HomePage from "./pages/HomePage";
+/* import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import AdminZonePage from "./pages/AdminZonePage";
-import Router from "./routes/Router";
+ */ import Router from "./routes/Router";
 import MuiNavbar from "./components/Navbar/MuiNavbar";
 import { createTheme } from "@mui/material/styles";
 import { red, blue } from "@mui/material/colors";

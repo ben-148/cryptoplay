@@ -1,31 +1,26 @@
 import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import CoinCardComponent from "../components/CoinCardComponent";
 
 const HomePage = () => {
-  const coinsArr = [
-    {
-      _id: "0123",
-      name: "BITCOIN",
-      codeName: "BTC",
-      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/800px-Bitcoin.svg.png",
-      price: "29,000",
-    },
-    {
-      _id: "0124",
-      name: "BINANCE",
-      codeName: "BNB",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS4EmOUlbDTRu0yrNO55Bj796fuKDhtUyDvQlGdBYA&s",
-      price: "248",
-    },
-    {
-      _id: "0125",
-      name: "ETHEREUM",
-      codeName: "ETH",
-      img: "https://download.logo.wine/logo/Ethereum/Ethereum-Logo.wine.png",
-      price: "2000",
-    },
-  ];
+  const [coinsArr, setCoinsArr] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("/coins")
+      .then(({ data }) => {
+        setCoinsArr(data);
+      })
+      .catch((err) => {
+        // toast.error("Oops");
+      });
+  }, []);
+
+  if (!coinsArr) {
+    return <CircularProgress />;
+  }
 
   return (
     <Box textAlign="center">
@@ -54,12 +49,12 @@ const HomePage = () => {
         {coinsArr.map((item) => (
           <Grid item xs={4} sm={6} md={4} lg={3} key={item._id + Date.now()}>
             <CoinCardComponent
-              {...item}
-              /*               id={item._id}
+              // {...item}
+              id={item._id}
               name={item.name}
               codeName={item.codeName}
               price={item.price}
-              img={item.img} */
+              img={item.image.url}
             />
           </Grid>
         ))}
