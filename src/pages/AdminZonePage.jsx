@@ -1,42 +1,28 @@
-import React, { useState } from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Box, Typography, Grid, CircularProgress } from "@mui/material";
 import ListItemComponent from "../components/ListItemComponent";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const AdminZonePage = () => {
   const navigate = useNavigate();
 
-  const [coinsArr, setCoinsArr] = useState([
-    {
-      _id: "0123",
-      name: "BITCOIN",
-      codeName: "BTC",
-      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/800px-Bitcoin.svg.png",
-      price: "29,000",
-    },
-    {
-      _id: "0124",
-      name: "BINANCE",
-      codeName: "BNB",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS4EmOUlbDTRu0yrNO55Bj796fuKDhtUyDvQlGdBYA&s",
-      price: "248",
-    },
-    {
-      _id: "0125",
-      name: "ETHEREUM",
-      codeName: "ETH",
-      img: "https://download.logo.wine/logo/Ethereum/Ethereum-Logo.wine.png",
-      price: "2000",
-    },
-  ]);
+  const [coinsArr, setCoinsArr] = useState(null);
 
-  /*   const handleDeleteFromInitialData = (id) => {
-    let updatedCoinsArr = JSON.parse(JSON.stringify(coinsArr));
-    updatedCoinsArr = updatedCoinsArr.filter((coin) => coin._id !== id);
-    setCoinsArr(updatedCoinsArr =>{updatedCoinsArr.filter((coin) => coin._id !== id);
-    });
-  };
- */
+  useEffect(() => {
+    axios
+      .get("/coins")
+      .then(({ data }) => {
+        setCoinsArr(data);
+      })
+      .catch((err) => {
+        // toast.error("Oops");
+      });
+  }, []);
+
+  if (!coinsArr) {
+    return <CircularProgress />;
+  }
 
   const handleDeleteFromInitialData = (id) => {
     setCoinsArr((prevCoinsArr) =>
@@ -60,7 +46,11 @@ const AdminZonePage = () => {
         {coinsArr.map((item) => (
           <Grid item xs={4} sm={6} md={4} lg={7} key={item._id}>
             <ListItemComponent
-              {...item}
+              id={item._id}
+              name={item.name}
+              codeName={item.codeName}
+              price={item.price}
+              img={item.image.url}
               onDelete={handleDeleteFromInitialData}
               onEdit={handleEditFromInitialData}
             />

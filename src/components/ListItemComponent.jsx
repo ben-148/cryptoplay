@@ -12,7 +12,7 @@ import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 
 const ListItemComponent = ({
   img,
-  _id,
+  id,
   name,
   codeName,
   price,
@@ -20,17 +20,17 @@ const ListItemComponent = ({
   onDelete,
 }) => {
   const handleDeleteBtnClick = () => {
-    onDelete(_id);
+    onDelete(id);
     console.log(
       "🚀 ~ file: ListItemComponent.jsx:24 ~ handleDeleteBtnClick ~ id:",
-      _id
+      id
     );
   };
   const handleEditBtnClick = () => {
-    onEdit(_id);
+    onEdit(id);
     console.log(
       "🚀 ~ file: ListItemComponent.jsx:24 ~ handleEditBtnClick ~ id:",
-      _id
+      id
     );
   };
 
