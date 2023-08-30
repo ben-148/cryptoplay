@@ -19,7 +19,6 @@ import atom from "../logo.svg";
 
 import EditCardPageFieldComponent from "../components/EditCoinPageComponent";
 import FormButtonsComponent from "../components/FormButtonsComponent";
-import { Delete } from "@mui/icons-material";
 
 const EditCardPage = () => {
   const { id } = useParams();
@@ -28,6 +27,7 @@ const EditCardPage = () => {
   const [inputState, setInputState] = useState(null);
   const [disableEd, setDisableEdit] = useState(false);
   const [inputsErrorsState, setInputsErrorsState] = useState({});
+  const [coinState, setCoin] = useState(null);
 
   const arrOfInputs = [
     { inputName: "Name", idAndKey: "name", isReq: true },
@@ -83,19 +83,8 @@ const EditCardPage = () => {
   const handleSaveBtnClick = async (ev) => {
     try {
       const joiResponse = validateEditSchema(inputState);
-      console.log(
-        "🚀 ~ file: EditCardPage.jsx:85 ~ handleSaveBtnClick ~ inputState:",
-        inputState
-      );
       setInputsErrorsState(joiResponse);
       if (!joiResponse) {
-        if (!inputState.image) {
-          inputState.image = {};
-        }
-        inputState.image.url = inputState.url;
-        inputState.image.alt = inputState.alt;
-        delete inputState.url;
-        delete inputState.alt;
         await axios.put("/coins/" + id, inputState);
         // toast.success("🦄 You did it! edit success :) ");
 
@@ -144,16 +133,68 @@ const EditCardPage = () => {
       }
     }
     setInputsErrorsState(joiResponse);
-    console.log(
-      "🚀 ~ file: EditCardPage.jsx:136 ~ handleInputChange ~ joiResponse:",
-      joiResponse
-    );
   };
 
   if (!inputState) {
     return <CircularProgress />;
   }
 
+  /*   const fetchCoinData = async () => {
+    try {
+      const { data } = await axios.get(`/coins/${id}`);
+      setCoin(data);
+    } catch (error) {
+      // Handle error
+    }
+  };
+
+  useEffect(() => {
+    const errors = validateEditCardParamsSchema({ id });
+    if (errors) {
+      navigate("/");
+      return;
+    }
+
+    fetchCoinData();
+  }, [id, navigate]);
+
+  useEffect(() => {
+    if (coinState) {
+      setInputState({
+        name: coinState.name,
+        codeName: coinState.codeName,
+        price: coinState.price,
+        img: coinState.image.url,
+      });
+    }
+  }, [coinState]);
+
+  const handleInputChange = (ev) => {
+    let newInputState = { ...inputState };
+    newInputState[ev.target.id] = ev.target.value;
+    setInputState(newInputState);
+    const joiResponse = validateEditSchema(newInputState);
+    if (!joiResponse) {
+      setInputsErrorsState(joiResponse);
+      setDisableEdit(false);
+      return;
+    }
+    setDisableEdit(true);
+    const inputKeys = Object.keys(inputState);
+    for (const key of inputKeys) {
+      if (inputState && !inputState[key] && key !== ev.target.id) {
+        if (joiResponse[key]) {
+          joiResponse[key] = "";
+        }
+      }
+    }
+    setInputsErrorsState(joiResponse);
+  };
+
+  if (!inputState) {
+    return <CircularProgress />;
+  }
+ */
   return (
     <Container component="main" maxWidth="xs">
       <Box
@@ -178,8 +219,8 @@ const EditCardPage = () => {
             maxHeight: { xs: 233, md: 167 },
             maxWidth: { xs: 350, md: 250 },
           }}
-          alt={inputState?.alt || ""}
-          src={inputState?.url || atom}
+          alt={inputState.image.alt ? inputState.alt : ""}
+          src={inputState.image.url ? inputState.image.url : atom}
         />
         <br></br>
         <Grid container spacing={2}>
@@ -190,7 +231,7 @@ const EditCardPage = () => {
                 typeofInput={input.idAndKey}
                 isReq={input.isReq}
                 onInputeChange={handleInputChange}
-                value={inputState[input.idAndKey]}
+                value={inputValues[input.idAndKey]}
               />
               {inputsErrorsState && inputsErrorsState[input.idAndKey] && (
                 <Alert severity="warning">

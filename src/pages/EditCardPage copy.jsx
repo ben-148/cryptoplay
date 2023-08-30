@@ -117,71 +117,29 @@ const EditCardPage = () => {
     navigate(ROUTES.HOME);
   };
   const handleInputChange = (ev) => {
-    let newInputState = JSON.parse(JSON.stringify(inputState));
-    newInputState[ev.target.id] = ev.target.value;
-    setInputState(newInputState);
-    const joiResponse = validateEditSchema(newInputState);
-    if (!joiResponse) {
-      setInputsErrorsState(joiResponse);
-      setDisableEdit(false);
-      return;
-    }
-    setDisableEdit(true);
-    const inputKeys = Object.keys(inputState);
-    for (const key of inputKeys) {
-      if (inputState && !inputState[key] && key !== ev.target.id) {
-        if (joiResponse[key]) {
-          joiResponse[key] = "";
-        }
-      }
-    }
-    setInputsErrorsState(joiResponse);
-  };
-
-  if (!inputState) {
-    return <CircularProgress />;
-  }
-
-  /*   const fetchCoinData = async () => {
-    try {
-      const { data } = await axios.get(`/coins/${id}`);
-      setCoin(data);
-    } catch (error) {
-      // Handle error
-    }
-  };
-
-  useEffect(() => {
-    const errors = validateEditCardParamsSchema({ id });
-    if (errors) {
-      navigate("/");
-      return;
-    }
-
-    fetchCoinData();
-  }, [id, navigate]);
-
-  useEffect(() => {
-    if (coinState) {
-      setInputState({
-        name: coinState.name,
-        codeName: coinState.codeName,
-        price: coinState.price,
-        img: coinState.image.url,
-      });
-    }
-  }, [coinState]);
-
-  const handleInputChange = (ev) => {
+    const { id, value } = ev.target;
     let newInputState = { ...inputState };
-    newInputState[ev.target.id] = ev.target.value;
+
+    // For the image URL input, update the nested image.url field
+    if (id === "img") {
+      newInputState.image = {
+        ...newInputState.image,
+        url: value,
+      };
+      newInputState.img = newInputState.image.url;
+    } else {
+      newInputState[id] = value;
+    }
+
     setInputState(newInputState);
+
     const joiResponse = validateEditSchema(newInputState);
     if (!joiResponse) {
       setInputsErrorsState(joiResponse);
       setDisableEdit(false);
       return;
     }
+
     setDisableEdit(true);
     const inputKeys = Object.keys(inputState);
     for (const key of inputKeys) {
@@ -197,7 +155,7 @@ const EditCardPage = () => {
   if (!inputState) {
     return <CircularProgress />;
   }
- */
+
   return (
     <Container component="main" maxWidth="xs">
       <Box
