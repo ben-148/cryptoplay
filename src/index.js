@@ -13,6 +13,14 @@ import "@fontsource/roboto/700.css";
 /* axios */ import axios from "axios";
 /* axios */ axios.defaults.baseURL = "/api";
 
+axios.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers["x-auth-token"] = token;
+  }
+  return config; // send the new data
+});
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>

@@ -24,11 +24,17 @@ const AdminZonePage = () => {
     return <CircularProgress />;
   }
 
-  const handleDeleteFromInitialData = (id) => {
-    setCoinsArr((prevCoinsArr) =>
-      prevCoinsArr.filter((coin) => coin._id !== id)
-    );
+  const handleDeleteFromInitialData = async (id) => {
+    try {
+      await axios.delete("/coins/" + id);
+      setCoinsArr((prevCoinsArr) =>
+        prevCoinsArr.filter((coin) => coin._id !== id)
+      );
+    } catch (err) {
+      console.log("error on delete", err.response.data);
+    }
   };
+
   const handleEditFromInitialData = (id) => {
     navigate(`/editcoin/${id}`);
   };
