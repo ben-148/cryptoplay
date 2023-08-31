@@ -17,11 +17,10 @@ import { CircularProgress } from "@mui/material";
 import atom from "../logo.svg";
 // import { toast } from "react-toastify";
 
-import EditCardPageFieldComponent from "../components/EditCoinPageComponent";
+import EditCoinPageFieldComponent from "../components/EditCoinPageComponent";
 import FormButtonsComponent from "../components/FormButtonsComponent";
-import { Delete } from "@mui/icons-material";
 
-const EditCardPage = () => {
+const EditCoinPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -46,7 +45,7 @@ const EditCardPage = () => {
         }
         const { data } = await axios.get(`/coins/${id}`);
         let newInputState = JSON.parse(JSON.stringify(data));
-        console.log("🚀 ~ file: EditCardPage.jsx:49 ~ data:", data);
+        console.log("🚀 ~ file: EditCoinPage.jsx:49 ~ data:", data);
 
         if (data.image && data.image.url) {
           newInputState.url = data.image.url;
@@ -63,7 +62,7 @@ const EditCardPage = () => {
         delete newInputState._id;
         delete newInputState.user_id;
         delete newInputState.bizNumber;
-        delete newInputState.createdAt;
+        // delete newInputState.createdAt;
         delete newInputState.__v;
         setInputState(newInputState);
         if (!validateEditSchema(newInputState)) {
@@ -73,18 +72,18 @@ const EditCardPage = () => {
     })();
   }, [id, navigate]);
 
-  const inputValues = {
-    name: inputState ? inputState.name : "",
-    codeName: inputState ? inputState.codeName : "",
-    price: inputState ? inputState.price : "",
-    img: inputState ? inputState.url : "",
-  };
+  // const inputValues = {
+  //   name: inputState ? inputState.name : "",
+  //   codeName: inputState ? inputState.codeName : "",
+  //   price: inputState ? inputState.price : "",
+  //   img: inputState ? inputState.url : "",
+  // };
 
   const handleSaveBtnClick = async (ev) => {
     try {
       const joiResponse = validateEditSchema(inputState);
       console.log(
-        "🚀 ~ file: EditCardPage.jsx:85 ~ handleSaveBtnClick ~ inputState:",
+        "🚀 ~ file: EditCoinPage.jsx:85 ~ handleSaveBtnClick ~ inputState:",
         inputState
       );
       setInputsErrorsState(joiResponse);
@@ -103,7 +102,7 @@ const EditCardPage = () => {
       }
     } catch (err) {
       console.log(
-        "🚀 ~ file: EditCardPage.jsx:91 ~ handleSaveBtnClick ~ err:",
+        "🚀 ~ file: EditCoinPage.jsx:91 ~ handleSaveBtnClick ~ err:",
         err
       );
       // toast.error("error");
@@ -118,8 +117,11 @@ const EditCardPage = () => {
         cloneInputState[key] = "";
       }
     }
-    setInputsErrorsState(null);
+    const joiResponse = validateEditSchema(cloneInputState);
+
+    setInputsErrorsState(joiResponse);
     setInputState(cloneInputState);
+    setDisableEdit(true);
   };
   const handleCancelBtnClick = (ev) => {
     navigate(ROUTES.HOME);
@@ -145,10 +147,12 @@ const EditCardPage = () => {
     }
     setInputsErrorsState(joiResponse);
     console.log(
-      "🚀 ~ file: EditCardPage.jsx:136 ~ handleInputChange ~ joiResponse:",
+      "🚀 ~ file: EditCoinPage.jsx:136 ~ handleInputChange ~ joiResponse:",
       joiResponse
     );
   };
+
+  const coinName = inputState ? inputState.name : null;
 
   if (!inputState) {
     return <CircularProgress />;
@@ -168,7 +172,7 @@ const EditCardPage = () => {
           <EditIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Edit coin
+          Edit {coinName}
         </Typography>
         <Box
           component="img"
@@ -185,7 +189,7 @@ const EditCardPage = () => {
         <Grid container spacing={2}>
           {arrOfInputs.map((input) => (
             <Grid item xs={12} sm={6} key={input.inputName}>
-              <EditCardPageFieldComponent
+              <EditCoinPageFieldComponent
                 nameOfInput={input.inputName}
                 typeofInput={input.idAndKey}
                 isReq={input.isReq}
@@ -213,4 +217,4 @@ const EditCardPage = () => {
     </Container>
   );
 };
-export default EditCardPage;
+export default EditCoinPage;
