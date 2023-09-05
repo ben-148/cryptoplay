@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import ROUTES from "../routes/ROUTES";
 import validateLoginSchema from "../validation/loginValidation";
@@ -35,12 +35,12 @@ const LoginPage = () => {
       const { data } = await axios.post("/users/login", inputState);
       localStorage.setItem("token", data.token);
       // loggedIn();
-      // toast.success("🦄 you are in :) ");
+      toast.success("🦄 you are in :) ");
 
       //move to homepage
       navigate(ROUTES.HOME);
     } catch (err) {
-      // toast.error("🦄 bad password or email ");
+      toast.error("🦄 bad password or email ");
     }
   };
   const handleInputChange = (ev) => {

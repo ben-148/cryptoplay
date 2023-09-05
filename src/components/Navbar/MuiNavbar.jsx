@@ -1,5 +1,7 @@
 import * as React from "react";
+import { useRef } from "react";
 // import { useDispatch, useSelector } from "react-redux";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -93,6 +95,8 @@ const MuiNavbar = () => {
   /*   const isAdmin = payload && payload.isAdmin;
   const isBiz = payload && payload.biz; */
 
+  const anchorElRef = useRef(null);
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   /*   const dispatch = useDispatch();
   const isDarkTheme = useSelector(
@@ -101,11 +105,18 @@ const MuiNavbar = () => {
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
+    console.log("event.currentTarget:", event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  /*   React.useEffect(() => {
+    // Set anchorElNavProp to the hamburger icon button when the component mounts
+    setAnchorElNav(document.getElementById("hamburger-icon-button"));
+  }, []);
+ */
   /*   React.useEffect(() => {
     setTimeout(() => setAnchorElNav(anchorElNav?.current), 1);
   }, [anchorElNav]);
@@ -188,6 +199,7 @@ const MuiNavbar = () => {
             }}
           >
             <IconButton
+              id="hamburger-icon-button" // Add this line
               size="large"
               onClick={handleOpenNavMenu}
               color="inherit"

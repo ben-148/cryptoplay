@@ -11,7 +11,7 @@ import { Alert, Switch } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import ROUTES from "../routes/ROUTES";
 import axios from "axios";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import validateRegisterSchema from "../validation/registerValidation";
 import RegisterFieldComponent from "../components/RegisterComponent";
 import FormButtonsComponent from "../components/FormButtonsComponent";
@@ -75,9 +75,13 @@ const RegisterPage = () => {
         password: inputState.password,
         phone: inputState.phone,
       });
+      toast.success(
+        "🦄 Mazal Tov, you are registered member now! lets do login.. :) "
+      );
+
       navigate(ROUTES.LOGIN);
     } catch (err) {
-      // toast.error(err.response.data);
+      toast.error(err.response.data);
       console.log(
         "🚀 ~ file: RegisterPage.jsx:77 ~ handleBtnClick ~ response:",
         err.response.data

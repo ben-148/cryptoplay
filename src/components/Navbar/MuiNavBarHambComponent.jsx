@@ -34,8 +34,8 @@ const MuiNavBarHambComponent = ({
         display: { xs: "block", md: "none" },
       }}
     >
-      {pagesArray.map((page) => (
-        <NavLinkComponent key={page.url} {...page} />
+      {pagesArray.map((page, index) => (
+        <NavLinkComponent key={index} {...page} />
       ))}
       {/*       {isAdminProp
         ? adminPagesArr.map((page) => (

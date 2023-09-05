@@ -3,6 +3,7 @@ import { Box, Typography, Grid, CircularProgress } from "@mui/material";
 import ListItemComponent from "../components/ListItemComponent";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AdminZonePage = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const AdminZonePage = () => {
         setCoinsArr(data);
       })
       .catch((err) => {
-        // toast.error("Oops");
+        toast.error("Oops");
       });
   }, []);
 

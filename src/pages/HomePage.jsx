@@ -1,6 +1,7 @@
 import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import CoinCardComponent from "../components/CoinCardComponent";
 
@@ -14,7 +15,7 @@ const HomePage = () => {
         setCoinsArr(data);
       })
       .catch((err) => {
-        // toast.error("Oops");
+        toast.error("Oops");
       });
   }, []);
 

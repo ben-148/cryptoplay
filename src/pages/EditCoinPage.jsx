@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -11,11 +11,11 @@ import axios from "axios";
 
 import ROUTES from "../routes/ROUTES";
 import validateEditSchema, {
-  validateEditCardParamsSchema,
+  validateEditCoinParamsSchema,
 } from "../validation/editValidation";
 import { CircularProgress } from "@mui/material";
 import atom from "../logo.svg";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import EditCoinPageFieldComponent from "../components/EditCoinPageComponent";
 import FormButtonsComponent from "../components/FormButtonsComponent";
@@ -27,6 +27,7 @@ const EditCoinPage = () => {
   const [inputState, setInputState] = useState(null);
   const [disableEd, setDisableEdit] = useState(false);
   const [inputsErrorsState, setInputsErrorsState] = useState({});
+  let coinNameRef = useRef(inputState ? inputState.name : "");
 
   const arrOfInputs = [
     { inputName: "Name", idAndKey: "name", isReq: true },
@@ -38,7 +39,7 @@ const EditCoinPage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const errors = validateEditCardParamsSchema({ id });
+        const errors = validateEditCoinParamsSchema({ id });
         if (errors) {
           navigate("/");
           return;
@@ -46,7 +47,7 @@ const EditCoinPage = () => {
         const { data } = await axios.get(`/coins/${id}`);
         let newInputState = JSON.parse(JSON.stringify(data));
         console.log("🚀 ~ file: EditCoinPage.jsx:49 ~ data:", data);
-
+        coinNameRef.current = newInputState.name;
         if (data.image && data.image.url) {
           newInputState.url = data.image.url;
         } else {
@@ -96,7 +97,7 @@ const EditCoinPage = () => {
         delete inputState.url;
         delete inputState.alt;
         await axios.put("/coins/" + id, inputState);
-        // toast.success("🦄 You did it! edit success :) ");
+        toast.success("🦄 You did it! edit success :) ");
 
         navigate(ROUTES.HOME);
       }
@@ -105,7 +106,7 @@ const EditCoinPage = () => {
         "🚀 ~ file: EditCoinPage.jsx:91 ~ handleSaveBtnClick ~ err:",
         err
       );
-      // toast.error("error");
+      toast.error("error");
     }
   };
 
@@ -152,8 +153,6 @@ const EditCoinPage = () => {
     );
   };
 
-  const coinName = inputState ? inputState.name : null;
-
   if (!inputState) {
     return <CircularProgress />;
   }
@@ -172,7 +171,7 @@ const EditCoinPage = () => {
           <EditIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Edit {coinName}
+          Edit {coinNameRef.current}
         </Typography>
         <Box
           component="img"

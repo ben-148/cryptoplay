@@ -7,6 +7,8 @@ import AdminZonePage from "./pages/AdminZonePage";
 import MuiNavbar from "./components/Navbar/MuiNavbar";
 import { createTheme } from "@mui/material/styles";
 import { red, blue } from "@mui/material/colors";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const light = {
   palette: {
@@ -26,6 +28,19 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover
+        theme="colored"
+      />
+
       <Container>
         <header>
           <MuiNavbar />
