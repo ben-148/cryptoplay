@@ -4,6 +4,8 @@ import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import RegisterPage from "./pages/RegisterPage";
 import AdminZonePage from "./pages/AdminZonePage";
  */ import Router from "./routes/Router";
+import { useSelector } from "react-redux";
+
 import MuiNavbar from "./components/Navbar/MuiNavbar";
 import { createTheme } from "@mui/material/styles";
 import { red, blue } from "@mui/material/colors";
@@ -22,11 +24,21 @@ const light = {
   },
 };
 
+const dark = {
+  palette: {
+    mode: "dark",
+  },
+};
+
 function App() {
+  const isDarkTheme = useSelector(
+    (bigPie) => bigPie.darkThemeSlice.isDarkTheme
+  );
+
   const theme = createTheme(light);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
       <CssBaseline />
       <ToastContainer
         position="top-center"

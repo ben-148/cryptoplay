@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useRef } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -17,7 +17,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import { NavLink, useNavigate } from "react-router-dom";
 import SearchPartial from "./SearchPartial";
 import ROUTES from "../../routes/ROUTES";
-// import { darkThemeActions } from "../../store/darkTheme";
+import { darkThemeActions } from "../../store/darkTheme";
 import NavLinkComponent from "./NavLinkComponent";
 // import { authActions } from "../../store/auth";
 // import ProfileComponent from "./ProfileComponent";
@@ -98,10 +98,10 @@ const MuiNavbar = () => {
   const anchorElRef = useRef(null);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  /*   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const isDarkTheme = useSelector(
     (bigPie) => bigPie.darkThemeSlice.isDarkTheme
-  ); */
+  );
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -120,10 +120,12 @@ const MuiNavbar = () => {
   /*   React.useEffect(() => {
     setTimeout(() => setAnchorElNav(anchorElNav?.current), 1);
   }, [anchorElNav]);
- */ /*   const changeTheme = () => {
+ */
+
+  const changeTheme = () => {
     dispatch(darkThemeActions.changeTheme());
   };
- */
+
   /*   const logoutClick = () => {
     localStorage.clear();
     dispatch(authActions.logout());
@@ -182,12 +184,11 @@ const MuiNavbar = () => {
               cursor: "pointer",
             }}
           >
-            {/*             {isDarkTheme ? (
+            {isDarkTheme ? (
               <LightModeIcon onClick={changeTheme} />
             ) : (
               <ModeNightIcon onClick={changeTheme} />
-            )}
- */}{" "}
+            )}{" "}
           </Box>
           {/* hamburger with menu */}
           <Box
