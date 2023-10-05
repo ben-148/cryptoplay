@@ -1,23 +1,63 @@
 import { Box, CircularProgress, Grid, Typography } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+
+import useQueryParams from "../hooks/useQueryParams";
 
 import CoinCardComponent from "../components/CoinCardComponent";
 
 const HomePage = () => {
+  const [originalCoinsArr, setOriginalCoinsArr] = useState(null);
   const [coinsArr, setCoinsArr] = useState(null);
+  let qparams = useQueryParams();
+
+  const filterFunc = useCallback(
+    (data) => {
+      if (!coinsArr && !data) {
+        return;
+      }
+      let filter = "";
+      if (qparams.filter) {
+        filter = qparams.filter;
+      }
+      if (!coinsArr && data) {
+        setOriginalCoinsArr(data);
+        setCoinsArr(
+          data.filter(
+            (coin) =>
+              coin.name.startsWith(filter) || coin.codeName.startsWith(filter)
+          )
+        );
+        return;
+      }
+      if (originalCoinsArr) {
+        let newOriginalCoinsArr = JSON.parse(JSON.stringify(originalCoinsArr));
+        setCoinsArr(
+          newOriginalCoinsArr.filter(
+            (coin) =>
+              coin.name.startsWith(filter) || coin.codeName.startsWith(filter)
+          )
+        );
+      }
+    },
+    [originalCoinsArr, qparams.filter]
+  );
 
   useEffect(() => {
     axios
       .get("/coins")
       .then(({ data }) => {
-        setCoinsArr(data);
+        filterFunc(data);
       })
       .catch((err) => {
         toast.error("Oops");
       });
-  }, []);
+  }, [filterFunc]);
+
+  useEffect(() => {
+    filterFunc();
+  }, [filterFunc, qparams.filter]);
 
   if (!coinsArr) {
     return <CircularProgress />;

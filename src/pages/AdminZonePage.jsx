@@ -17,7 +17,7 @@ const AdminZonePage = () => {
         setCoinsArr(data);
       })
       .catch((err) => {
-        toast.error("Oops");
+        toast.error(err);
       });
   }, []);
 

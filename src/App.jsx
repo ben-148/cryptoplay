@@ -35,7 +35,7 @@ function App() {
     (bigPie) => bigPie.darkThemeSlice.isDarkTheme
   );
 
-  const theme = createTheme(light);
+  // const theme = createTheme(light);
 
   return (
     <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
