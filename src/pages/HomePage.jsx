@@ -19,14 +19,15 @@ const HomePage = () => {
       }
       let filter = "";
       if (qparams.filter) {
-        filter = qparams.filter;
+        filter = qparams.filter.toLowerCase(); // Convert search input to lowercase
       }
       if (!coinsArr && data) {
         setOriginalCoinsArr(data);
         setCoinsArr(
           data.filter(
             (coin) =>
-              coin.name.startsWith(filter) || coin.codeName.startsWith(filter)
+              coin.name.toLowerCase().startsWith(filter) || // Convert data to lowercase for comparison
+              coin.codeName.toLowerCase().startsWith(filter)
           )
         );
         return;
@@ -36,7 +37,8 @@ const HomePage = () => {
         setCoinsArr(
           newOriginalCoinsArr.filter(
             (coin) =>
-              coin.name.startsWith(filter) || coin.codeName.startsWith(filter)
+              coin.name.toLowerCase().startsWith(filter) || // Convert data to lowercase for comparison
+              coin.codeName.toLowerCase().startsWith(filter)
           )
         );
       }
