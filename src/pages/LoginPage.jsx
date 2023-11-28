@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 
 import ROUTES from "../routes/ROUTES";
 import validateLoginSchema from "../validation/loginValidation";
-// import useLoggedIn from "../hooks/useLoggedIn";
+import useLoggedIn from "../hooks/useLoggedIn";
 
 const LoginPage = () => {
   const [inputState, setInputState] = useState({
@@ -22,7 +22,7 @@ const LoginPage = () => {
     password: "",
   });
   const [inputsErrorsState, setInputsErrorsState] = useState(null);
-  // const loggedIn = useLoggedIn();
+  const loggedIn = useLoggedIn();
   const navigate = useNavigate();
 
   const handleBtnClick = async (ev) => {
@@ -34,7 +34,7 @@ const LoginPage = () => {
       }
       const { data } = await axios.post("/users/login", inputState);
       localStorage.setItem("token", data.token);
-      // loggedIn();
+      loggedIn();
       toast.success("🦄 you are in :) ");
 
       //move to homepage

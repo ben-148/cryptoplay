@@ -1,4 +1,4 @@
-/* import { AccountCircle } from "@mui/icons-material";
+import { AccountCircle } from "@mui/icons-material";
 import { Avatar, IconButton, Menu, MenuItem } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 import ROUTES from "../../routes/ROUTES";
@@ -9,29 +9,30 @@ const ProfileComponent = ({ profilePages, logoutClickProp }) => {
   const [isProfilePic, setIsProfilePic] = useState(false);
   const [profilePic, setProfilePic] = useState("");
   const [profilePicAlt, setProfilePicAlt] = useState("");
-  useEffect(() => {
-    axios
-      .get("/users/userInfo")
-      .then(({ data }) => {
-        if (data.imageUrl) {
-          setIsProfilePic(true);
-          setProfilePic(data.imageUrl);
-        } else {
-          setIsProfilePic(false);
-          setProfilePic("");
-        }
-        if (data.imageAlt) {
-          setProfilePicAlt(data.imageAlt);
-        } else {
-          setProfilePicAlt(
-            "Profile picture of" + data.firstName + " " + data.lastName
-          );
-        }
-      })
-      .catch((err) => {
-        setIsProfilePic(false);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/users/userInfo")
+  //     .then(({ data }) => {
+  //       // console.log("🚀 ~ file: ProfileComponent.jsx:16 ~ .then ~ data:", data);
+  //       if (data.imageUrl) {
+  //         setIsProfilePic(true);
+  //         setProfilePic(data.imageUrl);
+  //       } else {
+  //         setIsProfilePic(false);
+  //         setProfilePic("");
+  //       }
+  //       if (data.imageAlt) {
+  //         setProfilePicAlt(data.imageAlt);
+  //       } else {
+  //         setProfilePicAlt(
+  //           "Profile picture of" + data.firstName + " " + data.lastName
+  //         );
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       setIsProfilePic(false);
+  //     });
+  // }, []);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const logoutClick = () => {
     logoutClickProp();
@@ -87,7 +88,7 @@ const ProfileComponent = ({ profilePages, logoutClickProp }) => {
                 onClick={logoutClick}
               />
             ) : (
-              <NavLinkComponent key={page.url} {...page} />
+              <NavLinkComponent key={"miniLinks2" + page.url} {...page} />
             )}
           </MenuItem>
         ))}
@@ -97,4 +98,3 @@ const ProfileComponent = ({ profilePages, logoutClickProp }) => {
 };
 
 export default ProfileComponent;
- */

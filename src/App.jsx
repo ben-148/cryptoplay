@@ -1,5 +1,12 @@
 import React from "react";
-import { Container, CssBaseline, ThemeProvider } from "@mui/material";
+import {
+  Container,
+  CssBaseline,
+  ThemeProvider,
+  CircularProgress,
+} from "@mui/material";
+import { useEffect, useState } from "react";
+
 /* import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import AdminZonePage from "./pages/AdminZonePage";
@@ -11,6 +18,7 @@ import { createTheme } from "@mui/material/styles";
 import { red, blue } from "@mui/material/colors";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useLoggedIn from "./hooks/useLoggedIn";
 
 const light = {
   palette: {
@@ -31,6 +39,15 @@ const dark = {
 };
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const loggedIn = useLoggedIn();
+  useEffect(() => {
+    (async () => {
+      await loggedIn();
+      setIsLoading(false);
+    })();
+  }, []);
+
   const isDarkTheme = useSelector(
     (bigPie) => bigPie.darkThemeSlice.isDarkTheme
   );
@@ -57,9 +74,7 @@ function App() {
         <header>
           <MuiNavbar />
         </header>
-        <main>
-          <Router />
-        </main>
+        <main>{isLoading ? <CircularProgress /> : <Router />}</main>
       </Container>
     </ThemeProvider>
   );

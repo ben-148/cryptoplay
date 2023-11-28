@@ -10,6 +10,8 @@ import CoinCardComponent from "../components/CoinCardComponent";
 const HomePage = () => {
   const [originalCoinsArr, setOriginalCoinsArr] = useState(null);
   const [coinsArr, setCoinsArr] = useState(null);
+  const [favoriteStatus, setFavoriteStatus] = useState({}); // Added state for favorite status
+
   let qparams = useQueryParams();
 
   const filterFunc = useCallback(

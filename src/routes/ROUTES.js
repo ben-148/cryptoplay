@@ -5,6 +5,8 @@ const ROUTES = {
   ABOUT: "/about",
   LOGIN: "/login",
   EDITCOIN: "/editcoin",
+  FAV: "/favorites",
+  LOGOUT: "/",
 };
 
 export default ROUTES;

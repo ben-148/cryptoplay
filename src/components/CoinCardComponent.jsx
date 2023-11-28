@@ -12,8 +12,23 @@ import {
 import PropTypes from "prop-types";
 import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import { Fragment } from "react";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-const CoinCardComponent = ({ img, name, codeName, price, isAdmin }) => {
+const CoinCardComponent = ({
+  img,
+  name,
+  codeName,
+  price,
+  id,
+  loggedIn,
+  isFav,
+  onLike,
+}) => {
+  const handleLikeBtnClick = () => {
+    onLike(id);
+  };
+
   return (
     <Card square raised>
       <CardActionArea>
@@ -26,11 +41,17 @@ const CoinCardComponent = ({ img, name, codeName, price, isAdmin }) => {
         <Typography variant="body1">Price: $ {price}</Typography>
       </CardContent>
       <CardActions>
-        {isAdmin ? (
+        {loggedIn ? (
           <Fragment>
-            <Button variant="text" color="warning">
-              Edit
-            </Button>
+            {isFav ? (
+              <Button onClick={handleLikeBtnClick}>
+                <FavoriteIcon />
+              </Button>
+            ) : (
+              <Button onClick={handleLikeBtnClick}>
+                <FavoriteBorderIcon />
+              </Button>
+            )}
           </Fragment>
         ) : (
           ""

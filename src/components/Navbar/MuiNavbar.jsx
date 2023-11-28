@@ -19,8 +19,8 @@ import SearchPartial from "./SearchPartial";
 import ROUTES from "../../routes/ROUTES";
 import { darkThemeActions } from "../../store/darkTheme";
 import NavLinkComponent from "./NavLinkComponent";
-// import { authActions } from "../../store/auth";
-// import ProfileComponent from "./ProfileComponent";
+import { authActions } from "../../store/auth";
+import ProfileComponent from "./ProfileComponent";
 import MuiNavBarHambComponent from "./MuiNavBarHambComponent";
 
 // access to all
@@ -30,9 +30,13 @@ const pages = [
     url: ROUTES.HOME,
   },
   { label: "About", url: ROUTES.ABOUT },
-  { label: "ADMIN", url: ROUTES.ADMINZONE },
+  /*   { label: "ADMIN", url: ROUTES.ADMINZONE },
   { label: "register", url: ROUTES.REGISTER },
   { label: "login", url: ROUTES.LOGIN },
+  {
+    label: "Favorites",
+    url: ROUTES.FAV,
+  }, */
 ];
 
 // not logged in users
@@ -75,25 +79,29 @@ const bizPage = [
 ];
 
 const adminPages = [
-  {
-    label: "Sand Box",
-    url: ROUTES.SANDBOX,
-  },
-  {
-    label: "CRM",
-    url: ROUTES.CRM,
-  },
+  // {
+  //   label: "Sand Box",
+  //   url: ROUTES.SANDBOX,
+  // },
+  // {
+  //   label: "CRM",
+  //   url: ROUTES.CRM,
+  // },
+  { label: "ADMIN", url: ROUTES.ADMINZONE },
 ];
 
 const MuiNavbar = () => {
-  /*   const isLoggedIn = useSelector(
+  const isLoggedIn = useSelector(
     (bigPieBigState) => bigPieBigState.authSlice.isLoggedIn
   );
-
-  const payload = useSelector((bigPie) => bigPie.authSlice.payload); */
+  console.log(
+    "🚀 ~ file: MuiNavbar.jsx:97 ~ MuiNavbar ~ isLoggedIn:",
+    isLoggedIn
+  );
+  const payload = useSelector((bigPie) => bigPie.authSlice.payload);
   const navigate = useNavigate();
-  /*   const isAdmin = payload && payload.isAdmin;
-  const isBiz = payload && payload.biz; */
+  const isAdmin = payload && payload.isAdmin;
+  // const isBiz = payload && payload.biz;
 
   const anchorElRef = useRef(null);
 
@@ -126,28 +134,28 @@ const MuiNavbar = () => {
     dispatch(darkThemeActions.changeTheme());
   };
 
-  /*   const logoutClick = () => {
+  const logoutClick = () => {
     localStorage.clear();
     dispatch(authActions.logout());
   };
- */
+
   const renderPages = () => {
     const allPages = [...pages];
 
-    /*     if (isLoggedIn) {
+    if (isLoggedIn) {
       allPages.push(...authedPages);
     } else {
       allPages.push(...notAuthPages);
     }
 
-    if (isBiz) {
-      allPages.push(...bizPage);
-    }
+    // if (isBiz) {
+    //   allPages.push(...bizPage);
+    // }
 
     if (isAdmin) {
       allPages.push(...adminPages);
     }
- */
+
     return allPages.map((page) => (
       <NavLinkComponent key={page.url} {...page} />
     ));
@@ -211,24 +219,20 @@ const MuiNavbar = () => {
               anchorElNavProp={anchorElNav}
               handleCloseNavMenuProp={handleCloseNavMenu}
               pagesArray={pages}
-              /*               isLoggedInProp={isLoggedIn}
+              isLoggedInProp={isLoggedIn}
               authedPagesProp={authedPages}
               logoutClickProp={logoutClick}
               notAuthPagesProp={notAuthPages}
               isAdminProp={isAdmin}
-              isBizProp={isBiz}
               adminPagesArr={adminPages}
-              bizPagesArr={bizPage}
- */
             />
           </Box>
-          {/*           {isLoggedIn && (
+          {isLoggedIn && (
             <ProfileComponent
               profilePages={avatarMenu}
               logoutClickProp={logoutClick}
             />
-          )}
- */}{" "}
+          )}{" "}
         </Toolbar>
       </Container>
     </AppBar>
