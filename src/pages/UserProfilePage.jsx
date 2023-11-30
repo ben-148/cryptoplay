@@ -81,7 +81,11 @@ const UserProfilePage = () => {
         };
 
         setInputState(flattenedData);
-        console.log("🚀 ~ file: UserProfilePage.jsx:59 ~ data:", data);
+        console.log(
+          "🚀 ~ file: UserProfilePage.jsx:84 ~ flattenedData:",
+          flattenedData
+        );
+        // console.log("🚀 ~ file: UserProfilePage.jsx:59 ~ data:", data);
       } catch (err) {
         console.log("error from axios", err.response.data);
       }
@@ -159,7 +163,45 @@ const UserProfilePage = () => {
           })
         ).data.token
       );
-      loggedIn();
+
+      // Move the console log here
+      console.log("Updated Token:", localStorage.getItem("token"));
+
+      /*       const response = await axios.put(`users/${userId}`, {
+        name: {
+          firstName: inputState.firstName,
+          middleName: inputState.middleName,
+          lastName: inputState.lastName,
+        },
+        address: {
+          state: inputState.state,
+          country: inputState.country,
+          city: inputState.city,
+          street: inputState.street,
+          houseNumber: inputState.houseNumber,
+          zip: inputState.zip,
+        },
+        email: inputState.email,
+        phone: inputState.phone,
+      });
+      console.log("API Response:", response);
+
+      // Update the token in localStorage
+      const updatedToken = response.headers["x-auth-token"];
+
+      console.log("Updated Token:", updatedToken);
+
+      // Check if the token is present and not empty.
+      if (
+        updatedToken !== undefined &&
+        updatedToken !== null &&
+        updatedToken !== ""
+      ) {
+        localStorage.setItem("token", updatedToken);
+      } else {
+        console.error("Updated token is missing or empty in the response.");
+      }
+ */ loggedIn();
       toast.success(`The update was successful`);
       navigate(ROUTES.HOME);
     } catch (err) {
