@@ -94,10 +94,6 @@ const MuiNavbar = () => {
   const isLoggedIn = useSelector(
     (bigPieBigState) => bigPieBigState.authSlice.isLoggedIn
   );
-  console.log(
-    "🚀 ~ file: MuiNavbar.jsx:97 ~ MuiNavbar ~ isLoggedIn:",
-    isLoggedIn
-  );
   const payload = useSelector((bigPie) => bigPie.authSlice.payload);
   const navigate = useNavigate();
   const isAdmin = payload && payload.isAdmin;

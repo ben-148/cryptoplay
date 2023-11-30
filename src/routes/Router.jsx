@@ -4,6 +4,7 @@ import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
 import AdminZonePage from "../pages/AdminZonePage";
 import FavoritesPage from "../pages/FavoritesPage";
+import UserProfilePage from "../pages/UserProfilePage";
 
 import ROUTES from "./ROUTES";
 import EditCoinPage from "../pages/EditCoinPage";
@@ -16,6 +17,7 @@ const Router = () => {
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.ADMINZONE} element={<AdminZonePage />} />
       <Route path={ROUTES.FAV} element={<FavoritesPage />} />
+      <Route path={ROUTES.PROFILE} element={<UserProfilePage />} />
       <Route path="editcoin/:id" element={<EditCoinPage />} />
       <Route path="*" element={<h1>404</h1>} />
     </Routes>

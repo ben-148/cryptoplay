@@ -7,6 +7,7 @@ const ROUTES = {
   EDITCOIN: "/editcoin",
   FAV: "/favorites",
   LOGOUT: "/",
+  PROFILE: "/profile",
 };
 
 export default ROUTES;

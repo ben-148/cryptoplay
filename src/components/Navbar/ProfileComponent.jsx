@@ -9,30 +9,42 @@ const ProfileComponent = ({ profilePages, logoutClickProp }) => {
   const [isProfilePic, setIsProfilePic] = useState(false);
   const [profilePic, setProfilePic] = useState("");
   const [profilePicAlt, setProfilePicAlt] = useState("");
-  // useEffect(() => {
-  //   axios
-  //     .get("/users/userInfo")
-  //     .then(({ data }) => {
-  //       // console.log("🚀 ~ file: ProfileComponent.jsx:16 ~ .then ~ data:", data);
-  //       if (data.imageUrl) {
-  //         setIsProfilePic(true);
-  //         setProfilePic(data.imageUrl);
-  //       } else {
-  //         setIsProfilePic(false);
-  //         setProfilePic("");
-  //       }
-  //       if (data.imageAlt) {
-  //         setProfilePicAlt(data.imageAlt);
-  //       } else {
-  //         setProfilePicAlt(
-  //           "Profile picture of" + data.firstName + " " + data.lastName
-  //         );
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       setIsProfilePic(false);
-  //     });
-  // }, []);
+
+  /*   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/users/user/info");
+        const data = response.data;
+        console.log(
+          "🚀 ~ file: ProfileComponent.jsx:18 ~ fetchData ~ data:",
+          data
+        );
+
+        if (data.imageUrl) {
+          setIsProfilePic(true);
+          setProfilePic(data.imageUrl);
+        } else {
+          setIsProfilePic(false);
+          setProfilePic("");
+        }
+
+        if (data.imageAlt) {
+          setProfilePicAlt(data.imageAlt);
+        } else {
+          setProfilePicAlt(
+            `Profile picture of ${data.firstName} ${data.lastName}`
+          );
+        }
+      } catch (err) {
+        console.error("Error fetching user info:", err);
+        setIsProfilePic(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+ */
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const logoutClick = () => {
     logoutClickProp();
