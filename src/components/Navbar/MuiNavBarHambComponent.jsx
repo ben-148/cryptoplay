@@ -11,9 +11,7 @@ const MuiNavBarHambComponent = ({
   logoutClickProp,
   notAuthPagesProp,
   isAdminProp,
-  isBizProp,
   adminPagesArr,
-  bizPagesArr,
 }) => {
   return (
     <Menu
@@ -37,13 +35,8 @@ const MuiNavBarHambComponent = ({
       {pagesArray.map((page, index) => (
         <NavLinkComponent key={index} {...page} />
       ))}
-      {/*       {isAdminProp
+      {isAdminProp
         ? adminPagesArr.map((page) => (
-            <NavLinkComponent key={page.url} {...page} />
-          ))
-        : ""}
-      {isBizProp
-        ? bizPagesArr.map((page) => (
             <NavLinkComponent key={page.url} {...page} />
           ))
         : ""}
@@ -61,8 +54,7 @@ const MuiNavBarHambComponent = ({
           )
         : notAuthPagesProp.map((page) => (
             <NavLinkComponent key={page.url} {...page} />
-          ))}
- */}{" "}
+          ))}{" "}
     </Menu>
   );
 };
