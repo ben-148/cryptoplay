@@ -11,7 +11,7 @@ import axios from "axios";
 import atom from "../logo.svg";
 import { toast } from "react-toastify";
 import Avatar from "@mui/material/Avatar";
-import ValidateCreateSchema from "../validation/createCardValidation";
+import ValidateAddCoinSchema from "../validation/addCoinValidation";
 import FormButtonsComponent from "../components/FormButtonsComponent";
 import EditCoinPageFieldComponent from "../components/EditCoinPageComponent";
 
@@ -36,7 +36,7 @@ const AddCoinPage = () => {
   ];
   const handleSaveBtnClick = async (event) => {
     try {
-      const joiResponse = ValidateCreateSchema(inputState);
+      const joiResponse = ValidateAddCoinSchema(inputState);
       setInputsErrorsState(joiResponse);
       if (!inputState.url) {
         inputState.url = `${atom}`;
@@ -67,7 +67,7 @@ const AddCoinPage = () => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
     newInputState[ev.target.id] = ev.target.value;
     setInputState(newInputState);
-    const joiResponse = ValidateCreateSchema(newInputState);
+    const joiResponse = ValidateAddCoinSchema(newInputState);
     if (!joiResponse) {
       setInputsErrorsState(joiResponse);
       setenableEdit(false);
