@@ -93,7 +93,7 @@ const ProfileComponent = ({ profilePages, logoutClickProp }) => {
             onClick={handleClose}
             sx={{ padding: "8px", minWidth: "100px" }}
           >
-            {page.url === ROUTES.LOGOUT ? (
+            {page.label === "Logout" ? (
               <NavLinkComponent
                 key={page.url}
                 {...page}

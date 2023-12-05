@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Grid, CircularProgress } from "@mui/material";
+import { Box, Typography, Grid, CircularProgress, Button } from "@mui/material";
 import ListItemComponent from "../components/ListItemComponent";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -40,6 +40,10 @@ const AdminZonePage = () => {
     navigate(`/editcoin/${id}`);
   };
 
+  const handleAddNewCoin = () => {
+    navigate("/addcoin");
+  };
+
   return (
     <Box textAlign="center">
       <Typography
@@ -48,7 +52,6 @@ const AdminZonePage = () => {
       >
         ADMIN ZONE Page
       </Typography>
-
       <Grid container spacing={2} justifyContent="center">
         {coinsArr.map((item) => (
           <Grid item xs={4} sm={6} md={4} lg={7} key={item._id}>
@@ -64,6 +67,11 @@ const AdminZonePage = () => {
           </Grid>
         ))}
       </Grid>
+      <Box mt={2}>
+        <Button variant="contained" color="primary" onClick={handleAddNewCoin}>
+          Add New Coin
+        </Button>
+      </Box>
     </Box>
   );
 };
