@@ -24,15 +24,25 @@ const CoinCardComponent = ({
   loggedIn,
   isFav,
   onLike,
+  onImageClick,
 }) => {
   const handleLikeBtnClick = () => {
     onLike(id);
   };
 
+  const handleImageBtnClick = () => {
+    onImageClick(id);
+  };
+
   return (
     <Card square raised>
       <CardActionArea>
-        <CardMedia component="img" image={img} style={{ height: "120px" }} />
+        <CardMedia
+          component="img"
+          image={img}
+          onClick={handleImageBtnClick}
+          style={{ height: "120px" }}
+        />
         <CardHeader title={name} subheader={codeName} />
         {/* <CardHeader subheader={codeName} /> */}
       </CardActionArea>

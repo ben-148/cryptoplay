@@ -6,6 +6,8 @@ const editCoinSchema = Joi.object({
   name: Joi.string().min(2).max(256).required(),
   codeName: Joi.string().min(2).max(256).required(),
   price: Joi.string().min(1).max(99999999).required(),
+  description: Joi.string().min(10).max(1000),
+
   url: Joi.string()
     .regex(
       new RegExp(

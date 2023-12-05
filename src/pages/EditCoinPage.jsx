@@ -34,6 +34,7 @@ const EditCoinPage = () => {
     { inputName: "CODE", idAndKey: "codeName", isReq: true },
     { inputName: "price", idAndKey: "price", isReq: true },
     { inputName: "icon url", idAndKey: "url", isReq: true },
+    { inputName: "description", idAndKey: "description", isReq: true },
   ];
 
   useEffect(() => {

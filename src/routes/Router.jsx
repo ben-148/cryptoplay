@@ -6,6 +6,7 @@ import AdminZonePage from "../pages/AdminZonePage";
 import FavoritesPage from "../pages/FavoritesPage";
 import UserProfilePage from "../pages/UserProfilePage";
 import AddCoinPage from "../pages/AddCoinPage";
+import CoinProfilePage from "../pages/CoinProfilePage";
 import ProtectedRoute from "../components/ProtectedRoute";
 import SuperProtectedRoute from "../components/SuperProtectedRoute";
 
@@ -35,7 +36,7 @@ const Router = () => {
         element={<ProtectedRoute element={<UserProfilePage />} />}
       />
 
-      {/* <Route path="editcoin/:id" element={<EditCoinPage />} /> */}
+      {<Route path="coinProfile/:id" element={<CoinProfilePage />} />}
 
       <Route
         path="editcoin/:id"

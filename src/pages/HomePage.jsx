@@ -1,5 +1,7 @@
 import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -13,6 +15,7 @@ const HomePage = () => {
   const [favoriteStatus, setFavoriteStatus] = useState({}); // Added state for favorite status
 
   let qparams = useQueryParams();
+  const navigate = useNavigate();
 
   const filterFunc = useCallback(
     (data) => {
@@ -67,6 +70,10 @@ const HomePage = () => {
     return <CircularProgress />;
   }
 
+  const coinProfileClick = (id) => {
+    navigate(`/coinProfile/${id}`);
+  };
+
   return (
     <Box textAlign="center">
       <Typography
@@ -100,6 +107,7 @@ const HomePage = () => {
               codeName={item.codeName}
               price={item.price}
               img={item.image.url}
+              onImageClick={coinProfileClick}
             />
           </Grid>
         ))}

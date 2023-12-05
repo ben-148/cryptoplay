@@ -11,6 +11,7 @@ const addCoinSchema = Joi.object({
     )
   ),
   // alt: Joi.string().min(2).max(256).required(),
+  description: Joi.string().min(10).max(1000),
 
   price: Joi.string().required(),
 });

@@ -33,6 +33,7 @@ const AddCoinPage = () => {
     { inputName: "CODE", idAndKey: "codeName", isReq: true },
     { inputName: "price", idAndKey: "price", isReq: true },
     { inputName: "icon url", idAndKey: "url", isReq: true },
+    { inputName: "description", idAndKey: "description", isReq: true },
   ];
   const handleSaveBtnClick = async (event) => {
     try {
