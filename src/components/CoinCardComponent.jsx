@@ -51,6 +51,11 @@ const CoinCardComponent = ({
         <Typography variant="body1">Price: $ {price}</Typography>
       </CardContent>
       <CardActions>
+        <Button variant="text" color="primary">
+          <CurrencyBitcoinIcon />
+          BUY
+        </Button>
+
         {loggedIn ? (
           <Fragment>
             {isFav ? (
@@ -66,10 +71,6 @@ const CoinCardComponent = ({
         ) : (
           ""
         )}
-        <Button variant="text" color="primary">
-          <CurrencyBitcoinIcon />
-          BUY
-        </Button>
       </CardActions>
     </Card>
   );

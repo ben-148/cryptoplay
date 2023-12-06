@@ -1,6 +1,7 @@
 import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -13,6 +14,8 @@ const HomePage = () => {
   const [originalCoinsArr, setOriginalCoinsArr] = useState(null);
   const [coinsArr, setCoinsArr] = useState(null);
   const [favoriteStatus, setFavoriteStatus] = useState({}); // Added state for favorite status
+
+  const payload = useSelector((bigPie) => bigPie.authSlice.payload);
 
   let qparams = useQueryParams();
   const navigate = useNavigate();
@@ -56,6 +59,15 @@ const HomePage = () => {
       .get("/coins")
       .then(({ data }) => {
         filterFunc(data);
+        setFavoriteStatus(
+          data.reduce(
+            (status, card) => ({
+              ...status,
+              [card._id]: card.likes.includes(payload?._id),
+            }),
+            {}
+          )
+        );
       })
       .catch((err) => {
         toast.error("Oops");
@@ -72,6 +84,23 @@ const HomePage = () => {
 
   const coinProfileClick = (id) => {
     navigate(`/coinProfile/${id}`);
+  };
+
+  const handleLikeFromInitialCardsArr = async (id) => {
+    try {
+      const response = await axios.patch("coins/coin-like/" + id);
+      const updatedStatus = !favoriteStatus[id]; // Calculate the updated favorite status
+      setFavoriteStatus((prevStatus) => ({
+        ...prevStatus,
+        [id]: updatedStatus,
+      }));
+      const toastMessage = updatedStatus
+        ? "🦄 Card added to favorites :)"
+        : "🦄 Card removed from favorites ";
+      toast.success(toastMessage);
+    } catch (err) {
+      toast.error("error when liking", err.response.data);
+    }
   };
 
   return (
@@ -108,6 +137,9 @@ const HomePage = () => {
               price={item.price}
               img={item.image.url}
               onImageClick={coinProfileClick}
+              onLike={handleLikeFromInitialCardsArr}
+              isFav={favoriteStatus[item._id]}
+              loggedIn={payload}
             />
           </Grid>
         ))}

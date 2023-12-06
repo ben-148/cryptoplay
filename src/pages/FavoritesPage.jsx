@@ -10,13 +10,13 @@ import { useSelector } from "react-redux";
 import CoinCardComponent from "../components/CoinCardComponent";
 
 const FavoritesPage = () => {
-  const [cardsArr, setCardsArr] = useState(null);
+  const [coinsArr, setCardsArr] = useState(null);
   const navigate = useNavigate();
   const payload = useSelector((bigPie) => bigPie.authSlice.payload);
 
   useEffect(() => {
     axios
-      .get("/cards/get-my-fav-coins")
+      .get("/coins/get-my-fav-coins")
       .then(({ data }) => {
         setCardsArr(data);
       })
@@ -27,7 +27,7 @@ const FavoritesPage = () => {
 
   const handleDeleteFromInitialCardsArr = async (id) => {
     try {
-      await axios.delete("/cards/" + id);
+      await axios.delete("/coins/" + id);
       setCardsArr((newCardsArr) =>
         newCardsArr.filter((item) => item._id !== id)
       );
@@ -37,7 +37,7 @@ const FavoritesPage = () => {
 
   const handleDeleteFromFavorites = async (id) => {
     try {
-      await axios.patch(`cards/card-like/${id}`);
+      await axios.patch(`coins/coin-like/${id}`);
       setCardsArr((prevArr) => prevArr.filter((card) => card._id !== id));
       toast.success("Card deleted successfully");
     } catch (err) {
@@ -50,7 +50,7 @@ const FavoritesPage = () => {
   };
 
   const cardProfileClick = (id) => {
-    navigate(`/coinData/${id}`);
+    navigate(`/coinProfile/${id}`);
   };
 
   return (
@@ -60,8 +60,8 @@ const FavoritesPage = () => {
       </Box>
       <Box>
         <Grid container spacing={2}>
-          {Array.isArray(cardsArr) &&
-            cardsArr.map((item) => (
+          {Array.isArray(coinsArr) &&
+            coinsArr.map((item) => (
               <Grid
                 item
                 xs={12}
@@ -72,20 +72,10 @@ const FavoritesPage = () => {
               >
                 <CoinCardComponent
                   id={item._id}
-                  title={item.title}
-                  subTitle={item.subTitle}
-                  description={item.description}
+                  name={item.name}
+                  codeName={item.codeName}
+                  price={item.price}
                   img={item.image ? item.image.url : ""}
-                  onDelete={handleDeleteFromInitialCardsArr}
-                  isItUsersCard={payload && payload._id === item.user_id}
-                  onEdit={handleEditFromInitialCardsArr}
-                  canEdit={
-                    payload && payload.biz && payload._id === item.user_id
-                  }
-                  canDelete={
-                    (payload && payload.isAdmin) ||
-                    (payload && payload.biz && payload._id === item.user_id)
-                  }
                   onImageClick={cardProfileClick}
                 />
                 <Button
@@ -99,14 +89,14 @@ const FavoritesPage = () => {
               </Grid>
             ))}
         </Grid>
-        {!cardsArr && (
+        {!coinsArr && (
           <div style={{ textAlign: "center" }}>
             <CircularProgress />
           </div>
         )}
-        {Array.isArray(cardsArr) && cardsArr.length === 0 && (
+        {Array.isArray(coinsArr) && coinsArr.length === 0 && (
           <div style={{ textAlign: "center" }}>
-            <h3>No cards found</h3>
+            <h3>No coins found</h3>
           </div>
         )}
       </Box>
