@@ -168,7 +168,7 @@ const CurrencyTradingPage = () => {
                   </Typography>
                   <Typography variant="body1">
                     {/* Your Amount: {coinData.amountInUserPortfolio || 0} */}
-                    {updateCoinAmount}
+                    your amount: {updateCoinAmount} {coinData.codeName}
                   </Typography>
                 </CardContent>
               </Card>
