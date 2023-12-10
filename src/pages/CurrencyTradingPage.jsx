@@ -55,11 +55,20 @@ const CurrencyTradingPage = () => {
       if (action === "buy") {
         // Buying logic
         amountToTrade = Number(tradeAmount) / Number(coinData.price);
+
+        if (tradeAmount > user.amount) {
+          toast.error("Insufficient funds");
+          return;
+        }
       } else if (action === "sell") {
         // Selling logic
         amountToTrade = Number(sellAmount);
-      }
 
+        if (amountToTrade > updateCoinAmount) {
+          toast.error("Insufficient coin amount");
+          return;
+        }
+      }
       const response = await axios.put(`/users/trade/${id}`, {
         coinId: id,
         tradeAmount: Number(tradeAmount),
@@ -74,6 +83,7 @@ const CurrencyTradingPage = () => {
       setUser(updatedUser);
       setTradeAmount("");
       setSellAmount(""); // Clear the sell input
+      toast.success("trade done");
     } catch (error) {
       console.error("Error performing trade:", error);
       toast.error("Error performing trade");
@@ -159,7 +169,7 @@ const CurrencyTradingPage = () => {
                 />
                 <CardContent>
                   <Typography variant="body1">
-                    Your Amount: {user.amount}
+                    Your Amount: {user.amount} $
                   </Typography>
                   <Input
                     type="number"
