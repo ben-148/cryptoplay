@@ -39,7 +39,7 @@ const registerSchema = Joi.object({
   street: Joi.string().min(2).max(100).required(),
   houseNumber: Joi.string().min(1).max(100).required(),
   zip: Joi.number().integer().positive().min(1).max(99999999),
-  biz: Joi.bool().required(),
+  // biz: Joi.bool().required(),
 });
 
 const validateRegisterSchema2 = (userInput) =>

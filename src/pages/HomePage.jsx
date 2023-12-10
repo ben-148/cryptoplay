@@ -85,6 +85,9 @@ const HomePage = () => {
   const coinProfileClick = (id) => {
     navigate(`/coinProfile/${id}`);
   };
+  const buyBtnClick = (id) => {
+    navigate(`/coinTrade/${id}`);
+  };
 
   const handleLikeFromInitialCardsArr = async (id) => {
     try {
@@ -137,6 +140,7 @@ const HomePage = () => {
               price={item.price}
               img={item.image.url}
               onImageClick={coinProfileClick}
+              onBuyClick={buyBtnClick}
               onLike={handleLikeFromInitialCardsArr}
               isFav={favoriteStatus[item._id]}
               loggedIn={payload}
@@ -147,5 +151,54 @@ const HomePage = () => {
     </Box>
   );
 };
+
+/* // Assume the users are stored in an array
+let users = [
+  {
+    // User 1 details
+    // ...
+    balance: 1000, // Initial balance in USDT
+    portfolio: {}, // User's portfolio
+  },
+  {
+    // User 2 details
+    // ...
+    balance: 1000,
+    portfolio: {},
+  },
+  // ... other users
+];
+
+// Function to perform a trade
+const trade = (user, cryptoSymbol, amount) => {
+  const cryptoPrice = 10; // Replace with actual price retrieval logic
+
+  // Calculate the cost of the trade
+  const tradeCost = amount * cryptoPrice;
+
+  // Check if the user has sufficient balance
+  if (user.balance >= tradeCost) {
+    // Deduct the cost from the user's balance
+    user.balance -= tradeCost;
+
+    // Add the crypto to the user's portfolio
+    if (user.portfolio[cryptoSymbol]) {
+      // If the user already has this crypto, add to the existing amount
+      user.portfolio[cryptoSymbol] += amount;
+    } else {
+      // Otherwise, create a new entry in the portfolio
+      user.portfolio[cryptoSymbol] = amount;
+    }
+
+    console.log(`Trade successful. ${amount} ${cryptoSymbol} added to ${user.name.firstName}'s portfolio.`);
+  } else {
+    console.log(`Insufficient balance for ${user.name.firstName} to make the trade.`);
+  }
+};
+
+// Example usage
+const user1 = users[0];
+trade(user1, 'BTC', 5); // Trade 5 BTC for user1
+ */
 
 export default HomePage;

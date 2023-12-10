@@ -24,6 +24,7 @@ const CoinCardComponent = ({
   loggedIn,
   isFav,
   onLike,
+  onBuyClick,
   onImageClick,
 }) => {
   const handleLikeBtnClick = () => {
@@ -32,6 +33,9 @@ const CoinCardComponent = ({
 
   const handleImageBtnClick = () => {
     onImageClick(id);
+  };
+  const handleBuyBtnClick = () => {
+    onBuyClick(id);
   };
 
   return (
@@ -51,7 +55,7 @@ const CoinCardComponent = ({
         <Typography variant="body1">Price: $ {price}</Typography>
       </CardContent>
       <CardActions>
-        <Button variant="text" color="primary">
+        <Button variant="text" color="primary" onClick={handleBuyBtnClick}>
           <CurrencyBitcoinIcon />
           BUY
         </Button>

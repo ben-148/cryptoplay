@@ -12,6 +12,7 @@ import SuperProtectedRoute from "../components/SuperProtectedRoute";
 
 import ROUTES from "./ROUTES";
 import EditCoinPage from "../pages/EditCoinPage";
+import CurrencyTradingPage from "../pages/CurrencyTradingPage";
 
 const Router = () => {
   return (
@@ -26,32 +27,31 @@ const Router = () => {
           <SuperProtectedRoute isAdmin={true} element={<AdminZonePage />} />
         }
       />
-
       <Route
         path={ROUTES.FAV}
         element={<ProtectedRoute element={<FavoritesPage />} />}
       />
       <Route
+        path="coinTrade/:id" // <-- Updated path to use dynamic parameter ':id'
+        element={<ProtectedRoute element={<CurrencyTradingPage />} />}
+      />{" "}
+      <Route
         path={ROUTES.PROFILE}
         element={<ProtectedRoute element={<UserProfilePage />} />}
       />
-
       {<Route path="coinProfile/:id" element={<CoinProfilePage />} />}
-
       <Route
         path="editcoin/:id"
         element={
           <SuperProtectedRoute isAdmin={true} element={<EditCoinPage />} />
         }
       />
-
       <Route
         path="/addcoin"
         element={
           <SuperProtectedRoute isAdmin={true} element={<AddCoinPage />} />
         }
       />
-
       <Route path="*" element={<h1>404</h1>} />
     </Routes>
   );
