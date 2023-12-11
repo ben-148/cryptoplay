@@ -23,14 +23,19 @@ import { authActions } from "../../store/auth";
 import ProfileComponent from "./ProfileComponent";
 import MuiNavBarHambComponent from "./MuiNavBarHambComponent";
 import WalletIcon from "@mui/icons-material/Wallet";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import KeyIcon from "@mui/icons-material/Key";
+import InfoIcon from "@mui/icons-material/Info";
+import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 
 // access to all
 const pages = [
   {
     label: "Home",
     url: ROUTES.HOME,
+    icon: <CurrencyBitcoinIcon />,
   },
-  { label: "About", url: ROUTES.ABOUT },
+  { label: "About", url: ROUTES.ABOUT, icon: <InfoIcon /> },
   /*   { label: "ADMIN", url: ROUTES.ADMINZONE },
   { label: "register", url: ROUTES.REGISTER },
   { label: "login", url: ROUTES.LOGIN },
@@ -57,6 +62,7 @@ const authedPages = [
   {
     label: "Favorites",
     url: ROUTES.FAV,
+    icon: <FavoriteIcon />, // Add the icon here
   },
   { label: "Your Portfolio", url: ROUTES.PORTFOLIO, icon: <WalletIcon /> }, // Add the icon here
 ];
@@ -89,7 +95,7 @@ const adminPages = [
   //   label: "CRM",
   //   url: ROUTES.CRM,
   // },
-  { label: "ADMIN", url: ROUTES.ADMINZONE },
+  { label: "ADMIN", url: ROUTES.ADMINZONE, icon: <KeyIcon /> },
 ];
 
 const MuiNavbar = () => {
@@ -155,11 +161,10 @@ const MuiNavbar = () => {
     }
 
     return allPages.map((page) => (
-      <NavLinkComponent key={page.url} {...page}>
-        {page.label === "Your Portfolio" && page.icon}
-      </NavLinkComponent>
+      <NavLinkComponent key={page.url} {...page} />
     ));
   };
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
