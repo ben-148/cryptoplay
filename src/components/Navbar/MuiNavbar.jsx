@@ -22,6 +22,7 @@ import NavLinkComponent from "./NavLinkComponent";
 import { authActions } from "../../store/auth";
 import ProfileComponent from "./ProfileComponent";
 import MuiNavBarHambComponent from "./MuiNavBarHambComponent";
+import WalletIcon from "@mui/icons-material/Wallet";
 
 // access to all
 const pages = [
@@ -57,10 +58,7 @@ const authedPages = [
     label: "Favorites",
     url: ROUTES.FAV,
   },
-  {
-    label: "Your Portfolio",
-    url: ROUTES.PORTFOLIO,
-  },
+  { label: "Your Portfolio", url: ROUTES.PORTFOLIO, icon: <WalletIcon /> }, // Add the icon here
 ];
 
 const avatarMenu = [
@@ -157,10 +155,11 @@ const MuiNavbar = () => {
     }
 
     return allPages.map((page) => (
-      <NavLinkComponent key={page.url} {...page} />
+      <NavLinkComponent key={page.url} {...page}>
+        {page.label === "Your Portfolio" && page.icon}
+      </NavLinkComponent>
     ));
   };
-
   return (
     <AppBar position="static">
       <Container maxWidth="xl">

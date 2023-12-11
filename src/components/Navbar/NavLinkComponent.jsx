@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import WalletIcon from "@mui/icons-material/Wallet"; // Import the WalletIcon
 
 const StyledNavLink = styled(NavLink)(({ theme }) => ({
   textDecoration: "none",
@@ -19,18 +20,19 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   fontFamily: "'Roboto', sans-serif",
 }));
 
-const NavLinkComponent = ({ url, label, ...rest }) => {
+const NavLinkComponent = ({ url, label, icon, ...rest }) => {
   return (
     <StyledNavLink to={url} {...rest}>
       <StyledTypography
         component="div"
         sx={{
           my: 2,
-          display: "block",
+          display: "flex", // Make it a flex container
+          alignItems: "center", // Align items at the center vertically
           p: 2,
         }}
-        // key={url}
       >
+        {icon && <div style={{ marginRight: "8px" }}>{icon}</div>}
         {label}
       </StyledTypography>
     </StyledNavLink>
