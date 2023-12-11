@@ -78,6 +78,10 @@ const CurrencyTradingPage = () => {
         action,
       });
       const updatedUser = response.data.updatedUser;
+      console.log(
+        "🚀 ~ file: CurrencyTradingPage.jsx:81 ~ handleTrade ~ updatedUser:",
+        updatedUser
+      );
 
       // Set the user state first
       setUser(updatedUser);
@@ -115,7 +119,7 @@ const CurrencyTradingPage = () => {
           <Grid container spacing={2} justifyContent="center">
             {/* Coin Card */}
             <Grid item xs={12} md={6}>
-              <Card>
+              <Card style={{ height: "100%" }}>
                 <CardHeader
                   title={coinData.name}
                   subheader={coinData.codeName}
@@ -145,8 +149,9 @@ const CurrencyTradingPage = () => {
                   />
                   <Button
                     variant="contained"
-                    color="secondary"
+                    color="error"
                     onClick={() => handleTrade("sell")}
+                    style={{ marginTop: "10px" }} // Adjust the margin-top value as needed
                   >
                     Sell
                   </Button>
@@ -155,7 +160,8 @@ const CurrencyTradingPage = () => {
             </Grid>
             {/* USDT Card */}
             <Grid item xs={12} md={6}>
-              <Card>
+              <Card style={{ height: "100%" }}>
+                {/* Set height to 100% */}
                 <CardHeader
                   title="USDT"
                   avatar={
@@ -168,7 +174,10 @@ const CurrencyTradingPage = () => {
                   }
                 />
                 <CardContent>
-                  <Typography variant="body1">
+                  <Typography
+                    variant="body1"
+                    style={{ marginTop: "24px" }} // Adjust the margin-top value as needed
+                  >
                     Your Amount: {user.amount} $
                   </Typography>
                   <Input
@@ -181,8 +190,9 @@ const CurrencyTradingPage = () => {
                   />
                   <Button
                     variant="contained"
-                    color="primary"
+                    color="success"
                     onClick={() => handleTrade("buy")}
+                    style={{ marginTop: "10px" }} // Adjust the margin-top value as needed
                   >
                     Buy
                   </Button>

@@ -158,6 +158,8 @@ const UserProfilePage = () => {
               houseNumber: inputState.houseNumber,
               zip: inputState.zip,
             },
+            amount: newInputState.amount,
+            portfolio: inputState.portfolio,
             email: inputState.email,
             phone: inputState.phone,
           })

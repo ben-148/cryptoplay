@@ -57,6 +57,10 @@ const authedPages = [
     label: "Favorites",
     url: ROUTES.FAV,
   },
+  {
+    label: "Your Portfolio",
+    url: ROUTES.PORTFOLIO,
+  },
 ];
 
 const avatarMenu = [

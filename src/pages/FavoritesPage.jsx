@@ -45,12 +45,11 @@ const FavoritesPage = () => {
     }
   };
 
-  const handleEditFromInitialCardsArr = (id) => {
-    navigate(`/edit/${id}`);
-  };
-
   const cardProfileClick = (id) => {
     navigate(`/coinProfile/${id}`);
+  };
+  const buyBtnClick = (id) => {
+    navigate(`/coinTrade/${id}`);
   };
 
   return (
@@ -77,6 +76,7 @@ const FavoritesPage = () => {
                   price={item.price}
                   img={item.image ? item.image.url : ""}
                   onImageClick={cardProfileClick}
+                  onBuyClick={buyBtnClick}
                 />
                 <Button
                   variant="contained"

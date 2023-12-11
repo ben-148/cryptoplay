@@ -5,7 +5,7 @@ import { styled } from "@mui/system";
 const StyledNavLink = styled(NavLink)(({ theme }) => ({
   textDecoration: "none",
   "&.active": {
-    color: theme.palette.primary.main,
+    color: theme.palette.primary.gold,
     backgroundColor: theme.palette.primary.light,
     borderRadius: theme.shape.borderRadius,
     transition: "background-color 0.3s ease",
@@ -15,6 +15,8 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
 const StyledTypography = styled(Typography)(({ theme }) => ({
   fontWeight: 600,
   fontSize: "1.2rem",
+  color: theme.palette.text.gold,
+  fontFamily: "'Roboto', sans-serif",
 }));
 
 const NavLinkComponent = ({ url, label, ...rest }) => {
@@ -27,6 +29,7 @@ const NavLinkComponent = ({ url, label, ...rest }) => {
           display: "block",
           p: 2,
         }}
+        // key={url}
       >
         {label}
       </StyledTypography>

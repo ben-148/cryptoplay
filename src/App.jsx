@@ -25,6 +25,7 @@ const light = {
     mode: "light",
     primary: {
       main: red[500],
+      gold: "#FFD700",
     },
     secondary: {
       main: blue[500],
@@ -35,6 +36,9 @@ const light = {
 const dark = {
   palette: {
     mode: "dark",
+    text: {
+      gold: "#FFD700", // Define the text color for dark theme, e.g., gold
+    },
   },
 };
 

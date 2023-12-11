@@ -13,6 +13,7 @@ import SuperProtectedRoute from "../components/SuperProtectedRoute";
 import ROUTES from "./ROUTES";
 import EditCoinPage from "../pages/EditCoinPage";
 import CurrencyTradingPage from "../pages/CurrencyTradingPage";
+import UserPortfolioPage from "../pages/UserPortfolioPage";
 
 const Router = () => {
   return (
@@ -34,7 +35,11 @@ const Router = () => {
       <Route
         path="coinTrade/:id" // <-- Updated path to use dynamic parameter ':id'
         element={<ProtectedRoute element={<CurrencyTradingPage />} />}
-      />{" "}
+      />
+      <Route
+        path={ROUTES.PORTFOLIO} // <-- Updated path to use dynamic parameter ':id'
+        element={<ProtectedRoute element={<UserPortfolioPage />} />}
+      />
       <Route
         path={ROUTES.PROFILE}
         element={<ProtectedRoute element={<UserProfilePage />} />}
