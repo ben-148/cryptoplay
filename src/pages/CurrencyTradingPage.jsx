@@ -104,8 +104,17 @@ const CurrencyTradingPage = () => {
     }
   }, [user, id]);
 
-  // ...
+  const maxValue = async (action) => {
+    if (action === "buy") {
+      setTradeAmount(user.amount);
+    } else if (action === "sell") {
+      setSellAmount(updateCoinAmount);
+    }
+  };
 
+  const maxsellValue = () => {
+    setSellAmount(updateCoinAmount);
+  };
   return (
     <Box textAlign="center">
       <Typography variant="h3" mb={4}>
@@ -147,14 +156,30 @@ const CurrencyTradingPage = () => {
                     fullWidth
                     mb={2}
                   />
-                  <Button
-                    variant="contained"
-                    color="error"
-                    onClick={() => handleTrade("sell")}
-                    style={{ marginTop: "10px" }} // Adjust the margin-top value as needed
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "left",
+                      alignItems: "center",
+                      marginBottom: "10px",
+                      marginTop: "10px",
+                    }}
                   >
-                    Sell
-                  </Button>
+                    <Button
+                      style={{ marginLeft: "0", marginRight: "180px" }} // Adjust the margin-left and margin-right values as needed
+                      variant="outlined"
+                      onClick={() => maxValue("sell")}
+                    >
+                      MAX
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      onClick={() => handleTrade("sell")}
+                    >
+                      Sell
+                    </Button>
+                  </div>{" "}
                 </CardContent>
               </Card>
             </Grid>
@@ -188,14 +213,32 @@ const CurrencyTradingPage = () => {
                     fullWidth
                     mb={2}
                   />
-                  <Button
-                    variant="contained"
-                    color="success"
-                    onClick={() => handleTrade("buy")}
-                    style={{ marginTop: "10px" }} // Adjust the margin-top value as needed
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "left",
+                      alignItems: "center",
+                      marginBottom: "10px",
+                      marginTop: "10px",
+                    }}
                   >
-                    Buy
-                  </Button>
+                    <Button
+                      style={{ marginLeft: "0", marginRight: "60px" }} // Adjust the margin-left and margin-right values as needed
+                      variant="outlined"
+                      onClick={() => maxValue("buy")}
+                    >
+                      MAX
+                    </Button>
+
+                    <Button
+                      style={{ marginLeft: "100px" }} // Adjust the margin-left and margin-right values as needed
+                      variant="contained"
+                      color="success"
+                      onClick={() => handleTrade("buy")}
+                    >
+                      Buy
+                    </Button>
+                  </div>{" "}
                 </CardContent>
               </Card>
             </Grid>
@@ -205,5 +248,5 @@ const CurrencyTradingPage = () => {
     </Box>
   );
 };
-
+//ben
 export default CurrencyTradingPage;
