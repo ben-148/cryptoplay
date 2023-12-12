@@ -93,11 +93,11 @@ const UserPortfolioPage = () => {
                         />
                       </TableCell>
                       <TableCell>{coin.name}</TableCell>
-                      <TableCell>{coin.price}</TableCell>
+                      <TableCell>$ {coin.price}</TableCell>
                       <TableCell>
                         {userCoin ? userCoin.amount : "N/A"} {coin.codeName}
                       </TableCell>
-                      <TableCell>{worth.toFixed(2)} $</TableCell>
+                      <TableCell>$ {worth.toFixed(2)} </TableCell>
                       <TableCell>
                         <Button
                           variant="text"

@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import WalletIcon from "@mui/icons-material/Wallet"; // Import the WalletIcon
+import "@fontsource/oswald";
 
 const StyledNavLink = styled(NavLink)(({ theme }) => ({
   textDecoration: "none",
@@ -14,10 +15,10 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
 }));
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
-  fontWeight: 600,
   fontSize: "1.2rem",
   color: theme.palette.text.gold,
-  fontFamily: "'Roboto', sans-serif",
+  fontWeight: 600,
+  fontFamily: "'Oswald', sans-serif", // Use Oswald font here
 }));
 
 const NavLinkComponent = ({ url, label, icon, ...rest }) => {

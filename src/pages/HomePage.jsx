@@ -1,4 +1,6 @@
 import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import "@fontsource/oswald";
+
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -110,7 +112,7 @@ const HomePage = () => {
     <Box textAlign="center">
       <Typography
         variant="h1"
-        style={{ fontFamily: "'Leckerli One', cursive" }}
+        style={{ fontWeight: 600, fontFamily: "'Oswald', sans-serif" }}
       >
         CryptoPlay
       </Typography>

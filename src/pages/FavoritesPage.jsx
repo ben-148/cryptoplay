@@ -58,7 +58,7 @@ const FavoritesPage = () => {
         <h1>Your Favorite Cards</h1>
       </Box>
       <Box>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} justifyContent="center">
           {Array.isArray(coinsArr) &&
             coinsArr.map((item) => (
               <Grid

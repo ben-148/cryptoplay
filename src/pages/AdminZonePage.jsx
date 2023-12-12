@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Grid, CircularProgress, Button } from "@mui/material";
+import "@fontsource/oswald";
+
 import ListItemComponent from "../components/ListItemComponent";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -48,7 +50,7 @@ const AdminZonePage = () => {
     <Box textAlign="center">
       <Typography
         variant="h1"
-        style={{ fontFamily: "'Leckerli One', cursive" }}
+        style={{ fontWeight: 600, fontFamily: "'Oswald', sans-serif" }}
       >
         ADMIN ZONE Page
       </Typography>
