@@ -14,6 +14,7 @@ import ROUTES from "./ROUTES";
 import EditCoinPage from "../pages/EditCoinPage";
 import CurrencyTradingPage from "../pages/CurrencyTradingPage";
 import UserPortfolioPage from "../pages/UserPortfolioPage";
+import CRMPage from "../pages/CRMPage";
 
 const Router = () => {
   return (
@@ -27,6 +28,10 @@ const Router = () => {
         element={
           <SuperProtectedRoute isAdmin={true} element={<AdminZonePage />} />
         }
+      />
+      <Route
+        path={ROUTES.CRM}
+        element={<SuperProtectedRoute isAdmin={true} element={<CRMPage />} />}
       />
       <Route
         path={ROUTES.FAV}
