@@ -12,6 +12,8 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
+import { toast } from "react-toastify";
+
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../routes/ROUTES";
 
@@ -40,8 +42,11 @@ const CRMPage = () => {
   }, []);
 
   const handleDeleteUser = (userId) => {
-    axios.delete(`/users/delete/${userId}`).then(() => {
+    console.log("🚀 ~ file: CRMPage.jsx:128 ~ CRMPage ~ user._id:", userId);
+
+    axios.delete(`/users/${userId}`).then(() => {
       setUsers(users.filter((user) => user._id !== userId));
+      toast.error("User Deleted");
     });
   };
 
@@ -53,6 +58,7 @@ const CRMPage = () => {
       let { data } = response;
       console.log("Updated users:", response.data);
       setUsers(data);
+      toast.success("Insert Amount Succseed");
     } catch (error) {
       console.error("Error updating user amount:", error);
     }
@@ -94,8 +100,10 @@ const CRMPage = () => {
                   <TableCell>
                     <TextField
                       type="number"
-                      id={user._id}
+                      variant="outlined"
+                      // id={user._id}
                       value={amountInputs[user._id]}
+                      placeholder="Deposit USDT to user"
                       onChange={(e) =>
                         setAmountInputs((prevInputs) => ({
                           ...prevInputs,
@@ -106,6 +114,7 @@ const CRMPage = () => {
                     <Button
                       variant="contained"
                       color="success"
+                      style={{ marginTop: "10px" }}
                       onClick={() =>
                         handleAmountChange(user._id, amountInputs[user._id])
                       }
@@ -122,7 +131,7 @@ const CRMPage = () => {
                           color="error"
                           onClick={() => handleDeleteUser(user._id)}
                         >
-                          Delete
+                          Delete Account
                         </Button>
                       </>
                     )}
@@ -132,7 +141,7 @@ const CRMPage = () => {
                       color="success"
                       onClick={() => whenUserClicked(user._id)}
                     >
-                      Show more details
+                      User Profile
                     </Button>
                   </TableCell>
                 </TableRow>

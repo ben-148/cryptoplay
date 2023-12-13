@@ -15,6 +15,7 @@ import EditCoinPage from "../pages/EditCoinPage";
 import CurrencyTradingPage from "../pages/CurrencyTradingPage";
 import UserPortfolioPage from "../pages/UserPortfolioPage";
 import CRMPage from "../pages/CRMPage";
+import UserFromCRMPage from "../pages/UserFromCRMPage";
 
 const Router = () => {
   return (
@@ -33,6 +34,13 @@ const Router = () => {
         path={ROUTES.CRM}
         element={<SuperProtectedRoute isAdmin={true} element={<CRMPage />} />}
       />
+      <Route
+        path={ROUTES.PROFILECRM + "/:id"}
+        element={
+          <SuperProtectedRoute isAdmin={true} element={<UserFromCRMPage />} />
+        }
+      />
+
       <Route
         path={ROUTES.FAV}
         element={<ProtectedRoute element={<FavoritesPage />} />}

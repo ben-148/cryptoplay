@@ -10,6 +10,7 @@ const ROUTES = {
   PROFILE: "/profile",
   PORTFOLIO: "/portfolio",
   CRM: "ADMINCRM",
+  PROFILECRM: "/profilecrm",
 };
 
 export default ROUTES;
