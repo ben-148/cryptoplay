@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
-import AdminZonePage from "../pages/AdminZonePage";
+import CoinsManagmentPage from "../pages/CoinsManagmentPage";
 import FavoritesPage from "../pages/FavoritesPage";
 import UserProfilePage from "../pages/UserProfilePage";
 import AddCoinPage from "../pages/AddCoinPage";
@@ -16,6 +16,7 @@ import CurrencyTradingPage from "../pages/CurrencyTradingPage";
 import UserPortfolioPage from "../pages/UserPortfolioPage";
 import CRMPage from "../pages/CRMPage";
 import UserFromCRMPage from "../pages/UserFromCRMPage";
+import AdminBoxPage from "../pages/AdminBoxPage";
 
 const Router = () => {
   return (
@@ -23,23 +24,47 @@ const Router = () => {
       <Route path={ROUTES.HOME} element={<HomePage />} />
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
-      {/* <Route path={ROUTES.ADMINZONE} element={<AdminZonePage />} /> */}
+
+      {/* <Route
+        path={ROUTES.SANDBOX}
+        element={
+          <SuperProtectedRoute
+            isAdmin={true}
+            isBiz={false || true}
+            element={<SandboxPage />}
+          />
+        }
+      >
+        <Route path="nr" element={<NestedRoutePage />}>
+          <Route path="nestedpage1" element={<NestedPage1 />} />
+          <Route path="nestedpage2" element={<NestedPage2 />} />
+        </Route>
+        <Route path="rerender" element={<ReRenderPage />} />
+        <Route path="redux1" element={<RP1 />} />
+        <Route path="redux2" element={<RP2 />} />
+      </Route> */}
+
+      {/* <Route path={ROUTES.ADMINZONE} element={<CoinsManagmentPage />} /> */}
       <Route
         path={ROUTES.ADMINZONE}
         element={
-          <SuperProtectedRoute isAdmin={true} element={<AdminZonePage />} />
+          <SuperProtectedRoute isAdmin={true} element={<AdminBoxPage />} />
         }
-      />
-      <Route
-        path={ROUTES.CRM}
-        element={<SuperProtectedRoute isAdmin={true} element={<CRMPage />} />}
-      />
+      >
+        <Route path="coinsManagment" element={<CoinsManagmentPage />} />
+        <Route path="crm" element={<CRMPage />}>
+          {/* <Route path="profile/:id" element={<UserFromCRMPage />} /> */}
+        </Route>
+      </Route>
+
       <Route
         path={ROUTES.PROFILECRM + "/:id"}
         element={
           <SuperProtectedRoute isAdmin={true} element={<UserFromCRMPage />} />
         }
       />
+
+      {/* <Route path={ROUTES.PROFILECRM} element={<UserFromCRMPage />} /> */}
 
       <Route
         path={ROUTES.FAV}

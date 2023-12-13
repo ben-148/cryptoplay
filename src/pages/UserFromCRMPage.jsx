@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const UserFromCRMPage = () => {
   const { id } = useParams();
   const [user, setUser] = useState(null);
   const [newPortfolio, setNewPortfolio] = useState([]); // Declare newPortfolio state
-
   const [portfolioValue, setPortfolioValue] = useState(0);
+  const navigate = useNavigate(); // Add useNavigate hook
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,6 +61,11 @@ const UserFromCRMPage = () => {
 
     fetchData();
   }, [id]);
+
+  const handleNavigateToCRM = () => {
+    // Navigate to /admin/crm when the button is clicked
+    navigate("/admin/crm");
+  };
 
   if (!user) {
     return <div>Loading...</div>;
@@ -123,6 +128,9 @@ const UserFromCRMPage = () => {
       <div>
         <h2>Total Portfolio Value</h2>
         <p> $ {portfolioValue}</p>
+      </div>
+      <div>
+        <button onClick={handleNavigateToCRM}>Go to CRM</button>
       </div>
     </div>
   );

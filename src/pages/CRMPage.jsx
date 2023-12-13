@@ -71,7 +71,7 @@ const CRMPage = () => {
   return (
     <div>
       <Typography variant="h2" color="primary" align="center">
-        CRM Admin Panel
+        Customer Relationship Management
       </Typography>
       <TableContainer component={Paper}>
         <Table>

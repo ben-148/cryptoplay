@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const AdminZonePage = () => {
+const CoinsManagmentPage = () => {
   const navigate = useNavigate();
 
   const [coinsArr, setCoinsArr] = useState(null);
@@ -49,10 +49,10 @@ const AdminZonePage = () => {
   return (
     <Box textAlign="center">
       <Typography
-        variant="h1"
+        variant="h3"
         style={{ fontWeight: 600, fontFamily: "'Oswald', sans-serif" }}
       >
-        ADMIN ZONE Page
+        coins manage
       </Typography>
       <Grid container spacing={2} justifyContent="center">
         {coinsArr.map((item) => (
@@ -78,4 +78,4 @@ const AdminZonePage = () => {
   );
 };
 
-export default AdminZonePage;
+export default CoinsManagmentPage;

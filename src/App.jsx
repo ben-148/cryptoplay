@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 
 /* import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
-import AdminZonePage from "./pages/AdminZonePage";
  */ import Router from "./routes/Router";
 import { useSelector } from "react-redux";
 
