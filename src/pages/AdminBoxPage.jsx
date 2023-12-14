@@ -9,7 +9,7 @@ const AdminBoxPage = () => {
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      height="100vh"
+      // height="100vh"
     >
       <Fragment>
         <Typography
@@ -34,7 +34,7 @@ const AdminBoxPage = () => {
             component={Link}
             to="/admin/crm"
           >
-            CRM PAGE
+            User Managment
           </Button>
         </Box>
         <Outlet backgroundColor="red" />

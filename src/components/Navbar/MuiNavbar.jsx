@@ -91,10 +91,6 @@ const adminPages = [
   //   label: "Sand Box",
   //   url: ROUTES.SANDBOX,
   // },
-  {
-    label: "CRM",
-    url: ROUTES.CRM,
-  },
   { label: "ADMIN", url: ROUTES.ADMINZONE, icon: <KeyIcon /> },
 ];
 

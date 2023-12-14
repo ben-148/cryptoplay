@@ -80,7 +80,6 @@ const CRMPage = () => {
               <TableCell>ID</TableCell>
               <TableCell>Name</TableCell>
               <TableCell>Email</TableCell>
-              <TableCell>Is Admin?</TableCell>
               <TableCell>Amount (USDT)</TableCell>
               <TableCell>Insert Amount to user (USDT)</TableCell>
               <TableCell>Actions</TableCell>
@@ -92,10 +91,10 @@ const CRMPage = () => {
                 <TableRow key={user._id}>
                   <TableCell>{user._id}</TableCell>
                   <TableCell>
-                    {user.name.firstName} {user.name.lastName}
+                    {user.name.firstName} {user.name.lastName}{" "}
+                    {user.isAdmin ? <Button disabled>ADMIN</Button> : ""}
                   </TableCell>
                   <TableCell>{user.email}</TableCell>
-                  <TableCell>{user.isAdmin ? "Yes" : "No"}</TableCell>
                   <TableCell>$ {user.amount}</TableCell>
                   <TableCell>
                     <TextField
@@ -119,7 +118,7 @@ const CRMPage = () => {
                         handleAmountChange(user._id, amountInputs[user._id])
                       }
                     >
-                      Update Amount
+                      Insert Amount
                     </Button>
                   </TableCell>
                   <TableCell>
@@ -138,8 +137,9 @@ const CRMPage = () => {
                     <Button
                       id={user._id}
                       variant="contained"
-                      color="success"
+                      color="info"
                       onClick={() => whenUserClicked(user._id)}
+                      style={{ marginTop: "10px" }}
                     >
                       User Profile
                     </Button>
