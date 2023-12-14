@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const UserFromCRMPage = () => {
-  const { id } = useParams();
+const UserFromCRMPage = ({ id, onClose }) => {
+  // const { id } = useParams();
   const [user, setUser] = useState(null);
   const [newPortfolio, setNewPortfolio] = useState([]); // Declare newPortfolio state
   const [portfolioValue, setPortfolioValue] = useState(0);
@@ -67,12 +67,17 @@ const UserFromCRMPage = () => {
     navigate("/admin/crm");
   };
 
+  const handleClosePopup = () => {
+    // Call the onClose function to close the popup
+    onClose();
+  };
+
   if (!user) {
     return <div>Loading...</div>;
   }
   return (
     <div>
-      <h1>User Profile</h1>
+      <h1>User Profile:</h1>
       <div>
         <p>
           Name:{" "}
@@ -130,7 +135,7 @@ const UserFromCRMPage = () => {
         <p> $ {portfolioValue}</p>
       </div>
       <div>
-        <button onClick={handleNavigateToCRM}>Go to CRM</button>
+        <button onClick={handleClosePopup}>Close Popup</button>
       </div>
     </div>
   );

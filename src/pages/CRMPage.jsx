@@ -11,9 +11,12 @@ import {
   Button,
   Typography,
   TextField,
+  Dialog,
+  DialogTitle,
+  DialogContent,
 } from "@mui/material";
 import { toast } from "react-toastify";
-
+import UserFromCRMPage from "../pages/UserFromCRMPage";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../routes/ROUTES";
 
@@ -21,6 +24,8 @@ const CRMPage = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [amountInputs, setAmountInputs] = useState({});
+  const [dialogOpen, setDialogOpen] = useState(false); // Step 2
+  const [selectedUserId, setSelectedUserId] = useState(null); // Store the selected user ID
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,8 +69,19 @@ const CRMPage = () => {
     }
   };
 
+  // const whenUserClicked = (userId) => {
+  //   navigate(`${ROUTES.PROFILECRM}/${userId}`);
+  //   setDialogOpen(true);
+  // };
+
   const whenUserClicked = (userId) => {
-    navigate(`${ROUTES.PROFILECRM}/${userId}`);
+    setSelectedUserId(userId); // Store the selected user ID
+    setDialogOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    // Close the popup
+    setDialogOpen(false);
   };
 
   return (
@@ -143,6 +159,19 @@ const CRMPage = () => {
                     >
                       User Profile
                     </Button>
+                    <Dialog
+                      open={dialogOpen && selectedUserId === user._id} // Open the dialog for the selected user
+                      onClose={() => setDialogOpen(false)}
+                    >
+                      {/* <DialogTitle>User Profile</DialogTitle> */}
+                      <DialogContent>
+                        {/* Load the UserFromCRMPage component */}
+                        <UserFromCRMPage
+                          id={selectedUserId}
+                          onClose={handleClosePopup}
+                        />
+                      </DialogContent>
+                    </Dialog>{" "}
                   </TableCell>
                 </TableRow>
               ))
