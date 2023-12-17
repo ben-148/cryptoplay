@@ -175,7 +175,7 @@ const MuiNavbar = () => {
             onClick={() => navigate(ROUTES.HOME)}
           >
             <img
-              src={`${process.env.PUBLIC_URL}/favicon.ico`}
+              src={`${process.env.PUBLIC_URL}/favicon2.ico`}
               alt="Favicon"
               style={{ marginRight: "8px", width: "24px", height: "24px" }}
             />

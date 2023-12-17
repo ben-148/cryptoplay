@@ -17,11 +17,14 @@ import UserPortfolioPage from "../pages/UserPortfolioPage";
 import CRMPage from "../pages/CRMPage";
 import UserFromCRMPage from "../pages/UserFromCRMPage";
 import AdminBoxPage from "../pages/AdminBoxPage";
+import AboutPage from "../pages/AboutPage";
 
 const Router = () => {
   return (
     <Routes>
       <Route path={ROUTES.HOME} element={<HomePage />} />
+      <Route path={ROUTES.ABOUT} element={<AboutPage />} />
+
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
 

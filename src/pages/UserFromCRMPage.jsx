@@ -117,7 +117,7 @@ const UserFromCRMPage = ({ id, onClose }) => {
           })}
           <li>
             <img
-              src="https://static.vecteezy.com/system/resources/previews/007/164/551/original/tether-usdt-cryptocurrency-coins-usdt-logo-gold-coin-decentralized-digital-money-concept-free-vector.jpg"
+              src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=029"
               alt="tether"
               className="coin-logo"
               style={{

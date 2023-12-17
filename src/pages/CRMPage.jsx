@@ -86,7 +86,12 @@ const CRMPage = () => {
 
   return (
     <div>
-      <Typography variant="h2" color="primary" align="center">
+      <Typography
+        variant="h2"
+        color="primary"
+        align="center"
+        style={{ marginBottom: "30px" }}
+      >
         Customer Relationship Management
       </Typography>
       <TableContainer component={Paper}>
@@ -107,8 +112,9 @@ const CRMPage = () => {
                 <TableRow key={user._id}>
                   <TableCell>{user._id}</TableCell>
                   <TableCell>
+                    {user.isAdmin ? <Button disabled>ADMIN</Button> : ""}{" "}
+                    <br></br>
                     {user.name.firstName} {user.name.lastName}{" "}
-                    {user.isAdmin ? <Button disabled>ADMIN</Button> : ""}
                   </TableCell>
                   <TableCell>{user.email}</TableCell>
                   <TableCell>$ {user.amount}</TableCell>

@@ -12,6 +12,8 @@ import {
   TableBody,
   Button,
 } from "@mui/material";
+import "@fontsource/oswald";
+
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +26,10 @@ const UserPortfolioPage = () => {
   );
 
   const [userOwnedCoins, setUserOwnedCoins] = useState([]);
-  const [userPorfolio, setUserPorfolio] = useState([]);
+  const [userPortfolio, setUserPorfolio] = useState([]);
+  const [userUsdtCredit, setUserUsdtCredit] = useState(null);
+  const [totalWorth, setTotalWorth] = useState(null); // Declare totalWorth state
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,6 +39,7 @@ const UserPortfolioPage = () => {
         const portfolio = Array.isArray(userData.portfolio)
           ? userData.portfolio
           : [];
+        setUserUsdtCredit(userData.amount);
         const { data: allCoinsData } = await axios.get(`/coins`);
         const userOwnedCoins = allCoinsData.filter((coin) =>
           portfolio.some((userCoin) => userCoin.coinId === coin._id)
@@ -41,6 +47,18 @@ const UserPortfolioPage = () => {
 
         setUserOwnedCoins(userOwnedCoins);
         setUserPorfolio(portfolio);
+
+        const calculatedTotalWorth =
+          userData.amount +
+          portfolio.reduce(
+            (total, coin) =>
+              total +
+              (userOwnedCoins.find((ownedCoin) => ownedCoin._id === coin.coinId)
+                ?.price || 0) *
+                coin.amount,
+            0
+          );
+        setTotalWorth(calculatedTotalWorth);
       } catch (error) {
         console.error("Error fetching data:", error.message);
       }
@@ -57,8 +75,12 @@ const UserPortfolioPage = () => {
 
   return (
     <Container>
-      <Box my={4}>
-        <Typography variant="h3" mb={4}>
+      <Box my={4} textAlign="center">
+        <Typography
+          variant="h3"
+          mb={4}
+          style={{ fontWeight: 600, fontFamily: "'Oswald', sans-serif" }}
+        >
           Your Portfolio
         </Typography>
         {userOwnedCoins.length > 0 ? (
@@ -76,7 +98,7 @@ const UserPortfolioPage = () => {
               </TableHead>
               <TableBody>
                 {userOwnedCoins.map((coin) => {
-                  const userCoin = userPorfolio.find(
+                  const userCoin = userPortfolio.find(
                     (userCoin) => userCoin.coinId === coin._id
                   );
                   const worth = userCoin
@@ -110,6 +132,38 @@ const UserPortfolioPage = () => {
                     </TableRow>
                   );
                 })}
+                <TableRow>
+                  <TableCell colSpan={4} align="right">
+                    <img
+                      src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=029"
+                      alt="tether"
+                      className="coin-logo"
+                      style={{
+                        width: "16px",
+                        height: "16px",
+                        marginRight: "8px",
+                      }}
+                    />
+                    USDT CREDIT:
+                  </TableCell>
+                  <TableCell
+                    colSpan={2}
+                    style={{ fontWeight: "bold", color: "#2196F3" }}
+                  >
+                    $ {userUsdtCredit}
+                  </TableCell>
+                </TableRow>{" "}
+                <TableRow>
+                  <TableCell colSpan={4} align="right">
+                    Total Portfolio Worth:
+                  </TableCell>
+                  <TableCell
+                    colSpan={2}
+                    style={{ fontWeight: "bold", color: "#2196F3" }}
+                  >
+                    ${totalWorth?.toFixed(2)}
+                  </TableCell>
+                </TableRow>
               </TableBody>
             </Table>
           </TableContainer>

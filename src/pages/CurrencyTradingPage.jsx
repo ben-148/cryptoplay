@@ -60,12 +60,21 @@ const CurrencyTradingPage = () => {
           toast.error("Insufficient funds");
           return;
         }
+
+        if (tradeAmount <= 0) {
+          toast.error("please insert numner bigger than 0");
+          return;
+        }
       } else if (action === "sell") {
         // Selling logic
         amountToTrade = Number(sellAmount);
 
         if (amountToTrade > updateCoinAmount) {
           toast.error("Insufficient coin amount");
+          return;
+        }
+        if (sellAmount <= 0) {
+          toast.error("please insert numner bigger than 0");
           return;
         }
       }
@@ -191,7 +200,7 @@ const CurrencyTradingPage = () => {
                   title="USDT"
                   avatar={
                     <img
-                      src="https://w7.pngwing.com/pngs/520/303/png-transparent-tether-united-states-dollar-cryptocurrency-fiat-money-market-capitalization-bitcoin-logo-bitcoin-trade.png"
+                      src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=029"
                       alt="USDT"
                       width="40"
                       height="40"

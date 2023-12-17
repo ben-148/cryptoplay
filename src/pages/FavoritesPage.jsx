@@ -39,7 +39,7 @@ const FavoritesPage = () => {
     try {
       await axios.patch(`coins/coin-like/${id}`);
       setCardsArr((prevArr) => prevArr.filter((card) => card._id !== id));
-      toast.success("Card deleted successfully");
+      toast.success("Not Favorite Anymore");
     } catch (err) {
       toast.error("Failed to delete card");
     }
@@ -55,7 +55,7 @@ const FavoritesPage = () => {
   return (
     <Fragment>
       <Box textAlign="center">
-        <h1>Your Favorite Cards</h1>
+        <h1>Your Favorite CryptoCurrency</h1>
       </Box>
       <Box>
         <Grid container spacing={2} justifyContent="center">
