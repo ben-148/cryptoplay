@@ -100,8 +100,8 @@ const HomePage = () => {
         [id]: updatedStatus,
       }));
       const toastMessage = updatedStatus
-        ? "🦄 Card added to favorites :)"
-        : "🦄 Card removed from favorites ";
+        ? "🦄 coin added to favorites :)"
+        : "🦄 coin removed from favorites ";
       toast.success(toastMessage);
     } catch (err) {
       toast.error("error when liking", err.response.data);
@@ -122,11 +122,14 @@ const HomePage = () => {
           fontFamily: "'Playfair Display', serif",
         }}
       >
-        your crypto EXCHAGNE{" "}
+        Your EXCHANGE Playground
       </Typography>
       <Typography
         variant="h4"
-        style={{ fontFamily: "'Montserrat', sans-serif", marginBottom: "16px" }}
+        style={{
+          fontFamily: "'Playfair Display', serif",
+          marginBottom: "16px",
+        }}
       >
         BUY SOME CRYPTO{" "}
       </Typography>
