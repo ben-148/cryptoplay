@@ -7,13 +7,11 @@
 
 .featured.dark-mode {
     background-color: var(--dark-background);
-    /* Change to your dark background color */
 }
 
 .featured.dark-mode h2,
 .featured.dark-mode p,
 .featured.dark-mode .btn,
-
 .featured.dark-mode span {
     font-size: 22px;
 }
@@ -25,23 +23,6 @@
 .red {
     color: #ff0000;
 }
-
-.featured.dark-mode .card .icon {
-    color: #ff0000;
-    /* Red color for the arrow in dark mode */
-}
-
-/* .featured.dark-mode .card {
-    border: 1px solid #555;
-    box-shadow: rgb(0 0 0 / 12%) 0px 8px 24px;
-}
-
-.featured.dark-mode .card:hover {
-    box-shadow: rgb(0 0 0 / 20%) 0px 8px 24px;
-}
- */
-
-
 
 .featured .container {
     display: grid;
@@ -76,7 +57,7 @@
     display: flex;
     flex-direction: column;
     padding: 12px 22px;
-    margin: .4rem;
+    margin: 0.4rem;
     width: 170px;
     height: 170px;
     border-radius: 24px;
@@ -97,7 +78,7 @@
 .featured .right img {
     width: 50px;
     margin: auto;
-    padding: .2rem 0;
+    padding: 0.2rem 0;
 }
 
 .featured .icon {
@@ -108,15 +89,11 @@
     align-items: center;
 }
 
-.featured span {
-    font-size: 22px;
-}
-
-.green {
+.featured .green {
     color: var(--primary);
 }
 
-.red {
+.featured .red {
     color: #ff0000;
 }
 
@@ -129,7 +106,6 @@
         align-self: center;
     }
 }
-
 
 @media screen and (max-width: 478px) {
     .featured .container .right .card {

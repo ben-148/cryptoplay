@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import HomePage from "../pages/HomePage";
+import AssetsPage from "../pages/AssetsPage";
 import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
 import CoinsManagmentPage from "../pages/CoinsManagmentPage";
@@ -18,13 +18,13 @@ import CRMPage from "../pages/CRMPage";
 import UserFromCRMPage from "../pages/UserFromCRMPage";
 import AdminBoxPage from "../pages/AdminBoxPage";
 import AboutPage from "../pages/AboutPage";
-import Home2 from "../pages/HomePage2.jsx";
+import Home2 from "../pages/HomePage2";
 
 const Router = () => {
   return (
     <Routes>
-      <Route path={ROUTES.HOME} element={<HomePage />} />
-      <Route path="home2" element={<Home2 />} />
+      <Route path={ROUTES.HOME} element={<Home2 />} />
+      <Route path={ROUTES.TRADE} element={<AssetsPage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
 
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />

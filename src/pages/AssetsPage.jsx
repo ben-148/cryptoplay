@@ -12,7 +12,7 @@ import useQueryParams from "../hooks/useQueryParams";
 
 import CoinCardComponent from "../components/CoinCardComponent";
 
-const HomePage = () => {
+const AssetsPage = () => {
   const [originalCoinsArr, setOriginalCoinsArr] = useState(null);
   const [coinsArr, setCoinsArr] = useState(null);
   const [favoriteStatus, setFavoriteStatus] = useState({}); // Added state for favorite status
@@ -107,9 +107,13 @@ const HomePage = () => {
     navigate(`/coinProfile/${id}`);
   };
   const buyBtnClick = (id) => {
+    if (!payload) {
+      toast.error("Please sign up or sign in to perform this action");
+      return;
+    }
+
     navigate(`/coinTrade/${id}`);
   };
-
   const handleLikeFromInitialCardsArr = async (id) => {
     try {
       const response = await axios.patch("coins/coin-like/" + id);
@@ -225,4 +229,4 @@ const user1 = users[0];
 trade(user1, 'BTC', 5); // Trade 5 BTC for user1
  */
 
-export default HomePage;
+export default AssetsPage;

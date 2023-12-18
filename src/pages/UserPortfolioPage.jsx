@@ -28,7 +28,7 @@ const UserPortfolioPage = () => {
   const [userOwnedCoins, setUserOwnedCoins] = useState([]);
   const [userPortfolio, setUserPorfolio] = useState([]);
   const [userUsdtCredit, setUserUsdtCredit] = useState(null);
-  const [totalWorth, setTotalWorth] = useState(null); // Declare totalWorth state
+  const [totalWorth, setTotalWorth] = useState(null);
 
   const navigate = useNavigate();
 
@@ -91,9 +91,9 @@ const UserPortfolioPage = () => {
                   <TableCell>LOGO</TableCell>
                   <TableCell>Coin</TableCell>
                   <TableCell>Current Price</TableCell>
-                  <TableCell>Amount </TableCell>
-                  <TableCell>Worth in $ </TableCell>
-                  <TableCell>ACTION </TableCell>
+                  <TableCell>Amount</TableCell>
+                  <TableCell>Worth in $</TableCell>
+                  <TableCell>ACTION</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -119,7 +119,7 @@ const UserPortfolioPage = () => {
                       <TableCell>
                         {userCoin ? userCoin.amount : "N/A"} {coin.codeName}
                       </TableCell>
-                      <TableCell>$ {worth.toFixed(2)} </TableCell>
+                      <TableCell>$ {worth.toFixed(2)}</TableCell>
                       <TableCell>
                         <Button
                           variant="text"
@@ -152,7 +152,7 @@ const UserPortfolioPage = () => {
                   >
                     $ {userUsdtCredit}
                   </TableCell>
-                </TableRow>{" "}
+                </TableRow>
                 <TableRow>
                   <TableCell colSpan={4} align="right">
                     Total Portfolio Worth:

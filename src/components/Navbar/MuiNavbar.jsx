@@ -27,6 +27,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import KeyIcon from "@mui/icons-material/Key";
 import InfoIcon from "@mui/icons-material/Info";
 import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 
 // access to all
 const pages = [
@@ -36,6 +37,12 @@ const pages = [
     icon: <CurrencyBitcoinIcon />,
   },
   { label: "About", url: ROUTES.ABOUT, icon: <InfoIcon /> },
+  {
+    label: "TRADE",
+    url: ROUTES.TRADE,
+    icon: <CurrencyExchangeIcon />, // Add the icon here
+  },
+
   /*   { label: "ADMIN", url: ROUTES.ADMINZONE },
   { label: "register", url: ROUTES.REGISTER },
   { label: "login", url: ROUTES.LOGIN },

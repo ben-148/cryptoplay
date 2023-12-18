@@ -14,6 +14,7 @@ import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import { Fragment } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 
 const CoinCardComponent = ({
   img,
@@ -56,8 +57,8 @@ const CoinCardComponent = ({
       </CardContent>
       <CardActions>
         <Button variant="text" color="primary" onClick={handleBuyBtnClick}>
-          <CurrencyBitcoinIcon />
-          BUY
+          <CurrencyExchangeIcon />
+          TRADE
         </Button>
 
         {loggedIn ? (

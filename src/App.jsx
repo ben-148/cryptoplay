@@ -7,9 +7,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 
-/* import HomePage from "./pages/HomePage";
-import RegisterPage from "./pages/RegisterPage";
- */ import Router from "./routes/Router";
+import Router from "./routes/Router";
 import { useSelector } from "react-redux";
 
 import MuiNavbar from "./components/Navbar/MuiNavbar";

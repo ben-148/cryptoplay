@@ -55,7 +55,7 @@ const SearchPartial = () => {
   };
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    navigate(`${ROUTES.HOME}?filter=${searchInput}`);
+    navigate(`${ROUTES.TRADE}?filter=${searchInput}`);
   };
   return (
     <form onSubmit={handleSearchSubmit}>

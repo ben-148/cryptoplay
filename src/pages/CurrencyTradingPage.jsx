@@ -161,7 +161,7 @@ const CurrencyTradingPage = () => {
                     type="number"
                     value={sellAmount}
                     onChange={(e) => setSellAmount(e.target.value)}
-                    placeholder="Enter sell amount"
+                    placeholder="  Enter sell amount"
                     fullWidth
                     mb={2}
                   />
@@ -218,7 +218,7 @@ const CurrencyTradingPage = () => {
                     type="number"
                     value={tradeAmount}
                     onChange={(e) => setTradeAmount(e.target.value)}
-                    placeholder="Enter trade amount"
+                    placeholder="  Enter trade amount"
                     fullWidth
                     mb={2}
                   />

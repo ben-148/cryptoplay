@@ -3,6 +3,8 @@
 :root {
   --primary: #118c4f;
   --background: #f5f8ff;
+  --dark-background: #222;
+  /* Update to a color that is visible in dark mode */
 }
 
 .primary {

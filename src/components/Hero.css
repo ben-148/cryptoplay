@@ -11,8 +11,15 @@
     padding: 1rem;
 }
 
+
+
 .hero h1 {
     padding: 1rem 0;
+}
+
+.hero .btn {
+    margin-top: 1rem;
+    /* Add margin-top as needed */
 }
 
 .hero .input-container {
@@ -31,6 +38,10 @@
 .hero img {
     max-width: 80%;
     margin: auto;
+}
+
+.green-link {
+    color: green;
 }
 
 @media screen and (max-width: 940px) {
