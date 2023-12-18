@@ -16,6 +16,7 @@ import { red, blue } from "@mui/material/colors";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useLoggedIn from "./hooks/useLoggedIn";
+import Mfooter from "./components/footer";
 
 const light = {
   palette: {
@@ -76,6 +77,9 @@ function App() {
           <MuiNavbar />
         </header>
         <main>{isLoading ? <CircularProgress /> : <Router />}</main>
+        <footer>
+          <Mfooter />
+        </footer>
       </Container>
     </ThemeProvider>
   );

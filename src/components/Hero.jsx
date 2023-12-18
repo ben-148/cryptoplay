@@ -138,6 +138,7 @@ const Hero = () => {
             <img
               src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029"
               alt=""
+              style={{ maxWidth: "50%", height: "auto" }}
             />
           </div>
         </div>
