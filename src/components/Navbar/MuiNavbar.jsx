@@ -26,15 +26,17 @@ import WalletIcon from "@mui/icons-material/Wallet";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import KeyIcon from "@mui/icons-material/Key";
 import InfoIcon from "@mui/icons-material/Info";
-import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
+import HomeIcon from "@mui/icons-material/Home";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
+import LoginIcon from "@mui/icons-material/Login";
 
 // access to all
 const pages = [
   {
     label: "Home",
     url: ROUTES.HOME,
-    icon: <CurrencyBitcoinIcon />,
+    icon: <HomeIcon />,
   },
   { label: "About", url: ROUTES.ABOUT, icon: <InfoIcon /> },
   {
@@ -57,10 +59,12 @@ const notAuthPages = [
   {
     label: "Register",
     url: ROUTES.REGISTER,
+    icon: <HowToRegIcon />,
   },
   {
     label: "Login",
     url: ROUTES.LOGIN,
+    icon: <LoginIcon />,
   },
 ];
 

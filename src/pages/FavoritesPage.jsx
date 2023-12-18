@@ -55,7 +55,11 @@ const FavoritesPage = () => {
   return (
     <Fragment>
       <Box textAlign="center">
-        <h1>Your Favorite CryptoCurrency</h1>
+        <br />
+
+        <h1>Your Favorites CryptoCurrency</h1>
+        <br />
+        <br />
       </Box>
       <Box>
         <Grid container spacing={2} justifyContent="center">
