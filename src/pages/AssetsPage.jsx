@@ -147,7 +147,7 @@ const AssetsPage = () => {
     };
 
     fetchData();
-  }, [filterFunc, payload]);
+  }, []);
 
   useEffect(() => {
     filterFunc();

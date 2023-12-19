@@ -32,7 +32,7 @@ const EditCoinPage = () => {
   const arrOfInputs = [
     { inputName: "Name", idAndKey: "name", isReq: true },
     { inputName: "CODE", idAndKey: "codeName", isReq: true },
-    { inputName: "price", idAndKey: "price", isReq: true },
+    // { inputName: "price", idAndKey: "price", isReq: true },
     { inputName: "icon url", idAndKey: "url", isReq: true },
     { inputName: "description", idAndKey: "description", isReq: true },
   ];
@@ -64,6 +64,7 @@ const EditCoinPage = () => {
         delete newInputState._id;
         delete newInputState.user_id;
         delete newInputState.bizNumber;
+        // delete newInputState.price;
         // delete newInputState.createdAt;
         delete newInputState.__v;
         setInputState(newInputState);
