@@ -55,12 +55,64 @@ const AssetsPage = () => {
   );
 
   useEffect(() => {
-    axios
-      .get("/coins")
-      .then(({ data }) => {
-        filterFunc(data);
+    const fetchData = async () => {
+      try {
+        // Fetch data from your server
+        const serverResponse = await axios.get("/coins");
+        const serverData = serverResponse.data;
+
+        // Fetch data from the external API axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false' , { crossDomain: true } )
+        const apiResponse = await axios.get(
+          "https://api.coingecko.com/api/v3/coins/markets",
+          {
+            params: {
+              vs_currency: "usd",
+              order: "market_cap_desc",
+              per_page: 100,
+              page: 1,
+              sparkline: false,
+              locale: "en",
+            },
+          }
+        );
+        const apiData = apiResponse.data;
+
+        const combinedData = serverData.map((coinFromServer) => {
+          const matchingApiCoin = apiData.find(
+            (coinFromApi) =>
+              coinFromApi.symbol.toLowerCase() ===
+              coinFromServer.codeName.toLowerCase()
+          );
+
+          if (matchingApiCoin) {
+            // Update values in the server data based on API data
+            return {
+              ...coinFromServer,
+              price: matchingApiCoin.current_price,
+              change24: matchingApiCoin.price_change_percentage_24h,
+              // Add other keys and values as needed
+            };
+          }
+
+          // If no match found, return the original server data
+          return coinFromServer;
+        });
+
+        // Handle the combined data
+        console.log("Combined Data:", combinedData);
+
+        // Handle the fetched data
+        console.log("Server Data:", serverData);
+        console.log("API Data:", apiData);
+
+        // Add your logic here to handle the fetched data
+
+        // Continue with the rest of your logic, e.g., calling filterFunc
+        filterFunc(combinedData);
+
+        // Set other state variables as needed
         setFavoriteStatus(
-          data.reduce(
+          serverData.reduce(
             (status, card) => ({
               ...status,
               [card._id]: card.likes.includes(payload?._id),
@@ -68,32 +120,16 @@ const AssetsPage = () => {
             {}
           )
         );
-      })
-      .catch((err) => {
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Add error handling logic if needed
         toast.error("Oops");
-      });
-  }, [filterFunc]);
+      }
+    };
 
+    fetchData();
+  }, [filterFunc, payload]);
   useEffect(() => {
-    // axios
-    //   .get("https://api.coingecko.com/api/v3/coins/markets", {
-    //     params: {
-    //       vs_currency: "usd",
-    //       order: "market_cap_desc",
-    //       per_page: 100,
-    //       page: 1,
-    //       sparkline: false,
-    //       locale: "en",
-    //     },
-    //   })
-    //   .then(({ data }) => {
-    //     console.log("Fetched data:", data);
-    //     // Add your logic here to handle the fetched data
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching data:", error);
-    //     // Add error handling logic if needed
-    //   });
     filterFunc();
   }, [filterFunc, qparams.filter]);
 
@@ -170,6 +206,7 @@ const AssetsPage = () => {
               onLike={handleLikeFromInitialCardsArr}
               isFav={favoriteStatus[item._id]}
               loggedIn={payload}
+              change24={item.change24}
             />
           </Grid>
         ))}

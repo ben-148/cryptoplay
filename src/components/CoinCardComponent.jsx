@@ -15,6 +15,9 @@ import { Fragment } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import { FiArrowUpRight, FiArrowDown } from "react-icons/fi";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import NorthEastIcon from "@mui/icons-material/NorthEast";
 
 const CoinCardComponent = ({
   img,
@@ -27,6 +30,7 @@ const CoinCardComponent = ({
   onLike,
   onBuyClick,
   onImageClick,
+  change24,
 }) => {
   const handleLikeBtnClick = () => {
     onLike(id);
@@ -52,8 +56,25 @@ const CoinCardComponent = ({
         {/* <CardHeader subheader={codeName} /> */}
       </CardActionArea>
 
-      <CardContent>
+      <CardContent
+      // style={{
+      //   display: "flex",
+      //   flexDirection: "column",
+      //   alignItems: "flex-start",
+      // }}
+      >
         <Typography variant="body1">Price: $ {price}</Typography>
+        <Typography variant="body1">
+          24 hours:{" "}
+          {change24 > 0 ? (
+            <FiArrowUpRight style={{ color: "green" }} />
+          ) : (
+            <FiArrowDown style={{ color: "red" }} />
+          )}
+          <span style={{ color: change24 > 0 ? "green" : "red" }}>
+            {change24}%
+          </span>
+        </Typography>
       </CardContent>
       <CardActions>
         <Button variant="text" color="primary" onClick={handleBuyBtnClick}>
@@ -85,7 +106,7 @@ CoinCardComponent.propTypes = {
   img: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired, // Update this to 'name'
   codeName: PropTypes.string.isRequired, // Update this to 'codeName'
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
 };
 
 export default CoinCardComponent;
