@@ -109,6 +109,25 @@ const AssetsPage = () => {
 
         // Continue with the rest of your logic, e.g., calling filterFunc
         filterFunc(combinedData);
+        const updateCoinsOnServer = async () => {
+          try {
+            const response = await axios.patch("/coins/bulk-update", {
+              coins: combinedData.map((coinData) => ({
+                id: coinData._id,
+                price: coinData.price,
+                // price_change_percentage_24h:
+                //   coinData.price_change_percentage_24h,
+                // Add other fields as needed
+              })),
+            });
+
+            console.log("Coins updated on server:", response.data);
+          } catch (error) {
+            console.error("Error updating coins on server:", error);
+            // Add error handling logic if needed
+          }
+        };
+        updateCoinsOnServer();
 
         // Set other state variables as needed
         setFavoriteStatus(
@@ -129,6 +148,7 @@ const AssetsPage = () => {
 
     fetchData();
   }, [filterFunc, payload]);
+
   useEffect(() => {
     filterFunc();
   }, [filterFunc, qparams.filter]);
