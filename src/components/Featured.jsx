@@ -45,7 +45,7 @@ const Featured = () => {
         </div>
 
         <div className="right">
-          {data.slice(0, 6).map((coinData, index) => (
+          {data.slice(0, 9).map((coinData, index) => (
             <div className="card" key={index}>
               <div className="top">
                 <img src={coinData.image} alt="" />

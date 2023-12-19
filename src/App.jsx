@@ -17,6 +17,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useLoggedIn from "./hooks/useLoggedIn";
 import Mfooter from "./components/footer";
+import CopyrightTypography from "./components/CopyrightTypography";
 
 const light = {
   palette: {
@@ -80,6 +81,8 @@ function App() {
         <footer>
           <Mfooter />
         </footer>
+        {/* <p>© 2023 Ben Oved. All rights reserved.</p> */}
+        <CopyrightTypography />
       </Container>
     </ThemeProvider>
   );

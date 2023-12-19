@@ -38,9 +38,13 @@ const Mfooter = () => {
           icon={<InfoIcon />}
         />
       </BottomNavigation>
-      <Typography variant="caption" align="center">
+      {/* <Typography
+        variant="caption"
+        align="center"
+        style={{ marginLeft: "64px", marginTop: "64px" }}
+      >
         &copy; 2023 Ben Oved. All rights reserved.
-      </Typography>
+      </Typography> */}
     </Box>
   );
 };

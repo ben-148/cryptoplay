@@ -87,8 +87,8 @@ const CRMPage = () => {
   return (
     <div>
       <Typography
-        variant="h2"
-        color="primary"
+        variant="h1"
+        // color="primary"
         align="center"
         style={{ marginBottom: "30px" }}
       >

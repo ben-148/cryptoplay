@@ -33,7 +33,9 @@ const NavLinkComponent = ({ url, label, icon, ...rest }) => {
           p: 2,
         }}
       >
-        {icon && <div style={{ marginRight: "8px" }}>{icon}</div>}
+        {icon && (
+          <div style={{ marginRight: "8px", marginTop: "8px" }}>{icon}</div>
+        )}
         {label}
       </StyledTypography>
     </StyledNavLink>
