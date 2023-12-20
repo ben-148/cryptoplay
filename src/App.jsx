@@ -18,7 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import useLoggedIn from "./hooks/useLoggedIn";
 import Mfooter from "./components/footer";
 import CopyrightTypography from "./components/CopyrightTypography";
-import useCoinData from "./initalData/useCoinData"; // Adjust the import path
+import UpdateCoinData from "./initalData/UpdateCoinData"; // Adjust the import path
 
 const light = {
   palette: {
@@ -45,11 +45,11 @@ const dark = {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const loggedIn = useLoggedIn();
-  // const combinedData = useCoinData(); // Using the custom hook here
 
   useEffect(() => {
     (async () => {
       await loggedIn();
+      await UpdateCoinData();
       setIsLoading(false);
     })();
   }, []);

@@ -72,7 +72,7 @@ const CoinCardComponent = ({
             <FiArrowDown style={{ color: "red" }} />
           )}
           <span style={{ color: change24 > 0 ? "green" : "red" }}>
-            {change24}%
+            {change24.toFixed(2)}%
           </span>
         </Typography>
       </CardContent>

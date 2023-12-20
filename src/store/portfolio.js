@@ -3,8 +3,7 @@ import { toast } from "react-toastify";
 import axios from "axios"; // Don't forget to import axios
 
 const initialState = {
-  usdt: 0,
-  portfolio: null,
+  coinsData: [],
 };
 
 // Define an async thunk

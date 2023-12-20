@@ -81,6 +81,7 @@ const FavoritesPage = () => {
                   img={item.image ? item.image.url : ""}
                   onImageClick={cardProfileClick}
                   onBuyClick={buyBtnClick}
+                  change24={item.change24}
                 />
                 <Button
                   variant="contained"

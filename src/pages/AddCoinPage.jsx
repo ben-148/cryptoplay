@@ -14,6 +14,7 @@ import Avatar from "@mui/material/Avatar";
 import ValidateAddCoinSchema from "../validation/addCoinValidation";
 import FormButtonsComponent from "../components/FormButtonsComponent";
 import EditCoinPageFieldComponent from "../components/EditCoinPageComponent";
+import UpdateCoinData from "../initalData/UpdateCoinData"; // Adjust the import path
 
 const AddCoinPage = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const AddCoinPage = () => {
     codeName: "",
     price: "",
     url: "",
+    description: "",
 
     // description: "",
   });
@@ -52,8 +54,9 @@ const AddCoinPage = () => {
         delete inputState.url;
 
         await axios.post("/coins/", inputState);
+        await UpdateCoinData();
 
-        navigate(ROUTES.HOME);
+        navigate(`/trade`);
         toast.success("coin added successfully!");
       }
     } catch (error) {

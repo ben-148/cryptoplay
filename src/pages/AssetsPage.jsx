@@ -62,7 +62,7 @@ const AssetsPage = () => {
         const serverData = serverResponse.data;
 
         // Fetch data from the external API axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false' , { crossDomain: true } )
-        const apiResponse = await axios.get(
+        /*         const apiResponse = await axios.get(
           "https://api.coingecko.com/api/v3/coins/markets",
           {
             params: {
@@ -100,16 +100,16 @@ const AssetsPage = () => {
 
         // Handle the combined data
         console.log("Combined Data:", combinedData);
-
+ */
         // Handle the fetched data
         console.log("Server Data:", serverData);
-        console.log("API Data:", apiData);
+        // console.log("API Data:", apiData);
 
         // Add your logic here to handle the fetched data
 
         // Continue with the rest of your logic, e.g., calling filterFunc
-        filterFunc(combinedData);
-        const updateCoinsOnServer = async () => {
+        filterFunc(serverData);
+        /*         const updateCoinsOnServer = async () => {
           try {
             const response = await axios.patch("/coins/bulk-update", {
               coins: combinedData.map((coinData) => ({
@@ -128,7 +128,7 @@ const AssetsPage = () => {
           }
         };
         updateCoinsOnServer();
-
+ */
         // Set other state variables as needed
         setFavoriteStatus(
           serverData.reduce(
@@ -210,6 +210,7 @@ const AssetsPage = () => {
       >
         BUY SOME CRYPTO{" "}
       </Typography>
+      <p>"Powered by CoinGecko"</p>
       {filter && <p>search results - {filter} </p>}
       <Grid container spacing={2} justifyContent="center">
         {coinsArr.map((item) => (
