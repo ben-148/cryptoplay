@@ -6,89 +6,150 @@ import {
   CardMedia,
   Grid,
   Button,
+  Link,
+  styled,
+  useTheme,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
+const StyledDiv = styled("div")(({ theme }) => ({
+  padding: theme.spacing(4),
+}));
+
+const StyledCard = styled(Card)(({ theme }) => ({
+  flexDirection: "column",
+  height: "100%",
+  marginBottom: theme.spacing(4),
+  transition: "transform 0.3s",
+  "&:hover": {
+    transform: "scale(1.05)",
+  },
+}));
+const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
+  width: "100%",
+  height: "200px", // Set your desired height
+  objectFit: "cover",
+}));
+
+const StyledCardContent = styled(CardContent)(({ theme }) => ({
+  flex: 1,
+}));
 
 const AboutPage = () => {
-  const cardStyle = {
-    display: "flex",
-    marginBottom: "16px",
-  };
-
-  const mediaStyle = {
-    width: 300,
-    objectFit: "cover",
-  };
-
-  const contentStyle = {
-    flex: 1,
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const handleStartTrading = () => {
+    // Navigate to the "/trade" route
+    navigate("/trade");
   };
 
   return (
-    <div style={{ padding: "24px" }}>
-      <Typography
-        variant="h3"
-        component="h1"
-        align="center"
-        style={{ marginBottom: "16px" }}
-      >
-        Welcome to CryptoPlay Learning Hub
+    <StyledDiv>
+      <Typography variant="h3" component="h1" align="center" gutterBottom>
+        <h1>Welcome to CryptoPlay</h1>
       </Typography>
       <Typography variant="body1" paragraph>
-        Dive into the exciting world of cryptocurrencies with CryptoPlay, your
-        ultimate destination for crypto education and trading. As part of my
-        final project at HACKERU college, I present to you a platform built with
-        React, Node.js, and Mui Material.
+        <p>
+          Hi, my name is Ben, and I am the creator of Crypto Play. I developed
+          this project as part of my full-stack web studies, and truth be told,
+          this is my final project. The project brings together my passion for
+          the crypto world and the knowledge I gained during the course.
+        </p>
       </Typography>
 
       {/* Coin Information Section */}
-      <Typography variant="h5" component="h2" style={{ marginBottom: "16px" }}>
+      <Typography variant="h5" component="h2" gutterBottom>
         Explore Available Coins
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          <Card style={cardStyle}>
-            <CardMedia
-              style={mediaStyle}
+          <StyledCard>
+            <StyledCardMedia
               component="img"
-              alt="Bitcoin"
-              image="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029"
-              title="Bitcoin"
+              alt="charts"
+              image="https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y3J5cHRvY3VycmVuY3l8ZW58MHx8MHx8fDA%3D"
+              title="picture"
             />
-            <CardContent style={contentStyle}>
+            <StyledCardContent>
               <Typography variant="h6" component="h3">
-                Bitcoin (BTC)
+                Real Time Prices
               </Typography>
               <Typography variant="body2" color="textSecondary">
-                Learn about Bitcoin and other available coins. Use your 1000
-                USDT to kickstart your crypto journey.
+                The site interfaces with coinGecko, gives you real prices in
+                real time, and makes the experience as tangible as possible
               </Typography>
-            </CardContent>
-          </Card>
+            </StyledCardContent>
+          </StyledCard>
         </Grid>
-        {/* Add more cards for other coins */}
+        <Grid item xs={12} sm={6}>
+          {/* Additional Card */}
+          <StyledCard>
+            <StyledCardMedia
+              component="img"
+              alt="additional-charts"
+              image="https://images.unsplash.com/photo-1628238289656-6457bb6e6d76?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fGNyeXB0b2N1cnJlbmN5fGVufDB8fDB8fHww"
+              title="additional-picture"
+            />
+            <StyledCardContent>
+              <Typography variant="h6" component="h3">
+                Explore Crypto World!
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                Discover more about different cryptocurrencies. Start your
+                virtual trading experience! Use your 1000 USDT to kickstart your
+                crypto journey.
+              </Typography>
+            </StyledCardContent>
+          </StyledCard>
+        </Grid>
       </Grid>
 
       {/* Trading and Portfolio Section */}
-      <Typography variant="h5" component="h2" style={{ marginBottom: "16px" }}>
-        Trade and Track Your Portfolio
+      <br></br>
+      <Typography variant="h5" component="h2" gutterBottom>
+        Your chance to experiment! Trade and Track Your Portfolio
       </Typography>
       <Typography variant="body1" paragraph>
-        Utilize your allocated 1000 USDT to trade various coins. Track your
-        portfolio's performance and witness the excitement of crypto trading in
-        real-time.
+        <p>
+          In essence, the platform allows users to immerse themselves in the
+          experience of buying virtual currency, just as if it were real. Each
+          registered user automatically receives 1000 virtual dollars, mimicking
+          the USDT currency—a virtual currency whose value is pegged to the
+          dollar. With these virtual dollars, you can go on a virtual currency
+          shopping spree and monitor your portfolio's status in real-time.
+        </p>
       </Typography>
-      <Button variant="contained" color="primary">
+      <Typography variant="body1" paragraph>
+        <p>
+          This setup provides users with the opportunity to engage in trading
+          crypto, develop buying and selling strategies, all without risking
+          their own money and without incurring any "tuition" fees. I've
+          included a brief description for each coin, offering an educational
+          opportunity to learn about dominant coins and the ideas behind them.
+          The project is built using React (frontend) and Node.js (backend),
+          with MUI Material tools utilized for site design. I invite you to
+          explore and experiment with my project. I hope you enjoy it!
+        </p>
+      </Typography>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleStartTrading} // Call the function to navigate to "/trade"
+      >
         Start Trading
       </Button>
 
       {/* Contact Information */}
-      <Typography variant="body1" style={{ marginTop: "16px" }}>
-        This project is my final endeavor in my Full Stack Web studies. If you
-        have any questions or job opportunities, feel free to reach out to me at{" "}
-        <a href="mailto:benoved9@gmail.com">benoved9@gmail.com</a>. Thank you
-        for being a part of CryptoPlay!
+      <Typography variant="body1" style={{ marginTop: theme.spacing(2) }}>
+        <p>
+          I invite you to explore and experiment with my project. I hope you
+          enjoy it! For questions and job offers, you can reach me at{" "}
+          <Link href="mailto:benoved9@gmail.com" color="primary">
+            benoved9@gmail.com
+          </Link>
+        </p>
       </Typography>
-    </div>
+    </StyledDiv>
   );
 };
 
