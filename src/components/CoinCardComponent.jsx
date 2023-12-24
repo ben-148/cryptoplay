@@ -8,6 +8,8 @@ import {
   Typography,
   CardActions,
   Button,
+  Container,
+  Grid,
 } from "@mui/material";
 import PropTypes from "prop-types";
 import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
@@ -44,61 +46,73 @@ const CoinCardComponent = ({
   };
 
   return (
-    <Card square raised>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          image={img}
-          onClick={handleImageBtnClick}
-          style={{ height: "120px" }}
-        />
-        <CardHeader title={name} subheader={codeName} />
-        {/* <CardHeader subheader={codeName} /> */}
-      </CardActionArea>
-
-      <CardContent
-      // style={{
-      //   display: "flex",
-      //   flexDirection: "column",
-      //   alignItems: "flex-start",
-      // }}
-      >
-        <Typography variant="body1">Price: $ {price}</Typography>
-        <Typography variant="body1">
-          24 hours:{" "}
-          {change24 > 0 ? (
-            <FiArrowUpRight style={{ color: "green" }} />
-          ) : (
-            <FiArrowDown style={{ color: "red" }} />
-          )}
-          <span style={{ color: change24 > 0 ? "green" : "red" }}>
-            {change24.toFixed(2)}%
-          </span>
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button variant="text" color="primary" onClick={handleBuyBtnClick}>
-          <CurrencyExchangeIcon />
-          TRADE
-        </Button>
-
-        {loggedIn ? (
-          <Fragment>
-            {isFav ? (
-              <Button onClick={handleLikeBtnClick}>
-                <FavoriteIcon />
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      spacing={1}
+      justifyContent="center"
+    >
+      <Grid item>
+        <Card
+          style={{ width: "120px", height: "120px", borderRadius: "50%" }}
+          raised
+        >
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              image={img}
+              onClick={handleImageBtnClick}
+              style={{ width: "100%", height: "100%", borderRadius: "50%" }}
+            />
+          </CardActionArea>
+        </Card>
+      </Grid>
+      <Grid item>
+        <Card raised sx={{ borderRadius: 10 }}>
+          <CardContent>
+            <Typography variant="h5">{name}</Typography>
+            <Typography variant="h6">{codeName}</Typography>
+            <Typography variant="body1">Price: $ {price}</Typography>
+            <Typography variant="body1">
+              24 hours:{" "}
+              {change24 > 0 ? (
+                <FiArrowUpRight style={{ color: "green" }} />
+              ) : (
+                <FiArrowDown style={{ color: "red" }} />
+              )}
+              <span style={{ color: change24 > 0 ? "green" : "red" }}>
+                {change24.toFixed(2)}%
+              </span>
+            </Typography>
+          </CardContent>
+          <Grid
+            container
+            spacing={0}
+            justifyContent="center"
+            sx={{ marginTop: -1 }} // Adjust the negative margin-top value as needed
+          >
+            <Grid item>
+              <Button
+                variant="text"
+                color="primary"
+                onClick={handleBuyBtnClick}
+              >
+                <CurrencyExchangeIcon />
+                TRADE
               </Button>
-            ) : (
-              <Button onClick={handleLikeBtnClick}>
-                <FavoriteBorderIcon />
-              </Button>
+            </Grid>
+            {loggedIn && (
+              <Grid item>
+                <Button onClick={handleLikeBtnClick}>
+                  {isFav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                </Button>
+              </Grid>
             )}
-          </Fragment>
-        ) : (
-          ""
-        )}
-      </CardActions>
-    </Card>
+          </Grid>
+        </Card>
+      </Grid>
+    </Grid>
   );
 };
 

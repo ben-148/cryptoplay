@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Typography, Button } from "@mui/material";
 import "@fontsource/oswald";
 
 import React, { useState, useEffect, useCallback } from "react";
@@ -13,6 +13,7 @@ const AssetsPage = () => {
   const [originalCoinsArr, setOriginalCoinsArr] = useState(null);
   const [coinsArr, setCoinsArr] = useState(null);
   const [favoriteStatus, setFavoriteStatus] = useState({}); // Added state for favorite status
+  const [sortOrder, setSortOrder] = useState("desc"); // "desc" for descending order, "asc" for ascending order
 
   const payload = useSelector((bigPie) => bigPie.authSlice.payload);
 
@@ -118,6 +119,28 @@ const AssetsPage = () => {
     }
   };
 
+  const handleSortByMarketCap = () => {
+    const sortedCoinsArr = [...coinsArr];
+
+    // Sort the array based on market_cap
+    sortedCoinsArr.sort((a, b) => {
+      const marketCapA = a.market_cap;
+      const marketCapB = b.market_cap;
+
+      if (sortOrder === "desc") {
+        return marketCapB - marketCapA; // Descending order
+      } else {
+        return marketCapA - marketCapB; // Ascending order
+      }
+    });
+
+    // Update the coinsArr state with the sorted array
+    setCoinsArr(sortedCoinsArr);
+
+    // Toggle the sorting order for the next click
+    setSortOrder((prevOrder) => (prevOrder === "desc" ? "asc" : "desc"));
+  };
+
   return (
     <Box textAlign="center">
       <Typography
@@ -144,6 +167,17 @@ const AssetsPage = () => {
         BUY SOME CRYPTO{" "}
       </Typography>
       <p>"Powered by CoinGecko"</p>
+      <Typography variant="body1">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSortByMarketCap}
+        >
+          Sort by Market Cap (
+          {sortOrder === "desc" ? "Highest to Lowest" : "Lowest to Highest"})
+        </Button>
+      </Typography>
+
       <br></br>
       {filter && <p>search results - {filter} </p>}
       <Grid container spacing={2} justifyContent="center">
@@ -166,7 +200,7 @@ const AssetsPage = () => {
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Box> //ben
   );
 };
 
