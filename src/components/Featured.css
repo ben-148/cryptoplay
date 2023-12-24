@@ -9,10 +9,16 @@
     background-color: var(--dark-background);
 }
 
-.featured.dark-mode h2,
-.featured.dark-mode p,
-.featured.dark-mode .btn,
+/* .featured.dark-mode h2 {
+    font-size: 2rem;
+    line-height: 1.2;
+    color: white;
+} */
+
+/* .featured.dark-mode p,  */
+/* .featured.dark-mode .btn, */
 .featured.dark-mode span {
+
     font-size: 22px;
 }
 

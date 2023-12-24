@@ -4,13 +4,25 @@ import { styled } from "@mui/system";
 import WalletIcon from "@mui/icons-material/Wallet"; // Import the WalletIcon
 import "@fontsource/oswald";
 
-const StyledNavLink = styled(NavLink)(({ theme }) => ({
-  textDecoration: "none",
-  color: theme.palette.mode === "dark" ? theme.palette.secondary.main : "black",
+const StyledTypography = styled(Typography)(({ theme }) => ({
+  fontSize: "1.2rem",
+  fontWeight: 600,
+  fontFamily: "'Oswald', sans-serif",
+  color: theme.palette.text.gold, // Set the default text color
 
   "&.active": {
     color:
-      theme.palette.mode === "dark" ? "#FFD700" : theme.palette.primary.gold,
+      theme.palette.mode === "dark" ? theme.palette.secondary.main : "#FFD700", // Set the text color for the active link
+  },
+}));
+//ben
+const StyledNavLink = styled(NavLink)(({ theme }) => ({
+  textDecoration: "none",
+  "&.active": {
+    color:
+      theme.palette.mode === "dark"
+        ? theme.palette.primary.gold // Set the text color for the active link in dark mode to gold
+        : "#FFD700",
     backgroundColor:
       theme.palette.mode === "dark" ? "#333" : theme.palette.primary.light,
     borderRadius: theme.shape.borderRadius,
@@ -18,26 +30,22 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
   },
 }));
 
-const StyledTypography = styled(Typography)(({ theme }) => ({
-  fontSize: "1.2rem",
-  // color: theme.palette.text.gold,
-  fontWeight: 600,
-  fontFamily: "'Oswald', sans-serif", // Use Oswald font here
-}));
-
 const NavLinkComponent = ({ url, label, icon, ...rest }) => {
   return (
     <StyledNavLink to={url} {...rest}>
       <StyledTypography
         component="div"
+        className={rest.isActive ? "active" : ""}
         sx={{
           my: 2,
-          display: "flex", // Make it a flex container
-          alignItems: "center", // Align items at the center vertically
+          display: "flex",
+          alignItems: "center",
           p: 2,
         }}
       >
-        {icon && <div style={{ marginRight: "8px" }}>{icon}</div>}
+        {icon && (
+          <div style={{ marginRight: "8px", marginTop: "8px" }}>{icon}</div>
+        )}
         {label}
       </StyledTypography>
     </StyledNavLink>

@@ -12,6 +12,7 @@ const AdminBoxPage = () => {
       // height="100vh"
     >
       <Fragment>
+        <br></br>
         <Typography
           variant="h1"
           style={{ fontWeight: 600, fontFamily: "'Oswald', sans-serif" }}

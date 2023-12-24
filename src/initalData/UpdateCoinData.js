@@ -39,6 +39,7 @@ const UpdateCoinData = async () => {
           ...coinFromServer,
           price: matchingApiCoin.current_price,
           change24: matchingApiCoin.price_change_percentage_24h,
+          market_cap: matchingApiCoin.market_cap,
         };
       }
 
@@ -51,6 +52,7 @@ const UpdateCoinData = async () => {
         id: coinData._id,
         price: coinData.price,
         change24: coinData.change24,
+        market_cap: coinData.market_cap,
         // Add other fields as needed
       })),
     });

@@ -48,7 +48,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="hero">
+    <div className={`hero ${isDarkTheme ? "dark-mode" : ""}`}>
       <div className="container">
         {/* Left Side */}
         <div className="left">
@@ -69,15 +69,14 @@ const Hero = () => {
             </>
           ) : (
             <>
-              <p>Buy & Sell Crypto using the money that we giving you!</p>
               <p>
-                create a new account and get $1000 immediately and start to
-                play!{" "}
-              </p>
-
-              <p>
-                The price of the coins is updated in real time! And this is your
-                chance to learn and trade crypto without losing your pans.
+                Welcome to your Crypto Playground! Dive into the exciting world
+                of cryptocurrency trading on our platform. Sign up now and
+                receive $1000 instantly to kickstart your journey. Buy and sell
+                crypto effortlessly as the prices update in real-time. This is
+                your opportunity to explore and trade without any financial
+                risk. Join us and learn the ropes of crypto trading while having
+                fun!
               </p>
 
               <div className="input-container">

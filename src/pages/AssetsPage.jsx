@@ -144,6 +144,7 @@ const AssetsPage = () => {
         BUY SOME CRYPTO{" "}
       </Typography>
       <p>"Powered by CoinGecko"</p>
+      <br></br>
       {filter && <p>search results - {filter} </p>}
       <Grid container spacing={2} justifyContent="center">
         {coinsArr.map((item) => (

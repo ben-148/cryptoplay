@@ -34,7 +34,7 @@ const CoinProfilePage = () => {
   return (
     <Box textAlign="center" mt={4}>
       <Typography variant="h1" style={{ fontFamily: "'Oswald', sans-serif" }}>
-        {coinData.name} Profile
+        {coinData.name} PROFILE
       </Typography>
       {coinData.image && coinData.image.url && (
         <img
@@ -50,9 +50,9 @@ const CoinProfilePage = () => {
 
       <Grid container spacing={3} justifyContent="center" mt={0}>
         <Grid item xs={12} sm={6}>
-          <Typography variant="h5" mt={2}>
+          {/* <Typography variant="h5" mt={2}>
             {coinData.name}
-          </Typography>
+          </Typography> */}
           <Typography variant="h5">SYMBOL: {coinData.codeName}</Typography>
           <Typography variant="h5" mb={3}>
             Price: ${coinData.price}
