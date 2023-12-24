@@ -24,7 +24,7 @@ const light = {
   palette: {
     mode: "light",
     primary: {
-      main: red[500],
+      main: "#9370DB",
       gold: "#FFD700",
     },
     secondary: {

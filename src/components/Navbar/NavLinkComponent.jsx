@@ -9,8 +9,7 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
   color: theme.palette.mode === "dark" ? theme.palette.secondary.main : "black",
 
   "&.active": {
-    color:
-      theme.palette.mode === "dark" ? "#FFD700" : theme.palette.primary.gold,
+    color: "#FFD700",
     backgroundColor:
       theme.palette.mode === "dark" ? "#333" : theme.palette.primary.light,
     borderRadius: theme.shape.borderRadius,
