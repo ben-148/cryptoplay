@@ -168,10 +168,29 @@ const UserPortfolioPage = () => {
             </Table>
           </TableContainer>
         ) : (
-          <Typography variant="body1">
-            You don't have any coins in your portfolio yet.
-          </Typography>
-        )}
+          <Box>
+            <img
+              src={process.env.PUBLIC_URL + "/emptyPortfolio.png"}
+              alt="Empty Portfolio"
+              style={{
+                maxWidth: "100%",
+                maxHeight: "400px",
+                marginBottom: "16px",
+              }}
+            />
+            <Typography variant="body1">
+              You don't have any coins in your portfolio yet.
+            </Typography>
+            <br></br>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => navigate("/trade")}
+            >
+              Go to TRADE
+            </Button>
+          </Box>
+        )}{" "}
       </Box>
     </Container>
   );

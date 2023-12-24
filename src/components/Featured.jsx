@@ -36,9 +36,12 @@ const Featured = () => {
       <div className="container">
         <div className="left">
           <h2>Explore top Crypto's Like Bitcoin, Ethereum, and Dogecoin</h2>
-          <p>See all available Cryptocurrencies that you can trade!</p>
+          <p>
+            Real Time Prices! Powered by "CoinGecko.com". See all available
+            Cryptocurrencies that you can trade!
+          </p>
           <button className="btn" onClick={() => navigate("/trade")}>
-            SEE MORE COINS
+            TRADE!
           </button>
         </div>
 

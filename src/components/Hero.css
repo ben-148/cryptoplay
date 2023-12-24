@@ -45,8 +45,8 @@
     margin: auto;
 }
 
-.green-link {
-    color: green;
+.purple-link {
+    color: #9370DB;
 }
 
 @media screen and (max-width: 940px) {

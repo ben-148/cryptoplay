@@ -36,6 +36,9 @@ const light = {
 const dark = {
   palette: {
     mode: "dark",
+    primary: {
+      main: "#9370DB",
+    },
     text: {
       gold: "#FFD700", // Define the text color for dark theme, e.g., gold
     },

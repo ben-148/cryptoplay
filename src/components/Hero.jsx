@@ -47,6 +47,13 @@ const Hero = () => {
     setInputState(newInputState);
   };
 
+  const handleKeyDown = (event) => {
+    // Check if the pressed key is Enter (key code 13)
+    if (event.key === "Enter") {
+      handleLogin();
+    }
+  };
+
   return (
     <div className={`hero ${isDarkTheme ? "dark-mode" : ""}`}>
       <div className="container">
@@ -85,6 +92,7 @@ const Hero = () => {
                   id="email"
                   placeholder="Enter your email"
                   value={inputState.email}
+                  onKeyDown={handleKeyDown}
                   onChange={handleInputChange}
                   style={{
                     backgroundColor: isDarkTheme ? "#333" : "#fff",
@@ -107,6 +115,7 @@ const Hero = () => {
                   id="password"
                   placeholder="Enter your password"
                   value={inputState.password}
+                  onKeyDown={handleKeyDown}
                   onChange={handleInputChange}
                   style={{
                     backgroundColor: isDarkTheme ? "#333" : "#fff",
@@ -123,7 +132,7 @@ const Hero = () => {
               </div>
               <p>
                 Don't have an account yet?{" "}
-                <Link to="/register" className="green-link">
+                <Link to="/register" className="purple-link">
                   Sign up!
                 </Link>
               </p>

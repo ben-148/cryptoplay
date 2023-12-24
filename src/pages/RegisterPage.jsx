@@ -80,7 +80,7 @@ const RegisterPage = () => {
         "🦄 Mazal Tov, you are registered member now! lets do login.. :) "
       );
 
-      navigate(ROUTES.LOGIN);
+      navigate(ROUTES.HOME);
     } catch (err) {
       toast.error(err.response.data);
       console.log(
