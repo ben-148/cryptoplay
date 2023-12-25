@@ -64,7 +64,7 @@ const EditCoinPage = () => {
         delete newInputState._id;
         delete newInputState.user_id;
         delete newInputState.bizNumber;
-        // delete newInputState.price;
+        delete newInputState.market_cap;
         // delete newInputState.createdAt;
         delete newInputState.__v;
         setInputState(newInputState);
@@ -86,8 +86,8 @@ const EditCoinPage = () => {
     try {
       const joiResponse = validateEditSchema(inputState);
       console.log(
-        "🚀 ~ file: EditCoinPage.jsx:85 ~ handleSaveBtnClick ~ inputState:",
-        inputState
+        "🚀 ~ file: EditCoinPage.jsx:88 ~ handleSaveBtnClick ~ joiResponse:",
+        joiResponse
       );
       setInputsErrorsState(joiResponse);
       if (!joiResponse) {

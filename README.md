@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# CryptoPlay
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+CryptoPlay is a platform that simulates a website for trading virtual currencies. The prices on the website are real, and each user receives a $1000 registration fee (like USDT) for buying coins. Users can track their balance on the portfolio page.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+To get started with CryptoPlay, follow the steps below:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository to your local machine.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   ```shell
+   git clone https://github.com/ben-148/cryptoplay
+   ```
 
-### `npm test`
+   Install the dependencies by navigating to the project directory and running the following command:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```shell
+   npm install
+```
 
-### `npm run build`
+## SERVER
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Start the server by navigating to the "server" directory in Visual Studio Code and running the following command:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```shell
+   npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The initial data will load itself.
 
-### `npm run eject`
+Access the CryptoPlay application in your web browser at http://localhost:3000.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Usage:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The initial data will set 3 users.
+For the admin user:
+Email: ben@gmail.com
+Password: Aa123456!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Create an account at the register page, then go to the trade page to add an amount. Visit your portfolio to follow your coins. As an admin, navigate to the admin page to manage coins and users.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## API Reference
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[CoinGecko API](https://www.coingecko.com/)

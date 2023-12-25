@@ -73,24 +73,34 @@ const FavoritesPage = () => {
                 lg={3}
                 key={item._id + Date.now()}
               >
-                <CoinCardComponent
-                  id={item._id}
-                  name={item.name}
-                  codeName={item.codeName}
-                  price={item.price}
-                  img={item.image ? item.image.url : ""}
-                  onImageClick={cardProfileClick}
-                  onBuyClick={buyBtnClick}
-                  change24={item.change24}
-                />
-                <Button
-                  variant="contained"
-                  color="error"
-                  onClick={() => handleDeleteFromFavorites(item._id)}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
                 >
-                  <FavoriteBorderIcon />
-                  Delete from favorites
-                </Button>
+                  <CoinCardComponent
+                    id={item._id}
+                    name={item.name}
+                    codeName={item.codeName}
+                    price={item.price}
+                    img={item.image ? item.image.url : ""}
+                    onImageClick={cardProfileClick}
+                    onBuyClick={buyBtnClick}
+                    change24={item.change24}
+                  />
+
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => handleDeleteFromFavorites(item._id)}
+                    style={{ marginTop: "10px" }} // Add margin-top to create space between card and button
+                  >
+                    <FavoriteBorderIcon />
+                    Unlike
+                  </Button>
+                </div>
               </Grid>
             ))}
         </Grid>
