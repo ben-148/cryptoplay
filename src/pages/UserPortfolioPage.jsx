@@ -175,7 +175,7 @@ const UserPortfolioPage = () => {
               alt="Empty Portfolio"
               style={{
                 maxWidth: "100%",
-                maxHeight: "300px",
+                maxHeight: "350px",
                 marginBottom: "16px",
               }}
             />

@@ -53,9 +53,10 @@ const CoinProfilePage = () => {
           {/* <Typography variant="h5" mt={2}>
             {coinData.name}
           </Typography> */}
-          <Typography variant="h5">SYMBOL: {coinData.codeName}</Typography>
-          <Typography variant="h5" mb={3}>
-            Price: ${coinData.price}
+          <Typography variant="h4">SYMBOL: {coinData.codeName}</Typography>
+          <Typography variant="h5">Price: ${coinData.price}</Typography>
+          <Typography variant="h6" mb={3}>
+            Market Cap: ${coinData.market_cap}
           </Typography>
           <Typography variant="body" mt={10}>
             ABOUT {coinData.name}: {coinData.description}

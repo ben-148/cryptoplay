@@ -55,7 +55,12 @@ const CoinCardComponent = ({
     >
       <Grid item>
         <Card
-          style={{ width: "120px", height: "120px", borderRadius: "50%" }}
+          style={{
+            width: "120px",
+            height: "120px",
+            borderRadius: "50%",
+            border: "3px solid gold",
+          }}
           raised
         >
           <CardActionArea>
@@ -69,7 +74,7 @@ const CoinCardComponent = ({
         </Card>
       </Grid>
       <Grid item>
-        <Card raised sx={{ borderRadius: 10 }}>
+        <Card raised sx={{ borderRadius: 10, border: "4px solid silver" }}>
           <CardContent>
             <Typography variant="h5">{name}</Typography>
             <Typography variant="h6">{codeName}</Typography>

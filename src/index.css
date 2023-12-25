@@ -99,6 +99,12 @@ p {
   box-shadow: rgb(0 0 0 / 15%) 0px 8px 24px;
 }
 
+/* Add a pressed effect to the last clicked button */
+button.lastSortButton {
+  background-color: gold;
+  color: #fff;
+}
+
 input {
   padding: 12px 32px;
   border: 1px solid var(--primary);
@@ -108,6 +114,7 @@ input {
   margin-right: .8rem;
   font-family: 'Poppins', sans-serif;
 }
+
 
 
 @media screen and (max-width:768px) {

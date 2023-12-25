@@ -8,12 +8,17 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import useQueryParams from "../hooks/useQueryParams";
 import CoinCardComponent from "../components/CoinCardComponent";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const AssetsPage = () => {
   const [originalCoinsArr, setOriginalCoinsArr] = useState(null);
   const [coinsArr, setCoinsArr] = useState(null);
   const [favoriteStatus, setFavoriteStatus] = useState({}); // Added state for favorite status
   const [sortOrder, setSortOrder] = useState("desc"); // "desc" for descending order, "asc" for ascending order
+  const [lastSortButton, setLastSortButton] = useState(null);
+
+  const [sortOrderChange24, setSortOrderChange24] = useState("asc");
 
   const payload = useSelector((bigPie) => bigPie.authSlice.payload);
 
@@ -136,13 +141,37 @@ const AssetsPage = () => {
 
     // Update the coinsArr state with the sorted array
     setCoinsArr(sortedCoinsArr);
+    setLastSortButton("marketCap");
 
     // Toggle the sorting order for the next click
     setSortOrder((prevOrder) => (prevOrder === "desc" ? "asc" : "desc"));
   };
 
+  const handleSortByChange24 = () => {
+    const newSortOrder = sortOrderChange24 === "desc" ? "asc" : "desc";
+    setSortOrderChange24(newSortOrder);
+
+    const sortedCoins = coinsArr.slice().sort((a, b) => {
+      const valueA = a.change24;
+      const valueB = b.change24;
+
+      return newSortOrder === "asc" ? valueA - valueB : valueB - valueA;
+    });
+
+    setCoinsArr(sortedCoins);
+    setLastSortButton("change24");
+  };
+
   return (
-    <Box textAlign="center">
+    <Box
+      textAlign="center"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        height: "100%",
+      }}
+    >
       <Typography
         variant="h1"
         style={{ fontWeight: 600, fontFamily: "'Oswald', sans-serif" }}
@@ -167,24 +196,51 @@ const AssetsPage = () => {
         BUY SOME CRYPTO{" "}
       </Typography>
       <p>"Powered by CoinGecko"</p>
-      <Typography variant="body1">
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleSortByMarketCap}
-        >
-          Sort by Market Cap (
-          {sortOrder === "desc" ? "Highest to Lowest" : "Lowest to Highest"})
-        </Button>
-      </Typography>
 
-      <br></br>
+      <Grid
+        container
+        spacing={2}
+        justifyContent="center"
+        sx={{ marginBottom: 2 }}
+      >
+        <Grid item>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSortByMarketCap}
+            className={`button ${
+              lastSortButton === "marketCap" ? "lastSortButton" : ""
+            }`}
+          >
+            Market Cap
+            {sortOrder === "desc" ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+          </Button>
+        </Grid>
+
+        <Grid item>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSortByChange24}
+            className={`button ${
+              lastSortButton === "change24" ? "lastSortButton" : ""
+            }`}
+          >
+            last 24h Performance
+            {sortOrderChange24 === "asc" ? (
+              <ArrowDropDownIcon />
+            ) : (
+              <ArrowDropUpIcon />
+            )}
+          </Button>
+        </Grid>
+      </Grid>
+
       {filter && <p>search results - {filter} </p>}
       <Grid container spacing={2} justifyContent="center">
         {coinsArr.map((item) => (
           <Grid item xs={4} sm={6} md={4} lg={3} key={item._id + Date.now()}>
             <CoinCardComponent
-              // {...item}
               id={item._id}
               name={item.name}
               codeName={item.codeName}
@@ -200,7 +256,7 @@ const AssetsPage = () => {
           </Grid>
         ))}
       </Grid>
-    </Box> //ben
+    </Box>
   );
 };
 
