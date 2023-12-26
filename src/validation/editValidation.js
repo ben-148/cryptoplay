@@ -6,7 +6,7 @@ const editCoinSchema = Joi.object({
   name: Joi.string().min(2).max(256).required(),
   codeName: Joi.string().min(2).max(256).required(),
   price: Joi.number().min(0).max(99999999).required(),
-  change24: Joi.number().min(0).max(99999999),
+  change24: Joi.number().min(-99999999).max(99999999),
   description: Joi.string().min(10).max(1000),
 
   url: Joi.string()

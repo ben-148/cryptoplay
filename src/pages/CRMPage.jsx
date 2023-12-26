@@ -87,7 +87,7 @@ const CRMPage = () => {
   return (
     <div>
       <Typography
-        variant="h1"
+        variant="h2"
         // color="primary"
         align="center"
         style={{ marginBottom: "30px" }}
@@ -117,7 +117,7 @@ const CRMPage = () => {
                     {user.name.firstName} {user.name.lastName}{" "}
                   </TableCell>
                   <TableCell>{user.email}</TableCell>
-                  <TableCell>$ {user.amount}</TableCell>
+                  <TableCell>$ {user.amount.toFixed(2)}</TableCell>
                   <TableCell>
                     <TextField
                       type="number"

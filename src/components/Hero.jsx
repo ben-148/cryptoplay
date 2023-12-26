@@ -82,8 +82,7 @@ const Hero = () => {
                 receive $1000 instantly to kickstart your journey. Buy and sell
                 crypto effortlessly as the prices update in real-time. This is
                 your opportunity to explore and trade without any financial
-                risk. Join us and learn the ropes of crypto trading while having
-                fun!
+                risk. Join us and learn the ropes of crypto trading!
               </p>
 
               <div className="input-container">

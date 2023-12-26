@@ -77,7 +77,7 @@ const UserFromCRMPage = ({ id, onClose }) => {
   }
   return (
     <div>
-      <h1>User Profile:</h1>
+      <h2>User Profile:</h2>
       <div>
         <p>
           Name:{" "}
@@ -90,7 +90,8 @@ const UserFromCRMPage = ({ id, onClose }) => {
         {/* Add other user information as needed */}
       </div>
       <div>
-        <h2>User Portfolio</h2>
+        <br></br>
+        <h3>User Portfolio</h3>
         <ul>
           {newPortfolio.map((coin, index) => {
             const valueAmount = coin.amount * coin.price;
@@ -131,7 +132,8 @@ const UserFromCRMPage = ({ id, onClose }) => {
         </ul>
       </div>
       <div>
-        <h2>Total Portfolio Value</h2>
+        <br></br>
+        <h3>Total Portfolio Value</h3>
         <p> $ {portfolioValue}</p>
       </div>
       <div>

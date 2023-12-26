@@ -24,7 +24,7 @@ const light = {
   palette: {
     mode: "light",
     primary: {
-      main: "#9370DB",
+      main: "#BA8AFF",
       gold: "#FFD700",
     },
     secondary: {
@@ -37,7 +37,7 @@ const dark = {
   palette: {
     mode: "dark",
     primary: {
-      main: "#9370DB",
+      main: "#BA8AFF",
     },
     text: {
       gold: "#FFD700", // Define the text color for dark theme, e.g., gold
