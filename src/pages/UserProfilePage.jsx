@@ -21,6 +21,8 @@ import reconfigurationUser from "../utils/recofigurationUser";
 import { useSelector } from "react-redux";
 
 const UserProfilePage = () => {
+  const [editMode, setEditMode] = useState(false);
+
   const loggedIn = useLoggedIn();
   const userId = useSelector((bigPie) =>
     bigPie.authSlice.payload?.hasOwnProperty("_id")
@@ -91,31 +93,10 @@ const UserProfilePage = () => {
       }
     })();
   }, [id]);
-  /*   useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axios.get("/users/user/info/");
-        console.log("🚀 ~ file: UserProfilePage.jsx:58 ~ data:", data);
-        const flattenedData = {
-          ...data,
-          ...data.name,
-          ...data.address,
-          // Add any other nested objects here
-        };
-        setInputState((prevInputState) => ({
-          ...prevInputState,
-          ...flattenedData,
-        }));
-      } catch (err) {
-        console.log("error from axios", err.response.data);
-      }
-    })();
-  }, [id]);
- */
   if (!inputState) {
     return <CircularProgress />;
   }
-  const handleBtnClick = async (ev) => {
+  const handleSaveClick = async (ev) => {
     try {
       const newInputState = JSON.parse(JSON.stringify(inputState));
       console.log(
@@ -169,41 +150,9 @@ const UserProfilePage = () => {
       // Move the console log here
       console.log("Updated Token:", localStorage.getItem("token"));
 
-      /*       const response = await axios.put(`users/${userId}`, {
-        name: {
-          firstName: inputState.firstName,
-          middleName: inputState.middleName,
-          lastName: inputState.lastName,
-        },
-        address: {
-          state: inputState.state,
-          country: inputState.country,
-          city: inputState.city,
-          street: inputState.street,
-          houseNumber: inputState.houseNumber,
-          zip: inputState.zip,
-        },
-        email: inputState.email,
-        phone: inputState.phone,
-      });
-      console.log("API Response:", response);
+      loggedIn();
+      setEditMode(false);
 
-      // Update the token in localStorage
-      const updatedToken = response.headers["x-auth-token"];
-
-      console.log("Updated Token:", updatedToken);
-
-      // Check if the token is present and not empty.
-      if (
-        updatedToken !== undefined &&
-        updatedToken !== null &&
-        updatedToken !== ""
-      ) {
-        localStorage.setItem("token", updatedToken);
-      } else {
-        console.error("Updated token is missing or empty in the response.");
-      }
- */ loggedIn();
       toast.success(`The update was successful`);
       navigate(ROUTES.HOME);
     } catch (err) {
@@ -245,6 +194,10 @@ const UserProfilePage = () => {
   };
   // delete inputState.middleName;
 
+  const handleEditClick = () => {
+    setEditMode(true);
+  };
+
   return (
     <Container component="main" maxWidth="md">
       <CssBaseline />
@@ -272,6 +225,7 @@ const UserProfilePage = () => {
                   isReq={input.isReq}
                   onInputeChange={handleInputChange}
                   value={inputState[input.idAndKey]}
+                  disabled={!editMode} // Disable inputs when not in edit mode
                 />
                 {inputsErrorsState && inputsErrorsState[input.idAndKey] && (
                   <Alert severity="warning">
@@ -286,8 +240,8 @@ const UserProfilePage = () => {
           <FormButtonsComponent
             onCancel={handleCancelBtnClick}
             onReset={handleClearClick}
-            onRegister={handleBtnClick}
-            clickBtnText="Edit Profile"
+            onRegister={editMode ? handleSaveClick : handleEditClick}
+            clickBtnText={editMode ? "Save" : "Edit Profile"}
           />
         </Box>
       </Box>

@@ -7,6 +7,7 @@ const EditProfileFieldComponent = ({
   isReq,
   onInputeChange,
   value,
+  disabled,
 }) => {
   const handleInputChange = () => {
     onInputeChange();
@@ -20,6 +21,7 @@ const EditProfileFieldComponent = ({
       label={nameOfInput}
       value={value}
       onChange={onInputeChange}
+      disabled={disabled}
     />
   );
 };
