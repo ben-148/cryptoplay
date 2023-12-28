@@ -5,14 +5,12 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import CoinCardComponent from "../components/CoinCardComponent";
 
 const FavoritesPage = () => {
   const [coinsArr, setCardsArr] = useState(null);
   const navigate = useNavigate();
-  const payload = useSelector((bigPie) => bigPie.authSlice.payload);
 
   useEffect(() => {
     axios
@@ -24,16 +22,6 @@ const FavoritesPage = () => {
         toast.error("Oops");
       });
   }, []);
-
-  const handleDeleteFromInitialCardsArr = async (id) => {
-    try {
-      await axios.delete("/coins/" + id);
-      setCardsArr((newCardsArr) =>
-        newCardsArr.filter((item) => item._id !== id)
-      );
-      toast.success("🦄 Card deleted :)");
-    } catch (err) {}
-  };
 
   const handleDeleteFromFavorites = async (id) => {
     try {
@@ -95,7 +83,7 @@ const FavoritesPage = () => {
                     variant="contained"
                     color="error"
                     onClick={() => handleDeleteFromFavorites(item._id)}
-                    style={{ marginTop: "10px" }} // Add margin-top to create space between card and button
+                    style={{ marginTop: "10px" }}
                   >
                     <FavoriteBorderIcon />
                     Unlike

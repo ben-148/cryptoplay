@@ -19,12 +19,10 @@
 
 .hero.dark-mode h1 {
     color: white;
-    /* Set the text color to white in dark mode */
 }
 
 .hero .btn {
     margin-top: 1rem;
-    /* Add margin-top as needed */
 }
 
 .hero .input-container {

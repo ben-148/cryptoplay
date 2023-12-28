@@ -50,9 +50,6 @@ const CoinProfilePage = () => {
 
       <Grid container spacing={3} justifyContent="center" mt={0}>
         <Grid item xs={12} sm={6}>
-          {/* <Typography variant="h5" mt={2}>
-            {coinData.name}
-          </Typography> */}
           <Typography variant="h4">SYMBOL: {coinData.codeName}</Typography>
           <Typography variant="h5">Price: ${coinData.price}</Typography>
           <Typography variant="h6" mb={3}>

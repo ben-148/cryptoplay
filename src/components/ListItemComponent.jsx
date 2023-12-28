@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
   ListItem,
   ListItemText,
@@ -8,7 +7,6 @@ import {
   Button,
   CardMedia,
 } from "@mui/material";
-import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 
 const ListItemComponent = ({
   img,
@@ -21,17 +19,9 @@ const ListItemComponent = ({
 }) => {
   const handleDeleteBtnClick = () => {
     onDelete(id);
-    console.log(
-      "🚀 ~ file: ListItemComponent.jsx:24 ~ handleDeleteBtnClick ~ id:",
-      id
-    );
   };
   const handleEditBtnClick = () => {
     onEdit(id);
-    console.log(
-      "🚀 ~ file: ListItemComponent.jsx:24 ~ handleEditBtnClick ~ id:",
-      id
-    );
   };
 
   return (
@@ -64,13 +54,4 @@ const ListItemComponent = ({
   );
 };
 
-/* ListItemComponent.propTypes = {
-  img: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  codeName: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  onEdit: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
-};
- */
 export default ListItemComponent;

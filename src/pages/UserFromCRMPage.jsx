@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const UserFromCRMPage = ({ id, onClose }) => {
-  // const { id } = useParams();
   const [user, setUser] = useState(null);
-  const [newPortfolio, setNewPortfolio] = useState([]); // Declare newPortfolio state
+  const [newPortfolio, setNewPortfolio] = useState([]);
   const [portfolioValue, setPortfolioValue] = useState(0);
-  const navigate = useNavigate(); // Add useNavigate hook
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,10 +16,6 @@ const UserFromCRMPage = ({ id, onClose }) => {
         const { data: allCoinsData } = await axios.get(`/coins`);
         const userOwnedCoins = allCoinsData.filter((coin) =>
           portfolio.some((userCoin) => userCoin.coinId === coin._id)
-        );
-        console.log(
-          "🚀 ~ file: UserFromCRMPage.jsx:23 ~ fetchData ~ userOwnedCoins:",
-          userOwnedCoins
         );
 
         const calculatedNewPortfolio = portfolio.map((coin) => {
@@ -41,10 +34,6 @@ const UserFromCRMPage = ({ id, onClose }) => {
         });
 
         setNewPortfolio(calculatedNewPortfolio); // Update newPortfolio state
-        console.log(
-          "🚀 ~ file: UserFromCRMPage.jsx:44 ~ fetchData ~ calculatedNewPortfolio:",
-          calculatedNewPortfolio
-        );
 
         const totalValue =
           response.data.amount +
@@ -61,11 +50,6 @@ const UserFromCRMPage = ({ id, onClose }) => {
 
     fetchData();
   }, [id]);
-
-  const handleNavigateToCRM = () => {
-    // Navigate to /admin/crm when the button is clicked
-    navigate("/admin/crm");
-  };
 
   const handleClosePopup = () => {
     // Call the onClose function to close the popup
@@ -87,7 +71,6 @@ const UserFromCRMPage = ({ id, onClose }) => {
         <p>Phone: {user.phone}</p>
         <p>Country: {user.address.country}</p>
         <p>City: {user.address.city}</p>
-        {/* Add other user information as needed */}
       </div>
       <div>
         <br></br>
@@ -96,7 +79,6 @@ const UserFromCRMPage = ({ id, onClose }) => {
           {newPortfolio.map((coin, index) => {
             const valueAmount = coin.amount * coin.price;
             const formattedAmount = parseFloat(coin.amount).toFixed(3);
-            //ben
             return (
               <div key={index} className="coin-item">
                 <li>
@@ -108,7 +90,7 @@ const UserFromCRMPage = ({ id, onClose }) => {
                       width: "16px",
                       height: "16px",
                       marginRight: "8px",
-                    }} // Set your desired width and height
+                    }}
                   />
                   {coin.name}, Amount: {formattedAmount} {coin.codeName} ,
                   Value: $ {valueAmount}
@@ -125,7 +107,7 @@ const UserFromCRMPage = ({ id, onClose }) => {
                 width: "16px",
                 height: "16px",
                 marginRight: "8px",
-              }} // Set your desired width and height
+              }}
             />
             USDT CREDIT: $ {user.amount}
           </li>

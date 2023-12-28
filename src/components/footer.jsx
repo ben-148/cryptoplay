@@ -4,7 +4,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import HomeIcon from "@mui/icons-material/Home";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import InfoIcon from "@mui/icons-material/Info";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../routes/ROUTES";
 
@@ -38,13 +38,6 @@ const Mfooter = () => {
           icon={<InfoIcon />}
         />
       </BottomNavigation>
-      {/* <Typography
-        variant="caption"
-        align="center"
-        style={{ marginLeft: "64px", marginTop: "64px" }}
-      >
-        &copy; 2023 Ben Oved. All rights reserved.
-      </Typography> */}
     </Box>
   );
 };

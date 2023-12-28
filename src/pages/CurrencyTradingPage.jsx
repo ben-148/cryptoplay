@@ -1,4 +1,3 @@
-// CurrencyTradingPage.jsx
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -47,8 +46,6 @@ const CurrencyTradingPage = () => {
       .catch((error) => console.error("Error fetching user data:", error));
   }, [id]);
 
-  // ...
-
   const handleTrade = async (action) => {
     try {
       let amountToTrade;
@@ -87,15 +84,10 @@ const CurrencyTradingPage = () => {
         action,
       });
       const updatedUser = response.data.updatedUser;
-      console.log(
-        "🚀 ~ file: CurrencyTradingPage.jsx:81 ~ handleTrade ~ updatedUser:",
-        updatedUser
-      );
 
-      // Set the user state first
       setUser(updatedUser);
       setTradeAmount("");
-      setSellAmount(""); // Clear the sell input
+      setSellAmount("");
       toast.success("trade done");
     } catch (error) {
       console.error("Error performing trade:", error);
@@ -103,7 +95,6 @@ const CurrencyTradingPage = () => {
     }
   };
 
-  // useEffect to handle UI updates
   useEffect(() => {
     // Ensure that the user state is updated before updating the coin amount
     if (user) {
@@ -121,9 +112,6 @@ const CurrencyTradingPage = () => {
     }
   };
 
-  const maxsellValue = () => {
-    setSellAmount(updateCoinAmount);
-  };
   return (
     <Box textAlign="center">
       <Typography variant="h3" mb={4}>
@@ -175,7 +163,7 @@ const CurrencyTradingPage = () => {
                     }}
                   >
                     <Button
-                      style={{ marginLeft: "0", marginRight: "180px" }} // Adjust the margin-left and margin-right values as needed
+                      style={{ marginLeft: "0", marginRight: "180px" }}
                       variant="outlined"
                       onClick={() => maxValue("sell")}
                     >
@@ -195,7 +183,6 @@ const CurrencyTradingPage = () => {
             {/* USDT Card */}
             <Grid item xs={12} md={6}>
               <Card style={{ height: "100%" }}>
-                {/* Set height to 100% */}
                 <CardHeader
                   title="USDT"
                   avatar={
@@ -208,10 +195,7 @@ const CurrencyTradingPage = () => {
                   }
                 />
                 <CardContent>
-                  <Typography
-                    variant="body1"
-                    style={{ marginTop: "24px" }} // Adjust the margin-top value as needed
-                  >
+                  <Typography variant="body1" style={{ marginTop: "24px" }}>
                     Your Amount: {user.amount} $
                   </Typography>
                   <Input
@@ -232,7 +216,7 @@ const CurrencyTradingPage = () => {
                     }}
                   >
                     <Button
-                      style={{ marginLeft: "0", marginRight: "60px" }} // Adjust the margin-left and margin-right values as needed
+                      style={{ marginLeft: "0", marginRight: "60px" }}
                       variant="outlined"
                       onClick={() => maxValue("buy")}
                     >
@@ -240,7 +224,7 @@ const CurrencyTradingPage = () => {
                     </Button>
 
                     <Button
-                      style={{ marginLeft: "100px" }} // Adjust the margin-left and margin-right values as needed
+                      style={{ marginLeft: "100px" }}
                       variant="contained"
                       color="success"
                       onClick={() => handleTrade("buy")}
@@ -257,5 +241,4 @@ const CurrencyTradingPage = () => {
     </Box>
   );
 };
-//ben
 export default CurrencyTradingPage;

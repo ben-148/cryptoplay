@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios"; // Make sure to import axios
+import axios from "axios";
 import { toast } from "react-toastify";
 
 import { FiArrowUpRight, FiArrowDown } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./Featured.css";
 
@@ -17,13 +17,11 @@ const Featured = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch data from your server
         const serverResponse = await axios.get("/coins");
         const serverData = serverResponse.data;
         setServerData(serverData);
       } catch (error) {
         console.error("Error fetching data:", error);
-        // Add error handling logic if needed
         toast.error("Oops");
       }
     };

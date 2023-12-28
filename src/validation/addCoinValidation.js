@@ -10,7 +10,6 @@ const addCoinSchema = Joi.object({
       /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/
     )
   ),
-  // alt: Joi.string().min(2).max(256).required(),
   description: Joi.string().min(10).max(1000),
 
   price: Joi.number().required(),

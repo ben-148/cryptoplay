@@ -4,7 +4,6 @@
   --primary: #118c4f;
   --background: #f5f8ff;
   --dark-background: #222;
-  /* Update to a color that is visible in dark mode */
 }
 
 .primary {
@@ -52,13 +51,6 @@ h1 {
   font-family: 'Oswald', sans-serif;
 }
 
-/* .dark-mode h1 {
-  font-size: 3.5rem;
-  line-height: 1.2;
-  font-family: 'Oswald', sans-serif;
-  color: white;
-}
- */
 h2 {
   font-size: 2.4rem;
   line-height: 1.2;

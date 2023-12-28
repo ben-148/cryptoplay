@@ -31,7 +31,6 @@ const registerSchema = Joi.object({
   country: Joi.string().min(2).max(256).required(),
   city: Joi.string().min(2).max(256).required(),
   street: Joi.string().min(2).max(256).required(),
-  // biz: Joi.boolean(),
   houseNumber: Joi.string().min(1).max(256).required(),
   zip: Joi.number()
     .integer()

@@ -14,8 +14,8 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 const AssetsPage = () => {
   const [originalCoinsArr, setOriginalCoinsArr] = useState(null);
   const [coinsArr, setCoinsArr] = useState(null);
-  const [favoriteStatus, setFavoriteStatus] = useState({}); // Added state for favorite status
-  const [sortOrder, setSortOrder] = useState("desc"); // "desc" for descending order, "asc" for ascending order
+  const [favoriteStatus, setFavoriteStatus] = useState({});
+  const [sortOrder, setSortOrder] = useState("desc");
   const [lastSortButton, setLastSortButton] = useState(null);
 
   const [sortOrderChange24, setSortOrderChange24] = useState("asc");
@@ -24,23 +24,21 @@ const AssetsPage = () => {
 
   let qparams = useQueryParams();
   const navigate = useNavigate();
-  let filter = qparams.filter || ""; // Initialize filter with an empty string if it's undefined
-
+  let filter = qparams.filter || "";
   const filterFunc = useCallback(
     (data) => {
       if (!coinsArr && !data) {
         return;
       }
-      // let filter = "";
       if (qparams.filter) {
-        filter = qparams.filter.toLowerCase(); // Convert search input to lowercase
+        filter = qparams.filter.toLowerCase();
       }
       if (!coinsArr && data) {
         setOriginalCoinsArr(data);
         setCoinsArr(
           data.filter(
             (coin) =>
-              coin.name.toLowerCase().startsWith(filter) || // Convert data to lowercase for comparison
+              coin.name.toLowerCase().startsWith(filter) ||
               coin.codeName.toLowerCase().startsWith(filter)
           )
         );
@@ -51,7 +49,7 @@ const AssetsPage = () => {
         setCoinsArr(
           newOriginalCoinsArr.filter(
             (coin) =>
-              coin.name.toLowerCase().startsWith(filter) || // Convert data to lowercase for comparison
+              coin.name.toLowerCase().startsWith(filter) ||
               coin.codeName.toLowerCase().startsWith(filter)
           )
         );
@@ -63,11 +61,9 @@ const AssetsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch data from your server
         const serverResponse = await axios.get("/coins");
         const serverData = serverResponse.data;
 
-        console.log("Server Data:", serverData);
         filterFunc(serverData);
         setFavoriteStatus(
           serverData.reduce(
@@ -80,7 +76,6 @@ const AssetsPage = () => {
         );
       } catch (error) {
         console.error("Error fetching data:", error);
-        // Add error handling logic if needed
         toast.error("Oops");
       }
     };
@@ -110,7 +105,7 @@ const AssetsPage = () => {
   const handleLikeFromInitialCardsArr = async (id) => {
     try {
       const response = await axios.patch("coins/coin-like/" + id);
-      const updatedStatus = !favoriteStatus[id]; // Calculate the updated favorite status
+      const updatedStatus = !favoriteStatus[id];
       setFavoriteStatus((prevStatus) => ({
         ...prevStatus,
         [id]: updatedStatus,

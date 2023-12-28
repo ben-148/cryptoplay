@@ -14,7 +14,7 @@ import Avatar from "@mui/material/Avatar";
 import ValidateAddCoinSchema from "../validation/addCoinValidation";
 import FormButtonsComponent from "../components/FormButtonsComponent";
 import EditCoinPageFieldComponent from "../components/EditCoinPageComponent";
-import UpdateCoinData from "../initalData/UpdateCoinData"; // Adjust the import path
+import UpdateCoinData from "../initalData/UpdateCoinData";
 
 const AddCoinPage = () => {
   const navigate = useNavigate();
@@ -27,8 +27,6 @@ const AddCoinPage = () => {
     price: "",
     url: "",
     description: "",
-
-    // description: "",
   });
   const arrOfInputs = [
     { inputName: "Name", idAndKey: "name", isReq: true },

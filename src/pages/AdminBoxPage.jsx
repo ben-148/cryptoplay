@@ -9,7 +9,6 @@ const AdminBoxPage = () => {
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      // height="100vh"
     >
       <Fragment>
         <br></br>

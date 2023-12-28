@@ -15,7 +15,6 @@ const editProfileSchema = Joi.object({
   country: Joi.string().min(2).max(256).required(),
   city: Joi.string().min(2).max(256).required(),
   street: Joi.string().min(2).max(256).required(),
-  // biz: Joi.boolean(),
   amount: Joi.number().min(0).max(99999999).allow("").optional(),
   portfolio: Joi.array().items(Joi.object()),
   houseNumber: Joi.string().min(1).max(256).required(),

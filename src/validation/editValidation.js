@@ -18,8 +18,6 @@ const editCoinSchema = Joi.object({
     .required()
     .messages({
       "string.pattern.base": "the link is not fit to the system",
-      // "string.empty": "Password cannot be empty.",
-      // "any.required": "Password is required.",
     }),
 
   alt: Joi.string().min(2).max(256).allow(""),

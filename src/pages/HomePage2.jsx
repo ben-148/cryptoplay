@@ -1,6 +1,3 @@
-// Home.jsx
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Hero from "../components/Hero";
 import Featured from "../components/Featured";
 

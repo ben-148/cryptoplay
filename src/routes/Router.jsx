@@ -30,26 +30,6 @@ const Router = () => {
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
 
-      {/* <Route
-        path={ROUTES.SANDBOX}
-        element={
-          <SuperProtectedRoute
-            isAdmin={true}
-            isBiz={false || true}
-            element={<SandboxPage />}
-          />
-        }
-      >
-        <Route path="nr" element={<NestedRoutePage />}>
-          <Route path="nestedpage1" element={<NestedPage1 />} />
-          <Route path="nestedpage2" element={<NestedPage2 />} />
-        </Route>
-        <Route path="rerender" element={<ReRenderPage />} />
-        <Route path="redux1" element={<RP1 />} />
-        <Route path="redux2" element={<RP2 />} />
-      </Route> */}
-
-      {/* <Route path={ROUTES.ADMINZONE} element={<CoinsManagmentPage />} /> */}
       <Route
         path={ROUTES.ADMINZONE}
         element={
@@ -57,9 +37,7 @@ const Router = () => {
         }
       >
         <Route path="coinsManagment" element={<CoinsManagmentPage />} />
-        <Route path="crm" element={<CRMPage />}>
-          {/* <Route path="profile/:id" element={<UserFromCRMPage />} /> */}
-        </Route>
+        <Route path="crm" element={<CRMPage />}></Route>
       </Route>
 
       <Route
@@ -69,18 +47,16 @@ const Router = () => {
         }
       />
 
-      {/* <Route path={ROUTES.PROFILECRM} element={<UserFromCRMPage />} /> */}
-
       <Route
         path={ROUTES.FAV}
         element={<ProtectedRoute element={<FavoritesPage />} />}
       />
       <Route
-        path="coinTrade/:id" // <-- Updated path to use dynamic parameter ':id'
+        path="coinTrade/:id"
         element={<ProtectedRoute element={<CurrencyTradingPage />} />}
       />
       <Route
-        path={ROUTES.PORTFOLIO} // <-- Updated path to use dynamic parameter ':id'
+        path={ROUTES.PORTFOLIO}
         element={<ProtectedRoute element={<UserPortfolioPage />} />}
       />
       <Route

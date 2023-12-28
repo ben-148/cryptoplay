@@ -12,20 +12,16 @@ import {
   Typography,
   TextField,
   Dialog,
-  DialogTitle,
   DialogContent,
 } from "@mui/material";
 import { toast } from "react-toastify";
 import UserFromCRMPage from "../pages/UserFromCRMPage";
-import { useNavigate } from "react-router-dom";
-import ROUTES from "../routes/ROUTES";
 
 const CRMPage = () => {
-  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [amountInputs, setAmountInputs] = useState({});
-  const [dialogOpen, setDialogOpen] = useState(false); // Step 2
-  const [selectedUserId, setSelectedUserId] = useState(null); // Store the selected user ID
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,17 +34,13 @@ const CRMPage = () => {
           return acc;
         }, {});
         setAmountInputs(initialAmountInputs);
-      } catch (error) {
-        // Handle error
-      }
+      } catch (error) {}
     };
 
     fetchData();
   }, []);
 
   const handleDeleteUser = (userId) => {
-    console.log("🚀 ~ file: CRMPage.jsx:128 ~ CRMPage ~ user._id:", userId);
-
     axios.delete(`/users/${userId}`).then(() => {
       setUsers(users.filter((user) => user._id !== userId));
       toast.error("User Deleted");
@@ -61,7 +53,6 @@ const CRMPage = () => {
         amountToAdd: newAmount,
       });
       let { data } = response;
-      console.log("Updated users:", response.data);
       setUsers(data);
       toast.success("Insert Amount Succseed");
     } catch (error) {
@@ -69,13 +60,8 @@ const CRMPage = () => {
     }
   };
 
-  // const whenUserClicked = (userId) => {
-  //   navigate(`${ROUTES.PROFILECRM}/${userId}`);
-  //   setDialogOpen(true);
-  // };
-
   const whenUserClicked = (userId) => {
-    setSelectedUserId(userId); // Store the selected user ID
+    setSelectedUserId(userId);
     setDialogOpen(true);
   };
 
@@ -86,12 +72,7 @@ const CRMPage = () => {
 
   return (
     <div>
-      <Typography
-        variant="h2"
-        // color="primary"
-        align="center"
-        style={{ marginBottom: "30px" }}
-      >
+      <Typography variant="h2" align="center" style={{ marginBottom: "30px" }}>
         Customer Relationship Management
       </Typography>
       <TableContainer component={Paper}>
@@ -122,7 +103,6 @@ const CRMPage = () => {
                     <TextField
                       type="number"
                       variant="outlined"
-                      // id={user._id}
                       value={amountInputs[user._id]}
                       placeholder="Deposit USDT to user"
                       onChange={(e) =>
@@ -166,10 +146,9 @@ const CRMPage = () => {
                       User Profile
                     </Button>
                     <Dialog
-                      open={dialogOpen && selectedUserId === user._id} // Open the dialog for the selected user
+                      open={dialogOpen && selectedUserId === user._id}
                       onClose={() => setDialogOpen(false)}
                     >
-                      {/* <DialogTitle>User Profile</DialogTitle> */}
                       <DialogContent>
                         {/* Load the UserFromCRMPage component */}
                         <UserFromCRMPage

@@ -3,23 +3,16 @@ import {
   Card,
   CardActionArea,
   CardMedia,
-  CardHeader,
   CardContent,
   Typography,
-  CardActions,
   Button,
-  Container,
   Grid,
 } from "@mui/material";
 import PropTypes from "prop-types";
-import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
-import { Fragment } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import { FiArrowUpRight, FiArrowDown } from "react-icons/fi";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
-import NorthEastIcon from "@mui/icons-material/NorthEast";
 
 const CoinCardComponent = ({
   img,
@@ -95,7 +88,7 @@ const CoinCardComponent = ({
             container
             spacing={0}
             justifyContent="center"
-            sx={{ marginTop: -1 }} // Adjust the negative margin-top value as needed
+            sx={{ marginTop: -1 }}
           >
             <Grid item>
               <Button
@@ -123,8 +116,8 @@ const CoinCardComponent = ({
 
 CoinCardComponent.propTypes = {
   img: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired, // Update this to 'name'
-  codeName: PropTypes.string.isRequired, // Update this to 'codeName'
+  name: PropTypes.string.isRequired,
+  codeName: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
 };
 

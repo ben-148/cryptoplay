@@ -1,4 +1,3 @@
-// useCoinData.js
 import axios from "axios";
 
 const UpdateCoinData = async () => {
@@ -22,10 +21,6 @@ const UpdateCoinData = async () => {
       }
     );
     const apiData = apiResponse.data;
-    console.log(
-      "🚀 ~ file: UpdateCoinData.js:25 ~ UpdateCoinData ~ apiData:",
-      apiData
-    );
 
     const updatedData = serverData.map((coinFromServer) => {
       const matchingApiCoin = apiData.find(
@@ -56,11 +51,9 @@ const UpdateCoinData = async () => {
         // Add other fields as needed
       })),
     });
-    console.log("server updated");
-    // Additional logic if needed
+    // console.log("server updated");
   } catch (error) {
     console.error("Error fetching or updating data:", error);
-    // Handle error
   }
 };
 

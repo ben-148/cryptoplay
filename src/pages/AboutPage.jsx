@@ -1,5 +1,4 @@
 import React from "react";
-// import "./css/AboutUs.css";
 import {
   Typography,
   Card,
@@ -29,7 +28,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   width: "100%",
-  height: "200px", // Set your desired height
+  height: "200px",
   objectFit: "cover",
 }));
 
@@ -41,7 +40,6 @@ const AboutPage = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const handleStartTrading = () => {
-    // Navigate to the "/trade" route
     navigate("/trade");
   };
 
@@ -59,10 +57,8 @@ const AboutPage = () => {
         crypto world and the knowledge I gained during the course.
       </Typography>
 
-      {/* Coin Information Section */}
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          {/* Additional Card */}
           <StyledCard>
             <StyledCardMedia
               component="img"
@@ -103,7 +99,6 @@ const AboutPage = () => {
         </Grid>
       </Grid>
 
-      {/* Trading and Portfolio Section */}
       <br></br>
       <Typography variant="h5" component="h2" gutterBottom>
         Your chance to experiment! Trade and Track Your Portfolio
@@ -126,11 +121,7 @@ const AboutPage = () => {
         tools utilized for site design. I invite you to explore and experiment
         with my project. I hope you enjoy it!
       </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleStartTrading} // Call the function to navigate to "/trade"
-      >
+      <Button variant="contained" color="primary" onClick={handleStartTrading}>
         Start Trading
       </Button>
 

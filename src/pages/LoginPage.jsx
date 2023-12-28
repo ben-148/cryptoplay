@@ -37,7 +37,6 @@ const LoginPage = () => {
       loggedIn();
       toast.success("🦄 you are in :) ");
 
-      //move to homepage
       navigate(ROUTES.HOME);
     } catch (err) {
       toast.error("🦄 bad password or email ");

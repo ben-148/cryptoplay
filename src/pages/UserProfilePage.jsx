@@ -17,7 +17,6 @@ import { useEffect } from "react";
 import FormButtonsComponent from "../components/FormButtonsComponent";
 import useLoggedIn from "../hooks/useLoggedIn";
 import EditProfileFieldComponent from "../components/EditProfileComponent";
-import reconfigurationUser from "../utils/recofigurationUser";
 import { useSelector } from "react-redux";
 
 const UserProfilePage = () => {
@@ -83,11 +82,6 @@ const UserProfilePage = () => {
         };
 
         setInputState(flattenedData);
-        console.log(
-          "🚀 ~ file: UserProfilePage.jsx:84 ~ flattenedData:",
-          flattenedData
-        );
-        // console.log("🚀 ~ file: UserProfilePage.jsx:59 ~ data:", data);
       } catch (err) {
         console.log("error from axios", err.response.data);
       }
@@ -99,10 +93,6 @@ const UserProfilePage = () => {
   const handleSaveClick = async (ev) => {
     try {
       const newInputState = JSON.parse(JSON.stringify(inputState));
-      console.log(
-        "🚀 ~ file: UserProfilePage.jsx:113 ~ handleBtnClick ~ newInputState:",
-        newInputState
-      );
       delete newInputState._id;
       delete newInputState.createdAt;
       delete newInputState.isAdmin;
@@ -112,10 +102,6 @@ const UserProfilePage = () => {
       const joiResponse = validateEditProfileSchema(newInputState);
       setInputsErrorsState(joiResponse);
       if (joiResponse) {
-        console.log(
-          "🚀 ~ file: UserProfilePage.jsx:118 ~ handleBtnClick ~ joiResponse:",
-          joiResponse
-        );
         return;
       }
       if (!inputState.zip) {
@@ -146,9 +132,6 @@ const UserProfilePage = () => {
           })
         ).data.token
       );
-
-      // Move the console log here
-      console.log("Updated Token:", localStorage.getItem("token"));
 
       loggedIn();
       setEditMode(false);
@@ -192,7 +175,6 @@ const UserProfilePage = () => {
     setInputsErrorsState(null);
     setInputState(cloneInputState);
   };
-  // delete inputState.middleName;
 
   const handleEditClick = () => {
     setEditMode(true);
@@ -225,7 +207,7 @@ const UserProfilePage = () => {
                   isReq={input.isReq}
                   onInputeChange={handleInputChange}
                   value={inputState[input.idAndKey]}
-                  disabled={!editMode} // Disable inputs when not in edit mode
+                  disabled={!editMode}
                 />
                 {inputsErrorsState && inputsErrorsState[input.idAndKey] && (
                   <Alert severity="warning">

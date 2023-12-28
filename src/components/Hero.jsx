@@ -34,7 +34,6 @@ const Hero = () => {
       localStorage.setItem("token", data.token);
       loggedIn();
       toast.success("🦄 Welcome back!");
-      // Redirect to the homepage or another desired page
       navigate("/");
     } catch (err) {
       toast.error("🦄 Invalid email or password");
@@ -48,7 +47,6 @@ const Hero = () => {
   };
 
   const handleKeyDown = (event) => {
-    // Check if the pressed key is Enter (key code 13)
     if (event.key === "Enter") {
       handleLogin();
     }
@@ -66,13 +64,9 @@ const Hero = () => {
               <p>Welcome {payload.firstName}! </p>
               <p>Explore your CryptoPlay experience,</p>
               <p>Check out what yours portfolio telling you today</p>
-              {/* <br /> */}
               <button className="btn" onClick={() => navigate("/portfolio")}>
                 {payload.firstName}'s PORTFOLIO
               </button>
-              {/* <button className="btn" onClick={() => navigate("/trade")}>
-                TRADE
-              </button> */}
             </>
           ) : (
             <>

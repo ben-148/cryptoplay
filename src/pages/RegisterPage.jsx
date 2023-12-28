@@ -74,7 +74,7 @@ const RegisterPage = () => {
         email: inputState.email,
         password: inputState.password,
         phone: inputState.phone,
-        portfolio: [], // Include the portfolio property
+        portfolio: [],
       });
       toast.success(
         "🦄 Mazal Tov, you are registered member now! lets do login.. :) "

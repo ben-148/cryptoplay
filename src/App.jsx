@@ -12,13 +12,13 @@ import { useSelector } from "react-redux";
 
 import MuiNavbar from "./components/Navbar/MuiNavbar";
 import { createTheme } from "@mui/material/styles";
-import { red, blue } from "@mui/material/colors";
+import { blue } from "@mui/material/colors";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useLoggedIn from "./hooks/useLoggedIn";
 import Mfooter from "./components/footer";
 import CopyrightTypography from "./components/CopyrightTypography";
-import UpdateCoinData from "./initalData/UpdateCoinData"; // Adjust the import path
+import UpdateCoinData from "./initalData/UpdateCoinData";
 
 const light = {
   palette: {
@@ -40,7 +40,7 @@ const dark = {
       main: "#BA8AFF",
     },
     text: {
-      gold: "#FFD700", // Define the text color for dark theme, e.g., gold
+      gold: "#FFD700",
     },
   },
 };
@@ -60,8 +60,6 @@ function App() {
   const isDarkTheme = useSelector(
     (bigPie) => bigPie.darkThemeSlice.isDarkTheme
   );
-
-  // const theme = createTheme(light);
 
   return (
     <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
@@ -87,7 +85,6 @@ function App() {
         <footer>
           <Mfooter />
         </footer>
-        {/* <p>© 2023 Ben Oved. All rights reserved.</p> */}
         <CopyrightTypography />
       </Container>
     </ThemeProvider>

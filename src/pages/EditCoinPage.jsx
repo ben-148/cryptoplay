@@ -32,7 +32,6 @@ const EditCoinPage = () => {
   const arrOfInputs = [
     { inputName: "Name", idAndKey: "name", isReq: true },
     { inputName: "CODE", idAndKey: "codeName", isReq: true },
-    // { inputName: "price", idAndKey: "price", isReq: true },
     { inputName: "icon url", idAndKey: "url", isReq: true },
     { inputName: "description", idAndKey: "description", isReq: true },
   ];
@@ -47,7 +46,6 @@ const EditCoinPage = () => {
         }
         const { data } = await axios.get(`/coins/${id}`);
         let newInputState = JSON.parse(JSON.stringify(data));
-        console.log("🚀 ~ file: EditCoinPage.jsx:49 ~ data:", data);
         coinNameRef.current = newInputState.name;
         if (data.image && data.image.url) {
           newInputState.url = data.image.url;
@@ -65,7 +63,6 @@ const EditCoinPage = () => {
         delete newInputState.user_id;
         delete newInputState.bizNumber;
         delete newInputState.market_cap;
-        // delete newInputState.createdAt;
         delete newInputState.__v;
         setInputState(newInputState);
         if (!validateEditSchema(newInputState)) {
@@ -75,20 +72,9 @@ const EditCoinPage = () => {
     })();
   }, [id, navigate]);
 
-  // const inputValues = {
-  //   name: inputState ? inputState.name : "",
-  //   codeName: inputState ? inputState.codeName : "",
-  //   price: inputState ? inputState.price : "",
-  //   img: inputState ? inputState.url : "",
-  // };
-
   const handleSaveBtnClick = async (ev) => {
     try {
       const joiResponse = validateEditSchema(inputState);
-      console.log(
-        "🚀 ~ file: EditCoinPage.jsx:88 ~ handleSaveBtnClick ~ joiResponse:",
-        joiResponse
-      );
       setInputsErrorsState(joiResponse);
       if (!joiResponse) {
         if (!inputState.image) {
@@ -105,7 +91,7 @@ const EditCoinPage = () => {
       }
     } catch (err) {
       console.log(
-        "🚀 ~ file: EditCoinPage.jsx:91 ~ handleSaveBtnClick ~ err:",
+        "🚀 ~ file: EditCoinPage.jsx:93 ~ handleSaveBtnClick ~ err:",
         err
       );
       toast.error("error");

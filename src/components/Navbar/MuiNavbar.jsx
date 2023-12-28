@@ -1,20 +1,15 @@
 import * as React from "react";
-import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
 import ModeNightIcon from "@mui/icons-material/ModeNight";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SearchPartial from "./SearchPartial";
 import ROUTES from "../../routes/ROUTES";
 import { darkThemeActions } from "../../store/darkTheme";
@@ -42,16 +37,8 @@ const pages = [
   {
     label: "TRADE",
     url: ROUTES.TRADE,
-    icon: <CurrencyExchangeIcon />, // Add the icon here
+    icon: <CurrencyExchangeIcon />,
   },
-
-  /*   { label: "ADMIN", url: ROUTES.ADMINZONE },
-  { label: "register", url: ROUTES.REGISTER },
-  { label: "login", url: ROUTES.LOGIN },
-  {
-    label: "Favorites",
-    url: ROUTES.FAV,
-  }, */
 ];
 
 // not logged in users
@@ -73,9 +60,9 @@ const authedPages = [
   {
     label: "Favorites",
     url: ROUTES.FAV,
-    icon: <FavoriteIcon />, // Add the icon here
+    icon: <FavoriteIcon />,
   },
-  { label: "Your Portfolio", url: ROUTES.PORTFOLIO, icon: <WalletIcon /> }, // Add the icon here
+  { label: "Your Portfolio", url: ROUTES.PORTFOLIO, icon: <WalletIcon /> },
 ];
 
 const avatarMenu = [
@@ -89,19 +76,7 @@ const avatarMenu = [
   },
 ];
 
-// biz pages
-const bizPage = [
-  {
-    label: "My-Cards",
-    url: ROUTES.MYCARDS,
-  },
-];
-
 const adminPages = [
-  // {
-  //   label: "Sand Box",
-  //   url: ROUTES.SANDBOX,
-  // },
   { label: "ADMIN", url: ROUTES.ADMINZONE, icon: <KeyIcon /> },
 ];
 
@@ -112,9 +87,6 @@ const MuiNavbar = () => {
   const payload = useSelector((bigPie) => bigPie.authSlice.payload);
   const navigate = useNavigate();
   const isAdmin = payload && payload.isAdmin;
-  // const isBiz = payload && payload.biz;
-
-  const anchorElRef = useRef(null);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const dispatch = useDispatch();
@@ -124,22 +96,11 @@ const MuiNavbar = () => {
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-    console.log("event.currentTarget:", event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  /*   React.useEffect(() => {
-    // Set anchorElNavProp to the hamburger icon button when the component mounts
-    setAnchorElNav(document.getElementById("hamburger-icon-button"));
-  }, []);
- */
-  /*   React.useEffect(() => {
-    setTimeout(() => setAnchorElNav(anchorElNav?.current), 1);
-  }, [anchorElNav]);
- */
 
   const changeTheme = () => {
     dispatch(darkThemeActions.changeTheme());
@@ -158,10 +119,6 @@ const MuiNavbar = () => {
     } else {
       allPages.push(...notAuthPages);
     }
-
-    // if (isBiz) {
-    //   allPages.push(...bizPage);
-    // }
 
     if (isAdmin) {
       allPages.push(...adminPages);
@@ -219,7 +176,7 @@ const MuiNavbar = () => {
             }}
           >
             <IconButton
-              id="hamburger-icon-button" // Add this line
+              id="hamburger-icon-button"
               size="large"
               onClick={handleOpenNavMenu}
               color="inherit"
