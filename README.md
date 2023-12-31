@@ -2,6 +2,7 @@
 
 ## Description
 
+Hi
 CryptoPlay is a platform that simulates a website for trading virtual currencies. The prices on the website are real, and each user receives a $1000 registration fee (like USDT) for buying coins. Users can track their balance on the portfolio page.
 
 ## Installation
