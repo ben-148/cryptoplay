@@ -54,7 +54,9 @@ const Featured = () => {
                 <img src={coinData.image.url} alt="" />
               </div>
               <div>
-                <h5>{coinData.name}</h5>
+                <h5 className={isDarkTheme ? "dark-mode-h5" : ""}>
+                  {coinData.name}
+                </h5>
                 <p>${coinData.price.toLocaleString()}</p>
               </div>
               <span

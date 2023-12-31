@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import validateRegisterSchema from "../validation/registerValidation";
 import RegisterFieldComponent from "../components/RegisterComponent";
 import FormButtonsComponent from "../components/FormButtonsComponent";
+
 const RegisterPage = () => {
   const [serverError, setServerError] = useState(null); // Add this state variable
 
@@ -94,7 +95,7 @@ const RegisterPage = () => {
         "🦄 Mazal Tov, you are registered member now! lets do login.. :) "
       );
 
-      navigate(ROUTES.HOME);
+      navigate("/welcome", { replace: true });
     } catch (err) {
       console.log(
         "🚀 ~ file: RegisterPage.jsx:77 ~ handleBtnClick ~ response:",

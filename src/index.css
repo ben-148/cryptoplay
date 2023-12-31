@@ -62,9 +62,14 @@ h2 {
   color: white;
 }
 
+
 */ h5 {
   font-size: 1.1rem;
   line-height: 1.2;
+}
+
+.dark-mode-h5 {
+  color: white;
 }
 
 p {

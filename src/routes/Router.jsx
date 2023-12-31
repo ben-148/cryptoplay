@@ -19,6 +19,7 @@ import UserFromCRMPage from "../pages/UserFromCRMPage";
 import AdminBoxPage from "../pages/AdminBoxPage";
 import AboutPage from "../pages/AboutPage";
 import Home2 from "../pages/HomePage2";
+import WelcomePage from "../pages/WelcomPage";
 
 const Router = () => {
   return (
@@ -26,9 +27,9 @@ const Router = () => {
       <Route path={ROUTES.HOME} element={<Home2 />} />
       <Route path={ROUTES.TRADE} element={<AssetsPage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
-
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+      <Route path="welcome" element={<WelcomePage />} />
 
       <Route
         path={ROUTES.ADMINZONE}

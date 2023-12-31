@@ -33,6 +33,7 @@ const CoinsManagmentPage = () => {
       setCoinsArr((prevCoinsArr) =>
         prevCoinsArr.filter((coin) => coin._id !== id)
       );
+      toast.error("The coin has been successfully deleted");
     } catch (err) {
       console.log("error on delete", err.response.data);
     }
