@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Alert, Switch } from "@mui/material";
+import { Alert } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import ROUTES from "../routes/ROUTES";
 import axios from "axios";
@@ -16,6 +16,8 @@ import validateRegisterSchema from "../validation/registerValidation";
 import RegisterFieldComponent from "../components/RegisterComponent";
 import FormButtonsComponent from "../components/FormButtonsComponent";
 const RegisterPage = () => {
+  const [serverError, setServerError] = useState(null); // Add this state variable
+
   const [enableRegister, setenableRegister] = useState(true);
   const [inputState, setInputState] = useState({
     firstName: "",
@@ -33,6 +35,18 @@ const RegisterPage = () => {
   });
   const [inputsErrorsState, setInputsErrorsState] = useState({});
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (serverError) {
+      console.log("Server Error:", serverError);
+
+      // Extract the error message from the object
+      const errorMessage = serverError.error || "An error occurred";
+
+      toast.error(errorMessage); // Display the toast notification with the extracted error message
+    }
+  }, [serverError]);
+
   const arrOfInputs = [
     { inputName: "First Name", idAndKey: "firstName", isReq: true },
     { inputName: "Middle Name", idAndKey: "middleName", isReq: false },
@@ -82,11 +96,11 @@ const RegisterPage = () => {
 
       navigate(ROUTES.HOME);
     } catch (err) {
-      toast.error(err.response.data);
       console.log(
         "🚀 ~ file: RegisterPage.jsx:77 ~ handleBtnClick ~ response:",
         err.response.data
       );
+      setServerError(err.response.data); // Set the server error in case of an error
     }
   };
   const handleInputChange = (ev) => {

@@ -62,7 +62,7 @@ const authedPages = [
     url: ROUTES.FAV,
     icon: <FavoriteIcon />,
   },
-  { label: "Your Portfolio", url: ROUTES.PORTFOLIO, icon: <WalletIcon /> },
+  { label: "Portfolio", url: ROUTES.PORTFOLIO, icon: <WalletIcon /> },
 ];
 
 const avatarMenu = [

@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 import { FiArrowUpRight, FiArrowDown } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./Featured.css";
 
@@ -45,7 +45,11 @@ const Featured = () => {
 
         <div className="right">
           {serverData.slice(0, 6).map((coinData, index) => (
-            <div className="card" key={index}>
+            <Link
+              key={index}
+              to={`/coinProfile/${coinData._id}`} // Use the coin's ID in the URL
+              className="card"
+            >
               <div className="top">
                 <img src={coinData.image.url} alt="" />
               </div>
@@ -63,7 +67,7 @@ const Featured = () => {
                 )}
                 {parseFloat(coinData.change24).toFixed(2)}%
               </span>{" "}
-            </div>
+            </Link>
           ))}
         </div>
       </div>

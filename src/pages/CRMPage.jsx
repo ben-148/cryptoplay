@@ -143,7 +143,7 @@ const CRMPage = () => {
                       onClick={() => whenUserClicked(user._id)}
                       style={{ marginTop: "10px" }}
                     >
-                      User Profile
+                      Info & Portfolio
                     </Button>
                     <Dialog
                       open={dialogOpen && selectedUserId === user._id}

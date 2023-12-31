@@ -8,7 +8,13 @@ const registerSchema = Joi.object({
   lastName: Joi.string().min(2).max(100).required(),
   email: Joi.string()
     .email({ tlds: { allow: false } })
-    .required(),
+    .required()
+    .messages({
+      "string.email": "Invalid email address.",
+      "string.empty": "Email cannot be empty.",
+      "any.required": "Email is required.",
+      "any.unique": "Email address is already in use.", // Custom message for uniqueness
+    }),
   password: Joi.string()
     .pattern(
       new RegExp(
